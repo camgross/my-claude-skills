@@ -137,6 +137,12 @@ Assess whether the course description contains sufficient detail to generate 200
 - Estimate potential concept count based on current content
 - Recommend additions if concept generation may fall short
 
+### Add course-description.md to mkdocs.yml Navigation
+
+After the course-description.md file has been added to the /docs direction,
+ask the user if the new file should be added to the mkdocs.yml file.
+If the answer is yes, place the new file after the about.md file.
+
 ## Best Practices
 
 When using this skill:
