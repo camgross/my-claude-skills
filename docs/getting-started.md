@@ -162,7 +162,7 @@ sure that this is in your $PATH so that Claude Code can find the script.
 
 I just type '/sk` into Claude Code and you should see the code listed
 
-![](../docs/img/claude-code-skill-command.png)
+![](img/claude-code-skill-command.png)
 
 **Result:**
 
