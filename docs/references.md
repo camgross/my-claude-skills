@@ -60,7 +60,7 @@ This textbook draws upon the following high-quality resources:
 
 29. [Concept Graph Learning from Educational Data](https://dl.acm.org/doi/10.1145/2684822.2685292) - 2015-02 - ACM WSDM Conference - Academic research paper presenting the Concept Graph Learning framework that projects course-level prerequisite links onto concept space to induce directed concept graphs for predicting prerequisites across institutions.
 
-30. [A Systematic Literature Review of Knowledge Graph Construction and Application in Education](https://slejournal.springeropen.com/articles/10.1186/s40561-024-00316-3) - 2024-01 - Smart Learning Environments - Comprehensive review of knowledge graph research in education covering construction methodologies, applications in personalized learning, curriculum design, concept mapping, and educational content recommendation systems.
+30. [A Systematic Literature Review of Knowledge Graph Construction and Application in Education](https://pmc.ncbi.nlm.nih.gov/articles/PMC10847940/) - 2024-01 - Smart Learning Environments - Comprehensive review of knowledge graph research in education covering construction methodologies, applications in personalized learning, curriculum design, concept mapping, and educational content recommendation systems.
 
 ---
 *References last updated: 2025-11-03*
