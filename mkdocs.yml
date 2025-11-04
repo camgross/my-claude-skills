@@ -18,9 +18,16 @@ nav:
     - skill-descriptions/learning-graph-generator.md
     - skill-descriptions/microsim-p5.md
     - skill-descriptions/quiz-generator.md
+    - skill-descriptions/course-description-analyzer.md
+    - skill-descriptions/install-learning-graph-viewer.md
   - MicroSims:
     - List of MicroSims: sims/index.md
     - Graph Viewer: sims/graph-viewer/in
+  - Prompts:
+    - List of Prompts: prompts/index.md
+    - Run the Course Description Skill: prompts/course-description-skill.md
+    - Run the References Generator Skill: prompts/references-generator-skill.md
+
   - Glossary: glossary.md
   - References: references.md
   - License: license.md
