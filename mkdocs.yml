@@ -12,14 +12,16 @@ nav:
   - Course Description: course-description.md
   - Getting Started: getting-started.md
   - List of Skills: 
-    - Overview: list-of-skills.md
+    - Overview: skill-descriptions/index.md
+    - Course Description Generator and Analyzer: skill-descriptions/course-description-analyzer.md
+    - Learning Graph Generator: skill-descriptions/learning-graph-generator.md
+    - Install Learning Graph Viewer: skill-descriptions/install-learning-graph-viewer.md
+    - Book Chapter Generator: skill-descriptions/book-chapter-generator.md
+    - Glossary Generator: skill-descriptions/glossary-generator.md
     - skill-descriptions/faq-generator.md
-    - skill-descriptions/glossary-generator.md
-    - skill-descriptions/learning-graph-generator.md
     - skill-descriptions/microsim-p5.md
     - skill-descriptions/quiz-generator.md
-    - skill-descriptions/course-description-analyzer.md
-    - skill-descriptions/install-learning-graph-viewer.md
+    - skill-descriptions/references-generator.md
   - MicroSims:
     - List of MicroSims: sims/index.md
     - Graph Viewer: sims/graph-viewer/in
