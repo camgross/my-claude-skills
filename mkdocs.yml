@@ -18,6 +18,9 @@ nav:
     - skill-descriptions/learning-graph-generator.md
     - skill-descriptions/microsim-p5.md
     - skill-descriptions/quiz-generator.md
+  - MicroSims:
+    - List of MicroSims: sims/index.md
+    - Graph Viewer: sims/graph-viewer/in
   - Glossary: glossary.md
   - References: references.md
   - License: license.md

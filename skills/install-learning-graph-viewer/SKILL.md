@@ -79,7 +79,8 @@ If the user wants the graph viewer in the site navigation, add it to `mkdocs.yml
 
 ```yaml
 nav:
-  - Simulations:
+  - MicroSims:
+    - List of MicroSims: sims/index.md
     - Graph Viewer: sims/graph-viewer/index.md
 ```
 
