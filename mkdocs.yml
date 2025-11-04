@@ -18,10 +18,10 @@ nav:
     - Install Learning Graph Viewer: skill-descriptions/install-learning-graph-viewer.md
     - Book Chapter Generator: skill-descriptions/book-chapter-generator.md
     - Glossary Generator: skill-descriptions/glossary-generator.md
-    - skill-descriptions/faq-generator.md
-    - skill-descriptions/microsim-p5.md
-    - skill-descriptions/quiz-generator.md
-    - skill-descriptions/references-generator.md
+    - FAQ Generator: skill-descriptions/faq-generator.md
+    - MicroSims: skill-descriptions/microsim-p5.md
+    - Quiz Generator: skill-descriptions/quiz-generator.md
+    - Reference Generator: skill-descriptions/references-generator.md
   - MicroSims:
     - List of MicroSims: sims/index.md
     - Graph Viewer: sims/graph-viewer/in
@@ -29,7 +29,8 @@ nav:
     - List of Prompts: prompts/index.md
     - Run the Course Description Skill: prompts/course-description-skill.md
     - Run the References Generator Skill: prompts/references-generator-skill.md
-
+    - Book Chapter Generator: prompts/book-chapter-generator-skill.md
+    - Chapter Generator: prompts/chapter-content-generator.md
   - Glossary: glossary.md
   - References: references.md
   - License: license.md
