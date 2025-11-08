@@ -17,13 +17,13 @@
 
 These concepts have no prerequisites:
 
-- **1**: What is Artificial Intelligence
-- **26**: What is an Intelligent Textbook
+- **1**: Artificial Intelligence
+- **26**: Intelligent Textbook
 - **37**: Markdown Formatting Basics
-- **91**: What is a Taxonomy
-- **153**: What is Git
-- **162**: What is Visual Studio Code
-- **168**: What is Python
+- **91**: Taxonomy
+- **153**: Git
+- **162**: Visual Studio Code
+- **168**: Python
 - **191**: Command-Line Interface Basics
 
 ## Dependency Chain Analysis
@@ -32,8 +32,8 @@ These concepts have no prerequisites:
 
 ### Longest Learning Path:
 
-1. **What is an Intelligent Textbook** (ID: 26)
-2. **What is a Learning Graph** (ID: 39)
+1. **Intelligent Textbook** (ID: 26)
+2. **Learning Graph** (ID: 39)
 3. **Concept Nodes in Learning Graphs** (ID: 40)
 4. **Concept Dependencies** (ID: 44)
 5. **Dependency Mapping Process** (ID: 70)
@@ -85,15 +85,15 @@ Top 10 concepts that are prerequisites for the most other concepts:
 
 | Rank | Concept ID | Concept Label | Indegree |
 |------|-----------|---------------|----------|
-| 1 | 26 | What is an Intelligent Textbook | 13 |
+| 1 | 26 | Intelligent Textbook | 13 |
 | 2 | 71 | CSV File Format for Graphs | 10 |
 | 3 | 82 | Quality Metrics for Graphs | 8 |
 | 4 | 53 | Bloom's 2001 Revision | 7 |
 | 5 | 105 | Dublin Core Metadata | 7 |
-| 6 | 6 | What is a Claude Skill | 6 |
+| 6 | 6 | Claude Skill | 6 |
 | 7 | 13 | Installing a Claude Skill | 6 |
-| 8 | 39 | What is a Learning Graph | 6 |
-| 9 | 46 | What is a Course Description | 6 |
+| 8 | 39 | Learning Graph | 6 |
+| 9 | 46 | Course Description | 6 |
 | 10 | 116 | ISO 11179 Standards | 6 |
 
 ## Outdegree Distribution

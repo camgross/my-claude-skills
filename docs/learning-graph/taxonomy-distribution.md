@@ -59,7 +59,7 @@ All categories are under the 30% threshold. Good balance!
 - 73. ConceptID Field
 - 74. ConceptLabel Field
 - 75. Dependencies Field
-- 91. What is a Taxonomy
+- 91. Taxonomy
 - 92. Concept Categorization
 - 93. Taxonomy Categories
 - 94. TaxonomyID Abbreviations
@@ -77,7 +77,7 @@ All categories are under the 30% threshold. Good balance!
 
 **Concepts**:
 
-- 6. What is a Claude Skill
+- 6. Claude Skill
 - 7. Skill Definition File Structure
 - 8. YAML Frontmatter in Skills
 - 9. Skill Name and Description
@@ -88,7 +88,7 @@ All categories are under the 30% threshold. Good balance!
 - 14. Listing Available Skills
 - 15. Invoking Skills with Slash Commands
 - 16. Skill Execution Context
-- 17. What is a Claude Command
+- 17. Claude Command
 - 18. Command Definition Files
 - 19. Installing Claude Commands
 - 20. Difference Between Skills & Commands
@@ -100,7 +100,7 @@ All categories are under the 30% threshold. Good balance!
 
 **Concepts**:
 
-- 39. What is a Learning Graph
+- 39. Learning Graph
 - 40. Concept Nodes in Learning Graphs
 - 41. Dependency Edges in Learning Graphs
 - 42. Directed Acyclic Graph (DAG)
@@ -123,7 +123,7 @@ All categories are under the 30% threshold. Good balance!
 
 **Concepts**:
 
-- 115. What is a Glossary
+- 115. Glossary
 - 116. ISO 11179 Standards
 - 117. Precise Definitions
 - 118. Concise Definitions
@@ -131,11 +131,11 @@ All categories are under the 30% threshold. Good balance!
 - 120. Non-Circular Definitions
 - 121. Definitions Without Business Rules
 - 122. Glossary Generation Process
-- 123. What is a FAQ
+- 123. FAQ
 - 124. FAQ Generation Process
 - 125. Common Student Questions
 - 126. FAQ from Course Content
-- 139. What is a Quiz
+- 139. Quiz
 - 140. Multiple-Choice Questions
 - 141. Quiz Alignment with Concepts
 - *...and 3 more*
@@ -146,13 +146,13 @@ All categories are under the 30% threshold. Good balance!
 
 **Concepts**:
 
-- 46. What is a Course Description
+- 46. Course Description
 - 47. Target Audience Definition
 - 48. Course Prerequisites
 - 49. Main Topics Covered
 - 50. Topics Excluded from Course
 - 51. Learning Outcomes
-- 52. What is Bloom's Taxonomy
+- 52. Bloom's Taxonomy
 - 53. Bloom's 2001 Revision
 - 54. Remember (Cognitive Level 1)
 - 55. Understand (Cognitive Level 2)
@@ -169,12 +169,12 @@ All categories are under the 30% threshold. Good balance!
 
 **Concepts**:
 
-- 1. What is Artificial Intelligence
-- 2. What is Claude AI
+- 1. Artificial Intelligence
+- 2. Claude AI
 - 3. Large Language Models Overview
 - 4. Anthropic Claude Pro Account
 - 5. Claude Code Interface
-- 176. What is Prompt Engineering
+- 176. Prompt Engineering
 - 177. Prompt Design Principles
 - 178. Educational Content Prompts
 - 179. Iterative Prompt Refinement
@@ -190,7 +190,7 @@ All categories are under the 30% threshold. Good balance!
 
 **Concepts**:
 
-- 127. What is a MicroSim
+- 127. MicroSim
 - 128. p5.js JavaScript Library
 - 129. Interactive Simulations
 - 130. MicroSim Directory Structure
@@ -209,10 +209,10 @@ All categories are under the 30% threshold. Good balance!
 
 **Concepts**:
 
-- 162. What is Visual Studio Code
+- 162. Visual Studio Code
 - 163. VS Code for Content Development
 - 164. Terminal in VS Code
-- 165. What is Bash
+- 165. Bash
 - 166. Shell Scripts
 - 167. Script Execution Permissions
 - 191. Command-Line Interface Basics
@@ -227,7 +227,7 @@ All categories are under the 30% threshold. Good balance!
 
 **Concepts**:
 
-- 153. What is Git
+- 153. Git
 - 154. Version Control Basics
 - 155. Git Repository Structure
 - 156. Git Status Command
@@ -243,7 +243,7 @@ All categories are under the 30% threshold. Good balance!
 
 **Concepts**:
 
-- 26. What is an Intelligent Textbook
+- 26. Intelligent Textbook
 - 27. Five Levels of Textbook Intelligence
 - 28. Level 1: Static Content
 - 29. Level 2: Hyperlinked Navigation
@@ -273,7 +273,7 @@ All categories are under the 30% threshold. Good balance!
 
 **Concepts**:
 
-- 33. What is MkDocs
+- 33. MkDocs
 - 34. MkDocs Material Theme
 - 35. MkDocs Configuration File
 - 36. Navigation Structure in MkDocs

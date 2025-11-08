@@ -15,12 +15,12 @@ Please review this list and:
 
 ## Concept Labels
 
-1. What is Artificial Intelligence
-2. What is Claude AI
+1. Artificial Intelligence
+2. Claude AI
 3. Large Language Models Overview
 4. Anthropic Claude Pro Account
 5. Claude Code Interface
-6. What is a Claude Skill
+6. Claude Skill
 7. Skill Definition File Structure
 8. YAML Frontmatter in Skills
 9. Skill Name and Description
@@ -31,7 +31,7 @@ Please review this list and:
 14. Listing Available Skills
 15. Invoking Skills with Slash Commands
 16. Skill Execution Context
-17. What is a Claude Command
+17. Claude Command
 18. Command Definition Files
 19. Installing Claude Commands
 20. Difference Between Skills & Commands
@@ -40,33 +40,33 @@ Please review this list and:
 23. Python Scripts in Skills
 24. Template Files in Skills
 25. Reference Documentation in Skills
-26. What is an Intelligent Textbook
+26. Intelligent Textbook
 27. Five Levels of Textbook Intelligence
 28. Level 1: Static Content
 29. Level 2: Hyperlinked Navigation
 30. Level 3: Interactive Elements
 31. Level 4: Adaptive Content
 32. Level 5: AI Personalization
-33. What is MkDocs
+33. MkDocs
 34. MkDocs Material Theme
 35. MkDocs Configuration File
 36. Navigation Structure in MkDocs
 37. Markdown Formatting Basics
 38. Admonitions in MkDocs
-39. What is a Learning Graph
+39. Learning Graph
 40. Concept Nodes in Learning Graphs
 41. Dependency Edges in Learning Graphs
 42. Directed Acyclic Graph (DAG)
 43. Prerequisite Relationships
 44. Concept Dependencies
 45. Learning Pathways
-46. What is a Course Description
+46. Course Description
 47. Target Audience Definition
 48. Course Prerequisites
 49. Main Topics Covered
 50. Topics Excluded from Course
 51. Learning Outcomes
-52. What is Bloom's Taxonomy
+52. Bloom's Taxonomy
 53. Bloom's 2001 Revision
 54. Remember (Cognitive Level 1)
 55. Understand (Cognitive Level 2)
@@ -105,7 +105,7 @@ Please review this list and:
 88. Average Dependencies Per Concept
 89. Maximum Dependency Chain Length
 90. Learning Graph Quality Score
-91. What is a Taxonomy
+91. Taxonomy
 92. Concept Categorization
 93. Taxonomy Categories
 94. TaxonomyID Abbreviations
@@ -129,7 +129,7 @@ Please review this list and:
 112. License Metadata Field
 113. Color Coding in Visualizations
 114. Font Colors for Readability
-115. What is a Glossary
+115. Glossary
 116. ISO 11179 Standards
 117. Precise Definitions
 118. Concise Definitions
@@ -137,11 +137,11 @@ Please review this list and:
 120. Non-Circular Definitions
 121. Definitions Without Business Rules
 122. Glossary Generation Process
-123. What is a FAQ
+123. FAQ
 124. FAQ Generation Process
 125. Common Student Questions
 126. FAQ from Course Content
-127. What is a MicroSim
+127. MicroSim
 128. p5.js JavaScript Library
 129. Interactive Simulations
 130. MicroSim Directory Structure
@@ -153,7 +153,7 @@ Please review this list and:
 136. Interactive Controls (Buttons)
 137. MicroSim Metadata
 138. Educational Simulation Design
-139. What is a Quiz
+139. Quiz
 140. Multiple-Choice Questions
 141. Quiz Alignment with Concepts
 142. Bloom's Taxonomy in Quizzes
@@ -167,7 +167,7 @@ Please review this list and:
 150. Reading Level Appropriateness
 151. Worked Examples in Content
 152. Practice Exercises
-153. What is Git
+153. Git
 154. Version Control Basics
 155. Git Repository Structure
 156. Git Status Command
@@ -176,13 +176,13 @@ Please review this list and:
 159. Git Push Command
 160. GitHub Integration
 161. GitHub Pages Deployment
-162. What is Visual Studio Code
+162. Visual Studio Code
 163. VS Code for Content Development
 164. Terminal in VS Code
-165. What is Bash
+165. Bash
 166. Shell Scripts
 167. Script Execution Permissions
-168. What is Python
+168. Python
 169. Python Scripts for Processing
 170. pip Package Management
 171. Installing Python Packages
@@ -190,7 +190,7 @@ Please review this list and:
 173. csv-to-json.py Script
 174. add-taxonomy.py Script
 175. taxonomy-distribution.py Script
-176. What is Prompt Engineering
+176. Prompt Engineering
 177. Prompt Design Principles
 178. Educational Content Prompts
 179. Iterative Prompt Refinement

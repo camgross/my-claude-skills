@@ -33,11 +33,13 @@ nav:
     - Graph Quality Analysis: learning-graph/quality-metrics.md
     - Concept Taxonomy: learning-graph/concept-taxonomy.md
     - Taxonomy Distribution Report: learning-graph/taxonomy-distribution.md
+    - Progress Report: learning-graph/progress.md
 
 
   - MicroSims:
     - List of MicroSims: sims/index.md
     - Graph Viewer: sims/graph-viewer/index.md
+    - Concept Length Histogram: sims/concept-length-histogram/index.md
   
   - Prompts:
     - List of Prompts: prompts/index.md

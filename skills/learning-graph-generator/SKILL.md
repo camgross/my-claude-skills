@@ -52,7 +52,23 @@ If you do not see the `docs` directory and the `mkdocs.yml` file suggest that th
 
 ## Step 1: Course Description Quality Assessment
 
-First, analyze the provided course description at [course-description.md](../course-description.md) to ensure it has enough content to generate 200 high-quality concepts:
+Before you begin this step, verify that it has not already been done.
+To do this, check the yml metadata in the `docs/course-description.md` file.
+
+Here is a sample of the yml metadata:
+
+```markdown
+---
+title: Course Description
+description: A detailed course description 
+quality_score: 95
+---
+# Course Description
+```
+
+If you see a quality_score above 85 you may tell the user you found a score above 85 and skip this entire step.  Tell them this is a way to save tokens.
+
+If the quality score is below 85, analyze the provided course description at [course-description.md](../course-description.md) to ensure it has enough content to generate 200 high-quality concepts:
 
 1. Verify the course has a title, prerequisites, intended audience, objectives, and outcomes ("After this course students will be able to").  If these fields are missing ask the user for this information. 
 1. Examine the depth and breadth of topics covered
@@ -107,10 +123,16 @@ Save this report to [course-description-assessment.md](./course-description-asse
 Once approved, generate 200 concept labels from the course content:
 
 **Requirements:**
-- Each label must be in Title Case
+- Each Concept label must be in Title Case
 - Maximum length: 32 characters
 - Labels should be clear, specific, and pedagogically sound
 - Cover the full breadth of the course material
+- Concept Labels are entity names, not questions
+- Do not use questions in the Concept Label.  Don't use "What is Git", just use "Git"
+
+!!! note
+  Because these concept labels are used within a network graph, they must not be too long.
+  Otherwise the graph will be hard to read.
 
 **Output:**
 - Save the numbered list to [concept-list.md](./concept-list.md)
