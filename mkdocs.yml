@@ -50,6 +50,7 @@ nav:
     - Concept Taxonomy: learning-graph/concept-taxonomy.md
     - Taxonomy Distribution Report: learning-graph/taxonomy-distribution.md
     - Progress Report: learning-graph/progress.md
+    - Usage Limits: claude-usage-limits.md
 
 
   - MicroSims:
@@ -63,10 +64,17 @@ nav:
     - Run the References Generator Skill: prompts/references-generator-skill.md
     - Book Chapter Generator: prompts/book-chapter-generator-skill.md
     - Chapter Generator: prompts/chapter-content-generator.md
-               - claude-usage-limits.md
     - prompts/create-mermaid-generator-skill.md
     - prompts/run-glossary-generator-skill.md
     - prompts/venn-diagram-skill-generator.md
+    - prompts/chapter-content-generator.md
+    - prompts/generate-chapter-10-content.md
+    - prompts/generate-chapter-11-content-log.md
+    - prompts/generate-chapter-8-content.md
+    - prompts/generate-chapter-9-content.md
+    - prompts/generate-chapter-structure.md
+    - prompts/generate-content-for-6-7.md
+    - prompts/generate-content-for-chapters-1-5.md
 
   - Glossary: glossary.md
   - References: references.md
