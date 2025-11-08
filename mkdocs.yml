@@ -11,26 +11,41 @@ nav:
   - About: about.md
   - Course Description: course-description.md
   - Getting Started: getting-started.md
+  
   - List of Skills: 
     - Overview: skill-descriptions/index.md
-    - Course Description Generator and Analyzer: skill-descriptions/course-description-analyzer.md
-    - Learning Graph Generator: skill-descriptions/learning-graph-generator.md
-    - Install Learning Graph Viewer: skill-descriptions/install-learning-graph-viewer.md
-    - Book Chapter Generator: skill-descriptions/book-chapter-generator.md
+    - 1 - Course Description Generator and Analyzer: skill-descriptions/course-description-analyzer.md
+    - 2 - Learning Graph Generator: skill-descriptions/learning-graph-generator.md
+    - 3 - Install Learning Graph Viewer: skill-descriptions/install-learning-graph-viewer.md
+    - 4 - Book Chapter Structure Generator: skill-descriptions/book-chapter-generator.md
+    - 5 - Chapter Content Generator: skill-descriptions/chapter-content-generator.md
     - Glossary Generator: skill-descriptions/glossary-generator.md
     - FAQ Generator: skill-descriptions/faq-generator.md
-    - MicroSims: skill-descriptions/microsim-p5.md
+    - MicroSims p5 Generator: skill-descriptions/microsim-p5.md
     - Quiz Generator: skill-descriptions/quiz-generator.md
     - Reference Generator: skill-descriptions/references-generator.md
+    - Add Glossary Links: skill-descriptions/add-glossary-links.md
+  
+  - Learning Graph:
+    - Overview: learning-graph/index.md
+    - learning-graph/glossary-quality-report.md
+
+
   - MicroSims:
     - List of MicroSims: sims/index.md
     - Graph Viewer: sims/graph-viewer/in
+  
   - Prompts:
     - List of Prompts: prompts/index.md
     - Run the Course Description Skill: prompts/course-description-skill.md
     - Run the References Generator Skill: prompts/references-generator-skill.md
     - Book Chapter Generator: prompts/book-chapter-generator-skill.md
     - Chapter Generator: prompts/chapter-content-generator.md
+               - claude-usage-limits.md
+    - prompts/create-mermaid-generator-skill.md
+    - prompts/run-glossary-generator-skill.md
+    - prompts/venn-diagram-skill-generator.md
+
   - Glossary: glossary.md
   - References: references.md
   - License: license.md
