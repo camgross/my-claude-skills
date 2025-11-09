@@ -14,19 +14,45 @@ nav:
 
   - Chapters:
     - Overview: chapters/index.md
-    - Chapter 1 - Introduction to AI and Intelligent Textbooks: chapters/01-intro-ai-intelligent-textbooks/index.md
-    - Chapter 2 - Getting Started with Claude and Skills: chapters/02-getting-started-claude-skills/index.md
-    - Chapter 3 - Course Design and Educational Theory: chapters/03-course-design-educational-theory/index.md
-    - Chapter 4 - Introduction to Learning Graphs: chapters/04-intro-learning-graphs/index.md
-    - Chapter 5 - Concept Enumeration and Dependencies: chapters/05-concept-enumeration-dependencies/index.md
-    - Chapter 6 - Learning Graph Quality and Validation: chapters/06-learning-graph-quality-validation/index.md
-    - Chapter 7 - Taxonomy and Data Formats: chapters/07-taxonomy-data-formats/index.md
-    - Chapter 8 - MkDocs Platform and Documentation: chapters/08-mkdocs-platform-documentation/index.md
-    - Chapter 9 - Claude Skills Architecture and Development: chapters/09-claude-skills-architecture-development/index.md
-    - Chapter 10 - Content Creation Workflows: chapters/10-content-creation-workflows/index.md
-    - Chapter 11 - Educational Resources and Assessment: chapters/11-educational-resources-assessment/index.md
-    - Chapter 12 - Interactive Elements and MicroSims: chapters/12-interactive-elements-microsims/index.md
-    - Chapter 13 - Development Tools, Version Control, and Deployment: chapters/13-dev-tools-version-control-deployment/index.md
+    - Chapter 1 - Introduction to AI and Intelligent Textbooks:
+      - Content: chapters/01-intro-ai-intelligent-textbooks/index.md
+      - Quiz: chapters/01-intro-ai-intelligent-textbooks/quiz.md
+    - Chapter 2 - Getting Started with Claude and Skills:
+      - Content: chapters/02-getting-started-claude-skills/index.md
+      - Quiz: chapters/02-getting-started-claude-skills/quiz.md
+    - Chapter 3 - Course Design and Educational Theory:
+      - Content: chapters/03-course-design-educational-theory/index.md
+      - Quiz: chapters/03-course-design-educational-theory/quiz.md
+    - Chapter 4 - Introduction to Learning Graphs:
+      - Content: chapters/04-intro-learning-graphs/index.md
+      - Quiz: chapters/04-intro-learning-graphs/quiz.md
+    - Chapter 5 - Concept Enumeration and Dependencies:
+      - Content: chapters/05-concept-enumeration-dependencies/index.md
+      - Quiz: chapters/05-concept-enumeration-dependencies/quiz.md
+    - Chapter 6 - Learning Graph Quality and Validation:
+      - Content: chapters/06-learning-graph-quality-validation/index.md
+      - Quiz: chapters/06-learning-graph-quality-validation/quiz.md
+    - Chapter 7 - Taxonomy and Data Formats:
+      - Content: chapters/07-taxonomy-data-formats/index.md
+      - Quiz: chapters/07-taxonomy-data-formats/quiz.md
+    - Chapter 8 - MkDocs Platform and Documentation:
+      - Content: chapters/08-mkdocs-platform-documentation/index.md
+      - Quiz: chapters/08-mkdocs-platform-documentation/quiz.md
+    - Chapter 9 - Claude Skills Architecture and Development:
+      - Content: chapters/09-claude-skills-architecture-development/index.md
+      - Quiz: chapters/09-claude-skills-architecture-development/quiz.md
+    - Chapter 10 - Content Creation Workflows:
+      - Content: chapters/10-content-creation-workflows/index.md
+      - Quiz: chapters/10-content-creation-workflows/quiz.md
+    - Chapter 11 - Educational Resources and Assessment:
+      - Content: chapters/11-educational-resources-assessment/index.md
+      - Quiz: chapters/11-educational-resources-assessment/quiz.md
+    - Chapter 12 - Interactive Elements and MicroSims:
+      - Content: chapters/12-interactive-elements-microsims/index.md
+      - Quiz: chapters/12-interactive-elements-microsims/quiz.md
+    - Chapter 13 - Development Tools, Version Control, and Deployment:
+      - Content: chapters/13-dev-tools-version-control-deployment/index.md
+      - Quiz: chapters/13-dev-tools-version-control-deployment/quiz.md
 
   - List of Skills: 
     - Overview: skill-descriptions/index.md
@@ -52,6 +78,7 @@ nav:
     - Glossary Quality Report: learning-graph/glossary-quality-report.md
     - FAQ Quality Report: learning-graph/faq-quality-report.md
     - FAQ Coverage Gaps: learning-graph/faq-coverage-gaps.md
+    - Quiz Generation Report: learning-graph/quiz-generation-report.md
     - Progress Report: learning-graph/progress.md
     - Usage Limits: claude-usage-limits.md
 
