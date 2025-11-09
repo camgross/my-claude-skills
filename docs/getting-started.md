@@ -1,5 +1,11 @@
 # Getting Starting Using Intelligent Textbook Skills
 
+This document guides you on the steps to install these intelligent textbooks skills on your local computer so they are accessible to claude code.  At the end of this chapter you should be able to run all the skills
+in this project with two options:
+
+1. **Option 1: Global Skills** - The skills will be usable by all your projects.  If you are creating multiple textbooks you should chose this option.
+2. **Option 2: Project Skills** - If you only are working on a single textbook you can use this option.  If you are using many other skills on other projects that might have conflicting skill names, this is a good choice.
+
 ## Downloading the Skills
 
 The best way to download the skills is to use the git clone command:

@@ -98,6 +98,7 @@ nav:
     - Concept Length Histogram: sims/concept-length-histogram/index.md
     - Claude Code Timeline: sims/claude-code-timeline/index.md
     - Skill Impact Chart: sims/skill-impact-chart/index.md
+    - Course Description Quality Workflow: sims/course-description-quality-workflow/index.md
   
   - Prompts:
     - List of Prompts: prompts/index.md

@@ -4,6 +4,8 @@ description: A course on using Claude Skills to create intelligent textbooks
 image: /img/cover.png
 og:image: /img/cover.png
 twitter:image: /img/cover.png
+hide:
+    toc
 ---
 <style>
 .md-content__inner h1 {display: none !important;}

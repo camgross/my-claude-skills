@@ -6,6 +6,11 @@ An interactive Chart.js bubble chart that visualizes the priority matrix for ski
 
 <iframe src="main.html" width="100%" height="700px" scrolling="no"></iframe>
 
+```html
+<iframe src="https://dmccreary.github.io/claude-skills/sims/skill-impact-chart/main.html" width="100%" height="700px" scrolling="no"></iframe>
+
+```
+
 [View Chart Fullscreen](./main.html){ .md-button .md-button--primary }
 
 ## Overview
