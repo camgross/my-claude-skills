@@ -3,6 +3,8 @@
 analyze-details-content.py
 Analyze <details> tags in chapter content to categorize visualization types
 and prioritize skill development based on impact and effort.
+
+Supports both old format (<details>) and new format (<details markdown="1">).
 """
 import re
 from pathlib import Path
@@ -11,7 +13,12 @@ from typing import Dict, List, Tuple
 
 
 def extract_details_content(docs_dir: Path) -> List[Dict]:
-    """Extract all <details> tag content from chapter markdown files."""
+    """Extract all <details> tag content from chapter markdown files.
+
+    Supports both formats:
+    - Old: <details>
+    - New: <details markdown="1">
+    """
     chapters_dir = docs_dir / 'chapters'
     if not chapters_dir.exists():
         return []
@@ -33,8 +40,10 @@ def extract_details_content(docs_dir: Path) -> List[Dict]:
             title_match = re.search(r'^#\s+(.+)$', content, re.MULTILINE)
             chapter_title = title_match.group(1) if title_match else chapter_dir.name
 
-            # Find all <details> blocks
-            details_pattern = r'<details>(.*?)</details>'
+            # Find all <details> blocks (supports both old and new format)
+            # Old format: <details>
+            # New format: <details markdown="1">
+            details_pattern = r'<details(?:\s+markdown="1")?>(.*?)</details>'
             matches = re.finditer(details_pattern, content, re.DOTALL | re.IGNORECASE)
 
             for match in matches:
@@ -139,7 +148,7 @@ def generate_markdown_report(details_list: List[Dict],
 
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write("# Details Tag Content Analysis\n\n")
-        f.write("This report analyzes all `<details>` tags in the textbook chapters to categorize visualization types and prioritize skill development.\n\n")
+        f.write("This report analyzes all `<details>` tags (both old and new `markdown=\"1\"` format) in the textbook chapters to categorize visualization types and prioritize skill development.\n\n")
 
         f.write("## Summary Statistics\n\n")
         f.write(f"- **Total `<details>` tags:** {len(details_list)}\n")
