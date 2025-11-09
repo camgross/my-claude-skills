@@ -6,6 +6,11 @@ An interactive timeline visualization chronicling 52 pivotal moments in artifici
 
 [View the Raw Timeline Data](timeline.json){ .md-button }
 
+You can use this timeline on any website using the following `iframe` HTML element:
+```html
+<iframe src="https://dmccreary.github.io/claude-skills/sims/claude-code-timeline/main.html" height="1005" width="100%"></iframe>
+```
+
 ## Overview
 
 This timeline MicroSim traces the remarkable journey of artificial intelligence development, focusing on the key innovations, breakthroughs, and milestones that led to the creation of Claude Code and the Claude Skills framework. The visualization spans nearly 70 years of research and development, organized into six thematic categories that represent distinct eras and focuses in AI evolution.
@@ -15,7 +20,7 @@ This timeline MicroSim traces the remarkable journey of artificial intelligence 
 The timeline covers **52 critical events** from 1957 to 2025, including:
 
 - **Foundational Research**: Early neural networks, backpropagation, and deep learning revival
-- **Computer Vision Breakthroughs**: AlexNet, ResNet, and the ImageNet revolution
+- **GPUs Train Deep Neural Nets**: AlexNet, The Use of GPUs, ResNet, and the ImageNet revolution
 - **Transformer Architecture**: The "Attention Is All You Need" paradigm shift
 - **Large Language Models**: GPT series, BERT, and the rise of foundation models
 - **Anthropic's Journey**: Constitutional AI, Claude development, and safety-focused research
