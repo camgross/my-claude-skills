@@ -67,6 +67,15 @@ nav:
     - Quiz Generator: skill-descriptions/quiz-generator.md
     - Reference Generator: skill-descriptions/references-generator.md
     - Add Glossary Links: skill-descriptions/add-glossary-links.md
+    - skill-descriptions/bubble-chart-generator.md
+    - skill-descriptions/intelligent-textbook-creator.md
+    - skill-descriptions/intelligent-textbook.md
+    - skill-descriptions/mermaid-generator.md
+    - skill-descriptions/moving-rainbow.md
+    - skill-descriptions/reference-generator.md
+    - skill-descriptions/timeline-generator.md
+    - skill-descriptions/venn-diagram-generator.md
+    - skill-descriptions/vis-network.md
   
   - Learning Graph:
     - Introduction: learning-graph/index.md
@@ -88,6 +97,7 @@ nav:
     - Graph Viewer: sims/graph-viewer/index.md
     - Concept Length Histogram: sims/concept-length-histogram/index.md
     - Claude Code Timeline: sims/claude-code-timeline/index.md
+    - Skill Impact Chart: sims/skill-impact-chart/index.md
   
   - Prompts:
     - List of Prompts: prompts/index.md
@@ -113,6 +123,7 @@ nav:
     - prompts/generate-references.md
     - prompts/generate-timeline-skill.md
     - prompts/suggest-timeline-placement.md
+  - Details Analysis: details-analysis.md
   - Glossary: glossary.md
   - FAQ: faq.md
   - References: references.md
