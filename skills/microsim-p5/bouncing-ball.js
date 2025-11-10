@@ -95,6 +95,7 @@ function draw() {
   // draw the label and value for the speed slider
   fill('black');
   noStroke();
+  // concatenate the speed value to the label and place it under the drawing area
   text('Speed: ' + speed, 10, drawHeight+20);
 }
 

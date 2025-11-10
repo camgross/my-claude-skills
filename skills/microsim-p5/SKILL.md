@@ -175,8 +175,13 @@ readable from the back of the classroom.
 **Horizontal Sliders In Control Region** (for continuous parameters):
 
 Sliders are create with min, max, default and step parameters.
-They are then placed below the draw height and X over at the sliderLeftMargin.
+
+They are then placed below the drawHeight and X over at the sliderLeftMargin.
 The width of the slider is controlled by the size method and spans the width of the canvas less the sliderLeftMargin - 15;
+
+#### Slider Initialization
+
+Sliders are created in the `setup()` function.  All sliders are horizontal sliders.
 
 ```javascript
 speedSlider = createSlider(0, 20, 3, 0.1);
@@ -185,9 +190,28 @@ speedSlider.size(canvasWidth - sliderLeftMargin - 15);
 speedSlider.input(resetSimulation);
 ```
 
-Do no use the `style` method to change the width of a slider.  Only use the `size' method.
+Do not use the `style` method to change the width of a slider.  Only use the `size' method.
 
-All sliders must have their size recalculated if the container width changes.
+### Slider Width Responsive Behavior
+
+All horizontal sliders must have their width recalculated using the `size` if the container width changes.
+
+### Slider Label Value Placement
+
+At the end of the `draw()` function the label and values for the sliders must be updated.
+They should be placed with a fixed x offset value around 10.
+The label and value are concatenated together using the JavaScript "+" operator.
+Each row of label/value/slider controls should be placed below the prior row by 30.
+
+```javascript
+text('Speed: ' + speed, 10, drawHeight+20);
+text('Angle: ' + angle, 10, drawHeight+50);
+```
+
+### Buttons for Starting and Pausing a Simulation
+
+For example if a simulation has a state global variable `isRunning` the
+button can be created like this:
 
 **Buttons** (for discrete actions):
 ```javascript
@@ -195,6 +219,8 @@ startButton = createButton(isRunning ? 'Pause' : 'Start');
 startButton.position(10, drawHeight + 15);
 startButton.mousePressed(toggleSimulation);
 ```
+
+### Use Checkboxes to Show Additional Optional Information
 
 **Checkboxes** (for toggle options):
 ```javascript
@@ -212,7 +238,7 @@ always be paste directly into the p5.js editing tool.  This tool uses a standard
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bouncing Ball MicroSim using P5.js 1.11.10</title>
+    <title>$SIMULATION_NAME MicroSim using P5.js 1.11.10</title>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
     <style>
         body {
@@ -227,7 +253,7 @@ always be paste directly into the p5.js editing tool.  This tool uses a standard
 <body>
     <main></main>
     <br/>
-    <a href=".">Back to Lesson Plan</a>
+    <a href=".">Back to Documentation</a>
 </body>
 </html>
 ```
