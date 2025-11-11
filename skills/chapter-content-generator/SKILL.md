@@ -184,6 +184,7 @@ After generating chapter content, verify all concepts have been covered.
    - Add content covering those concepts
    - Integrate them naturally into existing structure
 5. Update the chapter index.md file with the complete generated content
+6. Make **Absolutely Sure** that the content has been written to the chapter index.md file.  Do a word count to make sure that **ALL* the content is present and that the TODO has been removed.
 
 **Actions:**
 - Replace the "TODO: Generate Chapter Content" placeholder with generated content
