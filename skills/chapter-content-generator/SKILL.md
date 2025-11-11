@@ -123,10 +123,12 @@ Generate comprehensive educational content based on the chapter outline, concept
 **Non-text element types:**
 
 Elements embedded directly in markdown (no `<details markdown="1">` block):
+
 1. **Markdown lists** (bullet or numbered) - ALWAYS put blank line before list
 2. **Markdown tables** - ALWAYS put blank line before table
 
-Elements requiring `<details markdown="1">` specification blocks:
+Elements requiring diagram header and `<details markdown="1">` specification blocks:
+
 3. **Diagrams/drawings** - System architectures, relationships, data flows
 4. **Interactive infographics** - Clickable concept maps, progressive disclosure, hovers with definitions appearing in tooltips consistent with the glossary
 5. **MicroSims** - p5.js simulations with interactive controls
@@ -139,9 +141,10 @@ Elements requiring `<details markdown="1">` specification blocks:
 
 For each `<details markdown="1">` block element, use this structure:
 
-```xml
+```markdown
+#### Diagram: [Brief descriptive title]
 <details markdown="1">
-    <summary>Brief descriptive title</summary>
+    <summary>[Brief descriptive title]</summary>
     Type: [element-type]
 
     [Detailed specification following guidelines in references/content-element-types.md]
@@ -158,11 +161,14 @@ For each `<details markdown="1">` block element, use this structure:
 - See `references/content-element-types.md` for complete specification guidelines for each element type
 
 **Content structure:**
+
 1. Start with introductory paragraphs connecting to chapter summary
 2. Present concepts in pedagogical order (simple to complex)
 3. Integrate non-text elements naturally throughout
 4. Use markdown lists and tables frequently (with blank lines before them)
 5. Include `<details markdown="1">` blocks for complex visual/interactive elements
+6. Place a level 4 markdown header before each `details` block
+   ```#### Diagram: [Diagram Name]```
 6. End with summary or key takeaways section
 
 **Interactive elements emphasis:**
@@ -170,7 +176,14 @@ For each `<details markdown="1">` block element, use this structure:
   - Student interaction tracking
   - Progress gauging
   - Personalized content recommendations
-- Each interactive element should have clear learning objectives
+- Each interactive element should have clear **Learning objectives:**
+- Reference a section of the 2001 Bloom Taxonomy when you describe a learning objective:
+   - **Remembering:** Recalling facts, terms, basic concepts, and answers without necessarily understanding their meaning.
+   - **Understanding:** Explaining ideas or concepts, demonstrating comprehension by summarizing or rephrasing information.
+   - **Applying:** Using acquired knowledge to solve problems in new or unfamiliar situations.
+   - **Analyzing:** Breaking down information into parts to understand its structure and relationships, and drawing comparisons.
+   - **Evaluating:** Making judgments about information based on set criteria or standards, requiring critical thinking and justification.
+   - **Creating:** Producing new or original work by combining elements to form a novel whole or solution. 
 
 ### Step 5: Verify Completeness
 
@@ -247,6 +260,11 @@ Comprehensive specifications for all non-text element types (3-10 above). Includ
 - Required information for specifications
 - Implementation approaches
 - Example specifications in `<details markdown="1">` block format
+- Place a level 4 Diagram header before each `details` element
+
+```markdown
+#### Diagram: [Diagram Name]
+```
 
 Load this reference when generating content to ensure proper specification of diagrams, MicroSims, infographics, charts, timelines, maps, workflows, and graph models.
 

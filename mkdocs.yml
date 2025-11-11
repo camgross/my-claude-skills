@@ -129,6 +129,8 @@ nav:
     - prompts/generate-diagram-skill-priorities.md
     - prompts/infographic-candidates-list.md
     - prompts/update-skill-descriptions.md
+    - prompts/create-microsim-standardization-skill.md
+    - prompts/readme-generator-skill.md
   - Details Analysis: details-analysis.md
   - Glossary: glossary.md
   - FAQ: faq.md
