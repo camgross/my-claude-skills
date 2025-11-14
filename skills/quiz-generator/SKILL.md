@@ -4,9 +4,14 @@ description: This skill generates interactive multiple-choice quizzes for each c
 license: MIT
 ---
 
-# Quiz Generator
+# Quiz Generator for Intelligent Textbooks
 
-Generate interactive multiple-choice quizzes for textbook chapters with Bloom's Taxonomy alignment and quality distractor analysis.
+**Version:** 0.2
+
+## Overview 
+1. For each markdown chapter, generate interactive multiple-choice quizzes for textbook chapters with and quality distractor analysis.
+2. Generate quality reports in markdown format.
+3. Updated mkdocs.yml navigation to include quizzes and reports.
 
 ## Purpose
 
@@ -33,35 +38,37 @@ The skill can run incrementally (chapter by chapter) or in batch mode (entire te
 
 ### Step 1: Assess Content Readiness
 
+Indicate to the user that the Quiz Generator Skill (version) is running.
+
 Calculate content readiness score (1-100) for each target chapter:
 
 **Quality Checks:**
 
-1. **Chapter word count:**
+#### 1. **Chapter word count:**
    - 2000+ words = excellent (20 pts)
    - 1000-1999 words = good (15 pts)
    - 500-999 words = basic (10 pts)
    - <500 words = insufficient (5 pts)
 
-2. **Example coverage:**
+#### 2. **Example coverage:**
    - 60%+ concepts with examples = excellent (20 pts)
    - 40-59% = good (15 pts)
    - 20-39% = basic (10 pts)
    - <20% = insufficient (5 pts)
 
-3. **Glossary coverage:**
+#### 3. **Glossary coverage:**
    - 80%+ chapter concepts defined = excellent (20 pts)
    - 60-79% = good (15 pts)
    - 40-59% = basic (10 pts)
    - <40% = insufficient (5 pts)
 
-4. **Concept clarity:**
+#### 4. **Concept clarity:**
    - Clear explanations for all concepts (20 pts)
    - Most concepts clear (15 pts)
    - Some unclear concepts (10 pts)
    - Many unclear concepts (5 pts)
 
-5. **Learning graph alignment:**
+#### 5. **Learning graph alignment:**
    - All chapter concepts mapped (20 pts)
    - Most mapped (15 pts)
    - Some mapped (10 pts)
