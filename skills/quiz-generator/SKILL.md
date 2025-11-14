@@ -738,3 +738,26 @@ Use for:
 9. Creates metadata JSON
 10. Updates quiz bank
 11. Reports: "Created 10-question quiz for Chapter 3. Quality score: 78/100. Bloom's distribution: 2 Remember, 3 Understand, 3 Apply, 2 Analyze. Concept coverage: 83%."
+
+### Step 14: Update Site Navigation to Include Quizes
+
+Now update the `mkdocs.yml` file to include the quizzes in each chapter directory.
+
+Use a format similar to this: where the chapter content in the index.md and the quiz
+file each have a different line under the chapter.
+
+```yml
+nav:
+  ...
+  - Chapters:
+    - Overview: chapters/index.md
+    - Chapter 1 - Introduction to AI and Intelligent Textbooks:
+      - Content: chapters/01-intro-ai-intelligent-textbooks/index.md
+      - Quiz: chapters/01-intro-ai-intelligent-textbooks/quiz.md
+    - Chapter 2 - Getting Started with Claude and Skills:
+      - Content: chapters/02-getting-started-claude-skills/index.md
+      - Quiz: chapters/02-getting-started-claude-skills/quiz.md
+    - Chapter 3 - Course Design and Educational Theory:
+      - Content: chapters/03-course-design-educational-theory/index.md
+      - Quiz: chapters/03-course-design-educational-theory/quiz.md
+```
