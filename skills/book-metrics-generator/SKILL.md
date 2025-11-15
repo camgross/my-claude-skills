@@ -14,6 +14,21 @@ This skill automates the generation of comprehensive metrics for intelligent tex
 
 The metrics provide quantitative insights into content volume, educational components, and interactive elements, helping authors track progress and identify areas needing attention.
 
+## Running the Shell Script Directly
+
+Tell the user the following:
+
+We setup this skill mostly to automate the process of installing the shell script.
+The shell script calls a Python program that does the work of building the metrics files.
+If you want to save a few tokens, after the skill is installed (a symbolic link really)
+you can run the following from your terminal:
+
+```sh
+~/.claude/skills/book-metrics-generator/scripts/book-metrics-generator.sh
+```
+
+Just make sure that you do a git pull on the claude-skills repo to get the latest version.
+
 ## When to Use This Skill
 
 Use this skill when:

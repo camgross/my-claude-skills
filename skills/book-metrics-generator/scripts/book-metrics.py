@@ -431,14 +431,14 @@ class BookMetricsGenerator:
         md += "|-------------|-------|------|-------|\n"
 
         # Add rows
-        md += f"| Chapters | {chapter_count} | [Chapters](../chapters/) | Number of chapter directories |\n"
-        md += f"| Concepts | {concepts} | [Learning Graph](./concept-list.md) | Concepts from learning graph |\n"
+        md += f"| Chapters | {chapter_count} | [Chapters](../chapters/index.md) | Number of chapter directories |\n"
+        md += f"| Concepts | {concepts} | [Concept List](./concept-list.md) | Concepts from learning graph |\n"
         md += f"| Glossary Terms | {glossary_terms} | [Glossary](../glossary.md) | Defined terms |\n"
         md += f"| FAQs | {faqs} | [FAQ](../faq.md) | Frequently asked questions |\n"
         md += f"| Quiz Questions | {quiz_questions} | - | Questions across all chapters |\n"
         md += f"| Diagrams | {diagrams} | - | Level 4 headers starting with '#### Diagram:' |\n"
         md += f"| Equations | {equations} | - | LaTeX expressions (inline and display) |\n"
-        md += f"| MicroSims | {microsims} | [Simulations](../sims/index.md) | Interactive p5.js simulations |\n"
+        md += f"| MicroSims | {microsims} | [Simulations](../sims/index.md) | Interactive MicroSims |\n"
         md += f"| Total Words | {total_words:,} | - | Words in all markdown files |\n"
         md += f"| Links | {links} | - | Hyperlinks in markdown format |\n"
         md += f"| Equivalent Pages | {equivalent_pages} | - | Estimated pages (250 words/page + visuals) |\n"
@@ -479,7 +479,10 @@ class BookMetricsGenerator:
         # Add rows for each chapter
         for chapter in chapters:
             metrics = self.get_chapter_metrics(chapter)
-            md += f"| {metrics['number']} | {metrics['name']} | {metrics['sections']} | {metrics['diagrams']} | {metrics['words']:,} |\n"
+            # Create link to chapter index.md (relative to learning-graph directory)
+            chapter_dir_name = chapter['path'].name
+            chapter_link = f"[{metrics['name']}](../chapters/{chapter_dir_name}/index.md)"
+            md += f"| {metrics['number']} | {chapter_link} | {metrics['sections']} | {metrics['diagrams']} | {metrics['words']:,} |\n"
 
         md += "\n## Metrics Explanation\n\n"
         md += "- **Chapter**: Chapter number (leading zeros removed)\n"
@@ -533,7 +536,10 @@ def main():
     generator = BookMetricsGenerator(docs_dir)
     generator.generate_metrics()
 
-    print("\n✅ Book metrics generation complete!")
+    print("\n✅ Book metrics generation version 0.01 complete!")
+    print("\nhttp://localhost:8000/conversational-ai/learning-graph/book-metrics/")
+    print("http://localhost:8000/conversational-ai/learning-graph/chapter-metrics/")
+
 
 
 if __name__ == "__main__":
