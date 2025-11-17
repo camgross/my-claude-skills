@@ -66,8 +66,6 @@ nav:
     - 8 Quiz Generator: skill-descriptions/book/quiz-generator.md
     - 9 Reference Generator: skill-descriptions/book/reference-generator.md
     - 10 Add Glossary Links: skill-descriptions/book/add-glossary-links.md
-    - skill-descriptions/book/intelligent-textbook-creator.md
-    - skill-descriptions/book/intelligent-textbook.md
   
   - MicroSim Generation Skills:
     - List MicroSim Skills: skill-descriptions/microsims/index.md
