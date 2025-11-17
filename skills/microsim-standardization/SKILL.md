@@ -25,6 +25,8 @@ Do not mix these up!  Never put Dublin Core metadata into the yml headers.
 Receive the path to the MicroSim directory from the user. The directory should be located at:
 - `docs/sims/[microsim-name]/`
 
+Note that the `microsim-name` must be a string with only lowercase letters and dashes (kebab-case)
+
 #### 2: Check for an Existing Quality Score
 
 Check of a quality_score of 85 or above exists in the yml metadata of the index.md file like this:
@@ -37,7 +39,7 @@ quality_score: 86
 
 If the score is 85 or above, suggest to the user to skip the rest of the steps.  Tell them that perhaps their tokens can be better used to create new MicroSims.
 
-If the score is lower than 85, proceed with the next steps.
+If the score is missing or lower than 85, proceed with the next steps.
 
 Confirm the directory exists and contains at minimum a `main.html` file (the core simulation file).
 
@@ -52,17 +54,17 @@ MicroSim directory.
 - Check if `index.md` file exists in the MicroSim directory
 - If missing: Add TODO to create `index.md` file
 
-#### 2. YAML Frontmatter in index.md
+#### 2. YAML metadata at the top of the index.md
 - Verify `index.md` begins with YAML frontmatter (between `---` delimiters)
 - Required YAML fields:
   - `title:` - MicroSim title
   - `description:` - Brief description for SEO and social previews
   - `quality_score:` - Integer 1-100 indicating completeness/quality
-  - `images:` - Social media preview image path (optional but recommended)
+  - `image:` and `og:image` - Social media preview image path (optional but recommended)
 - If missing or incomplete: Add TODO to add/fix YAML frontmatter
 
 #### 3. Level 1 Header After Frontmatter
-- Verify a level 1 header (`# Title`) appears immediately after YAML frontmatter
+- Verify a level 1 header (`# Title`) appears immediately after YAML metadata
 - The title should match or complement the YAML `title` field
 - If missing: Add TODO to add level 1 header
 
