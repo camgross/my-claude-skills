@@ -4,21 +4,25 @@
 
 **Prerequisites:**
 - Course description prepared
-- Claude Code installed with all skills loaded
+- Claude Code installed with all skills loaded and usage visible
+- Users know how to check and extend their own token usage: [https://claude.ai/settings/usage](https://claude.ai/settings/usage)
 - Basic familiarity with markdown and command-line tools
 
-**Workshop Goal:** By the end of this workshop, participants will understand the intelligent textbook creation workflow and have generated core components for their own textbook using Claude skills.
+**Workshop Goal:** By the end of this workshop, participants will understand the intelligent textbook 
+creation workflow and have generated core components for their own textbook using Claude skills.
 
 ## Workshop Outline
 
 ### Part 1: Introduction & Setup (15 minutes)
 
 #### 1.1 Welcome & Overview (5 min)
+
 - What are intelligent textbooks? (5 levels of intelligence)
 - Why use Claude skills for textbook creation?
 - Workshop structure and expected outcomes
 
 #### 1.2 Environment Setup (10 min)
+
 - Verify Claude Code installation
 - List available skills with `/skills` command
 - Review course description format
