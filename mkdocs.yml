@@ -54,34 +54,38 @@ nav:
       - Content: chapters/13-dev-tools-version-control-deployment/index.md
       - Quiz: chapters/13-dev-tools-version-control-deployment/quiz.md
 
-  - Book Generation Skills: 
-    - Overview: skill-descriptions/book/index.md
-    - 1 Course Description Generator and Analyzer: skill-descriptions/book/course-description-analyzer.md
-    - 2 Learning Graph Generator: skill-descriptions/book/learning-graph-generator.md
-    - 3 Install Learning Graph Viewer: skill-descriptions/book/install-learning-graph-viewer.md
-    - 4 Book Chapter Structure Generator: skill-descriptions/book/book-chapter-generator.md
-    - 5 Chapter Content Generator: skill-descriptions/book/chapter-content-generator.md
-    - 6 Glossary Generator: skill-descriptions/book/glossary-generator.md
-    - 7 FAQ Generator: skill-descriptions/book/faq-generator.md
-    - 8 Quiz Generator: skill-descriptions/book/quiz-generator.md
-    - 9 Reference Generator: skill-descriptions/book/reference-generator.md
-    - 10 Add Glossary Links: skill-descriptions/book/add-glossary-links.md
-  
-  - MicroSim Generation Skills:
-    - List MicroSim Skills: skill-descriptions/microsims/index.md
-    # List in the order they are selected
-    - MicroSims p5 Generator: skill-descriptions/microsims/microsim-p5.md
-    - Chart Generator: skill-descriptions/microsims/chartjs-generator.md
-    - Vis Network: skill-descriptions/microsims/vis-network.md
-    - Bubble Chart: skill-descriptions/microsims/bubble-chart-generator.md
-    - Mermaid: skill-descriptions/microsims/mermaid-generator.md
-    - Timeline: skill-descriptions/microsims/timeline-generator.md
-    - Map: skill-descriptions/microsims/map-generator.md
-    - Venn Diagram: skill-descriptions/microsims/venn-diagram-generator.md
-  
-  - STEM Skills:
-    - skill-descriptions/stem-skills/index.md
-    - skill-descriptions/stem-skills/moving-rainbow.md
+  - Skill Descriptions:
+    - Overview of Skills: skill-descriptions/index.md
+
+    - Book Generation Skills: 
+      - Overview: skill-descriptions/book/index.md
+      - 1 Course Description Generator and Analyzer: skill-descriptions/book/course-description-analyzer.md
+      - 2 Learning Graph Generator: skill-descriptions/book/learning-graph-generator.md
+      - 3 Install Learning Graph Viewer: skill-descriptions/book/install-learning-graph-viewer.md
+      - 4 Book Chapter Structure Generator: skill-descriptions/book/book-chapter-generator.md
+      - 5 Chapter Content Generator: skill-descriptions/book/chapter-content-generator.md
+      - 6 Glossary Generator: skill-descriptions/book/glossary-generator.md
+      - 7 FAQ Generator: skill-descriptions/book/faq-generator.md
+      - 8 Quiz Generator: skill-descriptions/book/quiz-generator.md
+      - 9 Reference Generator: skill-descriptions/book/reference-generator.md
+      - 10 Add Glossary Links: skill-descriptions/book/add-glossary-links.md
+    
+    - MicroSim Generation Skills:
+      - Bubble Chart: skill-descriptions/microsims/bubble-chart-generator.md
+      - Chart Generator: skill-descriptions/microsims/chartjs-generator.md
+      - List MicroSim Skills: skill-descriptions/microsims/index.md
+      # List in the order they are selected
+      - Math Function Plotter: skill-descriptions/microsims/math-function-plotter-plotly.md
+      - Map: skill-descriptions/microsims/map-generator.md
+      - Mermaid: skill-descriptions/microsims/mermaid-generator.md
+      - MicroSims p5 Generator: skill-descriptions/microsims/microsim-p5.md
+      - Timeline: skill-descriptions/microsims/timeline-generator.md
+      - Vis Network: skill-descriptions/microsims/vis-network.md
+      - Venn Diagram: skill-descriptions/microsims/venn-diagram-generator.md
+    
+    - Specialized Skills:
+      - skill-descriptions/specialized-skills/index.md
+      - skill-descriptions/specialized-skills/moving-rainbow.md
 
   - Outdated:
     - skill-descriptions/intelligent-textbook-creator.md
