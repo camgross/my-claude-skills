@@ -33,7 +33,7 @@ if [ ! -d "$BK_HOME/src" ]; then
 fi
 
 # Define the path to the Python script
-SCRIPT_PATH="$BK_HOME/src/site-metrics/book-status.py"
+SCRIPT_PATH="$BK_HOME/src/book-metrics/book-status.py"
 
 # Check if the Python script exists
 if [ ! -f "$SCRIPT_PATH" ]; then
