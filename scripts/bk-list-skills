@@ -1,9 +1,33 @@
 #!/bin/bash
-
+# bk-list-skills
+#
 # List all Claude skills with their descriptions
 # Extracts name and description from YAML frontmatter in SKILL.md files
-# Usage: list-skills.sh [--json|--names-only|--full]
+# Usage: bk-list-skills [--json|--names-only|--full]
 
+# Colors for output
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+# Check if BK_HOME is set
+if [ -z "$BK_HOME" ]; then
+    echo -e "${RED}Error: BK_HOME environment variable is not set.${NC}"
+    echo "Please set BK_HOME to the root directory of your claude-skills repository."
+    echo "Example: export BK_HOME=/Users/dan/Documents/ws/claude-skills"
+    exit 1
+fi
+
+# Check if BK_HOME directory exists
+if [ ! -d "$BK_HOME" ]; then
+    echo -e "${RED}Error: BK_HOME directory does not exist: $BK_HOME${NC}"
+    exit 1
+fi
+
+# Skill directory locations
+SOURCE_SKILLS_DIR="$BK_HOME/skills"
 USER_SKILLS_DIR="$HOME/.claude/skills"
 PROJECT_SKILLS_DIR=".claude/skills"
 
@@ -21,8 +45,10 @@ elif [ "$1" == "--full" ]; then
 fi
 
 if [ $FULL_OUTPUT -eq 1 ]; then
-    echo "Available Claude Skills"
-    echo "======================="
+    echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
+    echo -e "${GREEN}Available Claude Skills${NC}"
+    echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
+    echo -e "BK_HOME: ${YELLOW}$BK_HOME${NC}"
     echo ""
 fi
 
@@ -122,6 +148,9 @@ process_skills_dir() {
     done
 }
 
+# Process source skills directory (from BK_HOME)
+process_skills_dir "$SOURCE_SKILLS_DIR" "source"
+
 # Process user skills directory
 process_skills_dir "$USER_SKILLS_DIR" "user"
 
@@ -174,10 +203,15 @@ fi
 IFS=$'\n' SKILLS_NAMES=($(sort -u <<<"${SKILLS_NAMES[*]}"))
 unset IFS
 
-# Count total skills from both directories
+# Count total skills from all directories
 # Note: Use -type d,l to count both directories and symlinks
+source_count=0
 user_count=0
 project_count=0
+
+if [ -d "$SOURCE_SKILLS_DIR" ]; then
+    source_count=$(find "$SOURCE_SKILLS_DIR" -mindepth 1 -maxdepth 1 \( -type d -o -type l \) 2>/dev/null | wc -l | tr -d ' ')
+fi
 
 if [ -d "$USER_SKILLS_DIR" ]; then
     user_count=$(find "$USER_SKILLS_DIR" -mindepth 1 -maxdepth 1 \( -type d -o -type l \) 2>/dev/null | wc -l | tr -d ' ')
@@ -187,11 +221,11 @@ if [ -d "$PROJECT_SKILLS_DIR" ]; then
     project_count=$(find "$PROJECT_SKILLS_DIR" -mindepth 1 -maxdepth 1 \( -type d -o -type l \) 2>/dev/null | wc -l | tr -d ' ')
 fi
 
-total_count=$((user_count + project_count))
+total_count=$((source_count + user_count + project_count))
 
 if [ $JSON_OUTPUT -eq 1 ]; then
     # Output compact JSON format (single line, no pretty printing)
-    echo -n "{\"total\":$total_count,\"user\":$user_count,\"project\":$project_count,\"skills\":["
+    echo -n "{\"total\":$total_count,\"source\":$source_count,\"user\":$user_count,\"project\":$project_count,\"skills\":["
 
     # Join array elements with commas
     first=1
@@ -211,8 +245,8 @@ elif [ $NAMES_ONLY -eq 1 ]; then
     done
 elif [ $FULL_OUTPUT -eq 1 ]; then
     # Output human-readable format with totals
-    echo "======================="
-    echo "Total skills: $total_count (user: $user_count, project: $project_count)"
+    echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
+    echo -e "${GREEN}Total skills: $total_count${NC} ${YELLOW}(source: $source_count, user: $user_count, project: $project_count)${NC}"
 else
     # Default: Output names one per line with location
     for entry in "${UNIQUE_SKILLS[@]}"; do
@@ -223,13 +257,14 @@ else
         echo "$name ($location)"
     done
 
-    # Add message about project skills directory
-    if [ $PROJECT_SKILLS_EXISTS -eq 0 ]; then
-        echo ""
-        echo "Note: No project skills directory (.claude/skills) found in current directory."
-        echo "Showing global skills only from ~/.claude/skills"
-        echo ""
+    # Add informational message
+    echo ""
+    echo -e "${BLUE}Skill locations:${NC}"
+    echo -e "  ${YELLOW}source${NC}  - Skills from $BK_HOME/skills"
+    echo -e "  ${YELLOW}global${NC}  - Installed skills in ~/.claude/skills"
+    if [ $PROJECT_SKILLS_EXISTS -eq 1 ]; then
+        echo -e "  ${YELLOW}project${NC} - Project-specific skills in .claude/skills"
     fi
-
-    echo "use --full to get a detailed description of all the skills"
+    echo ""
+    echo -e "${BLUE}Use --full to get detailed descriptions of all skills${NC}"
 fi

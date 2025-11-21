@@ -1,8 +1,8 @@
-#!/bin/bash
-# bk-resize-images
+#!/usr/bin/env bash
+# bk-book-status
 #
-# Compresses large images to approximately 300KB in PNG format for web optimization
-# Wraps the Python image compression utility
+# Display the status of the intelligent textbook building workflow
+# Calls the Python analysis program to check the status of various components
 
 # Colors for output
 GREEN='\033[0;32m'
@@ -32,41 +32,30 @@ if [ ! -d "$BK_HOME/src" ]; then
     exit 1
 fi
 
-# Path to the Python compression script
-PYTHON_SCRIPT="$BK_HOME/src/resize-images/compress-images.py"
+# Define the path to the Python script
+SCRIPT_PATH="$BK_HOME/src/site-metrics/book-status.py"
 
-# Check if Python script exists
-if [ ! -f "$PYTHON_SCRIPT" ]; then
-    echo -e "${RED}Error: Python script not found${NC}"
-    echo "Expected location: $PYTHON_SCRIPT"
+# Check if the Python script exists
+if [ ! -f "$SCRIPT_PATH" ]; then
+    echo -e "${RED}Error: Could not find book-status.py${NC}"
+    echo "Expected location: $SCRIPT_PATH"
     echo ""
     echo -e "${YELLOW}Suggestions:${NC}"
     echo "  1. Verify BK_HOME is set correctly: echo \$BK_HOME"
-    echo "  2. Check if the script exists in $BK_HOME/src/resize-images/"
+    echo "  2. Check if the script exists in $BK_HOME/src/site-metrics/"
     echo "  3. Ensure you have the complete claude-skills repository"
     exit 1
 fi
 
-# Check if Python 3 is available
+# Check if python3 is available
 if ! command -v python3 &> /dev/null; then
     echo -e "${RED}Error: python3 is not installed or not in PATH${NC}"
     echo "Please install Python 3 to use this script."
     exit 1
 fi
 
-# Check if PIL/Pillow is installed
-if ! python3 -c "import PIL" &> /dev/null; then
-    echo -e "${RED}Error: Pillow (PIL) is not installed${NC}"
-    echo "Install it with: pip3 install Pillow"
-    exit 1
-fi
-
-# Run the Python script
-echo -e "${BLUE}Running image compression script...${NC}"
+# Execute the Python script
+echo -e "${BLUE}Running book status analysis...${NC}"
 echo -e "BK_HOME: ${YELLOW}$BK_HOME${NC}"
 echo ""
-
-cd "$BK_HOME" || exit 1
-python3 "$PYTHON_SCRIPT" "$@"
-
-exit $?
+python3 "$SCRIPT_PATH"

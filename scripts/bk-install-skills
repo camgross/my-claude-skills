@@ -1,0 +1,132 @@
+#!/bin/bash
+# bk-install-skills
+#
+# Creates symbolic links in ~/.claude/skills/ for all skill directories in $BK_HOME/skills/
+# Validates links and warns about any broken symlinks
+
+set -e  # Exit on error
+
+# Colors for output
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+# Check if BK_HOME is set
+if [ -z "$BK_HOME" ]; then
+    echo -e "${RED}Error: BK_HOME environment variable is not set.${NC}"
+    echo "Please set BK_HOME to the root directory of your claude-skills repository."
+    echo "Example: export BK_HOME=/Users/dan/Documents/ws/claude-skills"
+    exit 1
+fi
+
+# Check if BK_HOME directory exists
+if [ ! -d "$BK_HOME" ]; then
+    echo -e "${RED}Error: BK_HOME directory does not exist: $BK_HOME${NC}"
+    exit 1
+fi
+
+# Check if skills directory exists
+if [ ! -d "$BK_HOME/skills" ]; then
+    echo -e "${RED}Error: $BK_HOME/skills directory does not exist${NC}"
+    exit 1
+fi
+
+SKILLS_DIR="$BK_HOME/skills"
+TARGET_DIR="$HOME/.claude/skills"
+
+echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
+echo -e "${GREEN}Installing Claude Skills${NC}"
+echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
+echo -e "BK_HOME: ${YELLOW}$BK_HOME${NC}"
+echo -e "Source:  ${YELLOW}$SKILLS_DIR${NC}"
+echo -e "Target:  ${YELLOW}$TARGET_DIR${NC}"
+echo ""
+
+# Create the target directory if it doesn't exist
+if [ ! -d "$TARGET_DIR" ]; then
+    echo -e "${GREEN}Creating directory: $TARGET_DIR${NC}"
+    mkdir -p "$TARGET_DIR"
+fi
+
+# Counter for installed skills
+installed_count=0
+declare -a installed_skills=()
+
+# Create symbolic links for each skill folder
+echo -e "${BLUE}Creating skill symlinks...${NC}"
+shopt -s nullglob
+for skill_dir in "$SKILLS_DIR"/*; do
+    if [ -d "$skill_dir" ]; then
+        skill_name=$(basename "$skill_dir")
+        target_link="$TARGET_DIR/$skill_name"
+
+        # Remove existing symlink if it exists
+        if [ -L "$target_link" ]; then
+            rm "$target_link"
+        elif [ -e "$target_link" ]; then
+            echo -e "${YELLOW}⚠${NC}  Warning: $target_link exists but is not a symlink. Skipping."
+            continue
+        fi
+
+        # Create the symbolic link
+        ln -s "$skill_dir" "$target_link"
+        echo -e "${GREEN}✓${NC} $skill_name -> $skill_dir"
+        installed_skills+=("$skill_name")
+        ((installed_count++))
+    fi
+done
+shopt -u nullglob
+
+echo ""
+echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
+
+# Check if any skills were installed
+if [ "$installed_count" -eq 0 ]; then
+    echo -e "${YELLOW}No skill directories found in $BK_HOME/skills/${NC}"
+    exit 0
+fi
+
+echo -e "${GREEN}Successfully installed $installed_count skill link(s) to $TARGET_DIR${NC}"
+echo ""
+
+# List the installed skills
+echo -e "${BLUE}Installed skills:${NC}"
+for skill in "${installed_skills[@]}"; do
+    echo -e "  - ${GREEN}$skill${NC}"
+done
+
+echo ""
+echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
+
+# Check for broken symlinks in ~/.claude/skills
+echo -e "${BLUE}Checking for broken symlinks in $TARGET_DIR...${NC}"
+broken_count=0
+declare -a broken_links=()
+
+shopt -s nullglob
+for link in "$TARGET_DIR"/*; do
+    if [ -L "$link" ] && [ ! -e "$link" ]; then
+        link_name=$(basename "$link")
+        broken_links+=("$link_name")
+        ((broken_count++))
+    fi
+done
+shopt -u nullglob
+
+if [ "$broken_count" -gt 0 ]; then
+    echo -e "${RED}⚠ Found $broken_count broken symlink(s):${NC}"
+    for broken in "${broken_links[@]}"; do
+        echo -e "  - ${RED}$broken${NC} (points to non-existent location)"
+    done
+    echo ""
+    echo -e "${YELLOW}To remove broken links, run:${NC}"
+    echo "  find ~/.claude/skills -xtype l -delete"
+else
+    echo -e "${GREEN}✓${NC} No broken symlinks found"
+fi
+
+echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
+echo -e "${GREEN}Done!${NC} You can now use these skills with Claude Code"
+echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"

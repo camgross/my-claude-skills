@@ -1,8 +1,28 @@
 #!/bin/bash
 #
 # bk - Build/Book utilities menu
-# Lists all available scripts and programs for managing the claude-skills repository
-# Usage: bk [number] - runs the corresponding script/program
+# Lists all available bk* scripts in $BK_HOME/scripts/
+# Usage: bk [number] - runs the corresponding script
+
+# Check if BK_HOME is set
+if [ -z "$BK_HOME" ]; then
+    echo "Error: BK_HOME environment variable is not set."
+    echo "Please set BK_HOME to the root directory of your claude-skills repository."
+    echo "Example: export BK_HOME=/Users/dan/Documents/ws/claude-skills"
+    exit 1
+fi
+
+# Check if BK_HOME directory exists
+if [ ! -d "$BK_HOME" ]; then
+    echo "Error: BK_HOME directory does not exist: $BK_HOME"
+    exit 1
+fi
+
+# Check if scripts directory exists
+if [ ! -d "$BK_HOME/scripts" ]; then
+    echo "Error: $BK_HOME/scripts directory does not exist"
+    exit 1
+fi
 
 # Color codes for better visibility
 GREEN='\033[0;32m'
@@ -11,94 +31,88 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
+# Function to extract description from a script file
+# Looks for a comment line starting with # followed by description text
+get_description() {
+    local file="$1"
+    local desc=""
+
+    # Try to find a description comment (typically on line 3 or 4)
+    # Look for lines that start with # followed by text (but not #!)
+    desc=$(grep -E "^#[^!]" "$file" | grep -v "^#!/" | grep -v "^#$" | head -1 | sed 's/^# *//')
+
+    # If no description found, use a default
+    if [ -z "$desc" ]; then
+        desc="No description available"
+    fi
+
+    echo "$desc"
+}
+
 echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
-echo -e "${GREEN}Build/Book Utilities for claude-skills${NC}"
+echo -e "${GREEN}Build/Book Utilities${NC}"
 echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
+echo -e "BK_HOME: ${YELLOW}$BK_HOME${NC}"
 echo ""
 
-echo -e "${YELLOW}SCRIPTS (scripts/)${NC}"
-echo ""
+# Discover all bk* scripts in $BK_HOME/scripts/
+declare -a script_files=()
+declare -a script_descriptions=()
 
-# Array of script descriptions
-# Format: "number|filename|description"
-scripts=(
-    "1|bk-resize-images|Compress large images to ~300KB PNG format"
-    "2|book-status|Display intelligent textbook building workflow status"
-    "3|fix-prompt-urls.py|Fix bare URLs in markdown by wrapping in backticks"
-    "4|install-claude-skills.sh|Create symlinks in ~/.claude/skills/ for all skills"
-    "5|install-scripts|Install script symlinks to ~/.local/bin"
-    "6|install-skills-command.sh|Install /skills slash command"
-    "7|install-social-override.sh|Install social media card customization"
-    "8|list-skills-format.sh|List skills in various formats (JSON, etc.)"
-    "9|list-skills.sh|List all Claude skills with descriptions"
-)
-
-# Print scripts
-for item in "${scripts[@]}"; do
-    IFS='|' read -r num filename desc <<< "$item"
-    printf "  ${GREEN}%2s${NC}. %-35s %s\n" "$num" "$filename" "$desc"
+# Find all bk* files in scripts directory
+shopt -s nullglob
+for script in "$BK_HOME"/scripts/bk*; do
+    if [ -f "$script" ] && [ -x "$script" ]; then
+        script_files+=("$script")
+        desc=$(get_description "$script")
+        script_descriptions+=("$desc")
+    fi
 done
+shopt -u nullglob
 
-echo ""
-echo -e "${YELLOW}PROGRAMS (src/)${NC}"
-echo ""
+# Check if any scripts were found
+if [ ${#script_files[@]} -eq 0 ]; then
+    echo -e "${RED}No executable bk* scripts found in $BK_HOME/scripts/${NC}"
+    exit 1
+fi
 
-# Array of program descriptions
-# Format: "number|directory|filename|description"
-programs=(
-    "10|diagram-reports|add-diagram-headers.py|Add headers to diagram markdown files"
-    "11|diagram-reports|diagram-report.py|Generate comprehensive diagram/MicroSim reports"
-    "12|diagram-reports|generate-easy-diagrams.py|Generate easy difficulty diagrams list"
-    "13|diagram-reports|generate-medium-diagrams.py|Generate medium difficulty diagrams list"
-    "14|resize-images|cleanup_backups.py|Remove .backup files created during compression"
-    "15|resize-images|compress_images.py|Compress images >500KB to ~300KB PNG"
-    "16|resize-images|run_optimization.py|Run complete image optimization workflow"
-    "17|resize-images|social-media.py|Generate social media preview images"
-    "18|resize-images|update_image_references.py|Update markdown image refs after conversion"
-    "19|site-analytics|analyze-details-content.py|Analyze HTML details/summary usage in site"
-)
-
-# Print programs
-for item in "${programs[@]}"; do
-    IFS='|' read -r num dir filename desc <<< "$item"
-    printf "  ${GREEN}%2s${NC}. %-35s %s\n" "$num" "src/$dir/$filename" "$desc"
+# Print the menu
+num=1
+for i in "${!script_files[@]}"; do
+    script_name=$(basename "${script_files[$i]}")
+    desc="${script_descriptions[$i]}"
+    printf "  ${GREEN}%2s${NC}. %-35s %s\n" "$num" "$script_name" "$desc"
+    ((num++))
 done
 
 echo ""
 echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
 echo -e "Usage: ${GREEN}bk${NC} - show this menu"
-echo -e "       ${GREEN}bk [number]${NC} - run the corresponding script/program"
-echo -e "       Run scripts from repository root or install with ${GREEN}install-scripts${NC}"
+echo -e "       ${GREEN}bk [number]${NC} - run the corresponding script"
 echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
 
-# If a number argument is provided, execute that script/program
+# If a number argument is provided, execute that script
 if [ $# -eq 1 ]; then
     choice="$1"
 
-    # Define the execution paths for each item
-    case "$choice" in
-        1) scripts/bk-resize-images ;;
-        2) scripts/book-status ;;
-        3) python3 scripts/fix-prompt-urls.py ;;
-        4) scripts/install-claude-skills.sh ;;
-        5) scripts/install-scripts ;;
-        6) scripts/install-skills-command.sh ;;
-        7) scripts/install-social-override.sh ;;
-        8) scripts/list-skills-format.sh ;;
-        9) scripts/list-skills.sh ;;
-        10) python3 src/diagram-reports/add-diagram-headers.py ;;
-        11) python3 src/diagram-reports/diagram-report.py ;;
-        12) python3 src/diagram-reports/generate-easy-diagrams.py ;;
-        13) python3 src/diagram-reports/generate-medium-diagrams.py ;;
-        14) python3 src/resize-images/cleanup_backups.py ;;
-        15) python3 src/resize-images/compress_images.py ;;
-        16) python3 src/resize-images/run_optimization.py ;;
-        17) python3 src/resize-images/social-media.py ;;
-        18) python3 src/resize-images/update_image_references.py ;;
-        19) python3 src/site-analytics/analyze-details-content.py ;;
-        *)
-            echo -e "${RED}Error: Invalid choice '$choice'. Please select a number between 1 and 19.${NC}"
-            exit 1
-            ;;
-    esac
+    # Validate that choice is a number
+    if ! [[ "$choice" =~ ^[0-9]+$ ]]; then
+        echo -e "${RED}Error: Invalid choice '$choice'. Please enter a number.${NC}"
+        exit 1
+    fi
+
+    # Convert to array index (subtract 1)
+    index=$((choice - 1))
+
+    # Check if choice is within range
+    if [ "$index" -lt 0 ] || [ "$index" -ge "${#script_files[@]}" ]; then
+        echo -e "${RED}Error: Invalid choice '$choice'. Please select a number between 1 and ${#script_files[@]}.${NC}"
+        exit 1
+    fi
+
+    # Execute the selected script
+    selected_script="${script_files[$index]}"
+    echo -e "${GREEN}Running: $(basename "$selected_script")${NC}"
+    echo ""
+    exec "$selected_script"
 fi

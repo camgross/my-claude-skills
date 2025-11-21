@@ -1,0 +1,157 @@
+#!/bin/bash
+# bk-install-social-override-plugin
+#
+# Installs social_override plugin for mkdocs-material into the current directory
+# This plugin allows custom social media card images in MkDocs projects
+
+# Colors for output
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+# Check if BK_HOME is set
+if [ -z "$BK_HOME" ]; then
+    echo -e "${RED}Error: BK_HOME environment variable is not set.${NC}"
+    echo "Please set BK_HOME to the root directory of your claude-skills repository."
+    echo "Example: export BK_HOME=/Users/dan/Documents/ws/claude-skills"
+    exit 1
+fi
+
+# Check if BK_HOME directory exists
+if [ ! -d "$BK_HOME" ]; then
+    echo -e "${RED}Error: BK_HOME directory does not exist: $BK_HOME${NC}"
+    exit 1
+fi
+
+echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
+echo -e "${GREEN}Installing Social Override Plugin${NC}"
+echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
+echo -e "BK_HOME:    ${YELLOW}$BK_HOME${NC}"
+echo -e "Target dir: ${YELLOW}$(pwd)${NC}"
+echo ""
+
+# Check if mkdocs.yml exists in current directory
+if [ ! -f "mkdocs.yml" ]; then
+    echo -e "${YELLOW}⚠ Warning: mkdocs.yml not found in current directory${NC}"
+    echo "This script should be run from the root of an MkDocs project."
+    echo ""
+    read -p "Continue anyway? (y/N) " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo "Installation cancelled."
+        exit 0
+    fi
+fi
+
+# Create directories
+echo -e "${BLUE}Creating plugin directories...${NC}"
+mkdir -p plugins
+
+# Create __init__.py
+echo -e "${GREEN}✓${NC} Creating plugins/__init__.py..."
+cat > plugins/__init__.py << 'EOL'
+from .social_override import SocialOverridePlugin
+EOL
+
+# Create social_override.py
+echo -e "${GREEN}✓${NC} Creating plugins/social_override.py..."
+cat > plugins/social_override.py << 'EOL'
+from mkdocs.plugins import BasePlugin
+import re
+
+class SocialOverridePlugin(BasePlugin):
+    def on_page_context(self, context, page, config, **kwargs):
+        """Save custom image path from page metadata if it exists"""
+        if page.meta and 'image' in page.meta:
+            page.custom_image = page.meta['image']
+        return context
+    
+    def on_post_page(self, html, page, config, **kwargs):
+        """Replace social plugin meta tags with our custom image"""
+        # Only process pages with custom image
+        if not hasattr(page, 'custom_image'):
+            return html
+        
+        # Build the full URL for the custom image
+        site_url = config['site_url'].rstrip('/')
+        image_path = '/' + page.custom_image.lstrip('/')
+        full_image_url = site_url + image_path
+        
+        # Find and replace OpenGraph image tags
+        og_tags = re.findall(r'<meta\s+property="og:image"[^>]*?>', html)
+        for tag in og_tags:
+            if '/assets/images/social/' in tag:
+                new_tag = f'<meta property="og:image" content="{full_image_url}">'
+                html = html.replace(tag, new_tag)
+        
+        # Find and replace Twitter image tags
+        twitter_tags = re.findall(r'<meta\s+name="twitter:image"[^>]*?>', html)
+        for tag in twitter_tags:
+            if '/assets/images/social/' in tag:
+                new_tag = f'<meta name="twitter:image" content="{full_image_url}">'
+                html = html.replace(tag, new_tag)
+        
+        return html
+
+# Make the plugin available to MkDocs
+def get_plugin():
+    return SocialOverridePlugin()
+EOL
+
+# Create setup.py
+echo -e "${GREEN}✓${NC} Creating setup.py..."
+cat > setup.py << 'EOL'
+from setuptools import setup, find_packages
+
+setup(
+    name='social_override',
+    version='0.1',
+    packages=find_packages(),
+    entry_points={
+        'mkdocs.plugins': [
+            'social_override = plugins.social_override:SocialOverridePlugin',
+        ]
+    }
+)
+EOL
+
+echo ""
+echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
+
+# Check if pip is available
+if ! command -v pip &> /dev/null && ! command -v pip3 &> /dev/null; then
+    echo -e "${RED}Error: pip is not installed or not in PATH${NC}"
+    echo "Please install pip to complete the plugin installation."
+    exit 1
+fi
+
+# Install the plugin
+echo -e "${BLUE}Installing the social_override plugin...${NC}"
+if command -v pip3 &> /dev/null; then
+    pip3 install -e .
+else
+    pip install -e .
+fi
+
+echo ""
+echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
+echo -e "${GREEN}Installation complete!${NC}"
+echo ""
+echo -e "${YELLOW}Next steps:${NC}"
+echo "Add 'social_override' to your plugins section in mkdocs.yml:"
+echo ""
+echo -e "${BLUE}plugins:${NC}"
+echo "  - search"
+echo "  - social"
+echo -e "  ${GREEN}- social_override${NC}"
+echo ""
+echo "Then you can add custom images to page metadata:"
+echo ""
+echo -e "${BLUE}---${NC}"
+echo "title: My Page"
+echo -e "${GREEN}image: img/my-custom-social-card.png${NC}"
+echo -e "${BLUE}---${NC}"
+echo ""
+echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"

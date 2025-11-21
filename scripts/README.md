@@ -1,217 +1,270 @@
-# Shell Script to support Claude Skills for Intelligent Textbooks
+# Book Utilities (bk) - Shell Scripts for Claude Skills
 
+This directory contains the **bk*** (Book utilities) collection of shell scripts for managing Claude skills and intelligent textbook projects. All scripts use the `$BK_HOME` environment variable for consistent operation.
 
-## Personal Binary Location
+## Prerequisites
 
-Utility shell scripts for working with Claude skills are by default installed
-to each users personal binary directory.  This means that each user
-has complete control over what binaries are installed for their personal use.
-The personal binaries should be installed in your path.  We recommend the following path:
+### Required: BK_HOME Environment Variable
 
-`$HOME/.local/bin`
+All `bk*` scripts require the `$BK_HOME` environment variable to be set. This variable should point to the root directory of your claude-skills repository.
 
-or alternatively:
+**Setup:**
 
-`~/.local/bin`
+Add this line to your shell startup file (`~/.bashrc`, `~/.zshrc`, or `~/.bash_profile`):
 
-Note that these scripts are not specific to any specific intelligent book type.
-If you have scripts that are specific to your book type, they will be located in the book repo scripts file.
-
-The following should then be added to your UNIX shell startup file:
-
-```sh
-```
-
-## Symbolic Linking Strategy
-
-In order to create a high probability that your scripts are current, we suggest that you only
-place symbolic links into your personal binary 
-
-## Metadata
-
-We use metadata fields in the book markdown files to get status.  For example, to get the quality score
-of the course description quality score you can look in the docs/source-description.md file and see the following
-
-```markdown
----
-title: Course Description for Using Claude Skills to Create Intelligent Textbooks
-description: A detailed course description 
-quality_score: 95
----
-```
-
-
-## Installation
-
-### install-scripts
-
-**NEW!** Automatically creates symbolic links for all scripts in this directory to `$HOME/.local/bin`, making them available as commands from anywhere in your terminal.
-
-**Usage:**
 ```bash
-cd scripts
-./install-scripts
+export BK_HOME=/path/to/your/claude-skills
 ```
 
-**What it does:**
-1. Creates `$HOME/.local/bin` directory if it doesn't exist
-2. Creates symbolic links for all executable scripts (removes `.sh` extension)
-3. Checks if `$HOME/.local/bin` is in your PATH
-4. Provides shell-specific instructions to add it to PATH if needed
-
-**After installation, you can run scripts from anywhere:**
+**Example:**
 ```bash
-# Instead of:
-./scripts/list-skills.sh
-
-# You can now run:
-list-skills
+export BK_HOME=/Users/dan/Documents/ws/claude-skills
 ```
 
-**Adding to PATH:**
+After adding the line, reload your shell configuration:
+```bash
+source ~/.bashrc  # or ~/.zshrc, etc.
+```
 
-If the script detects that `$HOME/.local/bin` is not in your PATH, it will suggest adding one of these lines to your shell startup file:
+**Verify it's set:**
+```bash
+echo $BK_HOME
+```
 
-For **Bash** (add to `~/.bashrc` or `~/.bash_profile`):
+### Recommended: Personal Binary Location
+
+For easy command-line access from anywhere, install scripts to your personal binary directory:
+
+`$HOME/.local/bin` (or `~/.local/bin`)
+
+Add this to your shell startup file:
+
+**For Bash/Zsh:**
 ```bash
 export PATH="$HOME/.local/bin:$PATH"
 ```
 
-For **Zsh** (add to `~/.zshrc`):
-```bash
-export PATH="$HOME/.local/bin:$PATH"
-```
-
-For **Fish** (add to `~/.config/fish/config.fish`):
+**For Fish:**
 ```fish
 set -gx PATH $HOME/.local/bin $PATH
 ```
 
-After adding the line, run `source ~/.bashrc` (or the appropriate file) or restart your terminal.
+## Installation
 
-**Installed scripts:**
-- `book-status` - Check metadata status of book files
-- `install-claude-skills` - Install skills to `~/.claude/skills/`
-- `install-scripts` - This installation script (installs itself!)
-- `install-skills-command` - Install skills command
-- `list-skills` - List all available skills (text format)
-- `list-skills-format` - List skills in various formats
+### Quick Start
+
+1. **Set BK_HOME** (required):
+   ```bash
+   export BK_HOME=/path/to/claude-skills
+   ```
+
+2. **Install bk* scripts**:
+   ```bash
+   $BK_HOME/scripts/bk-install-scripts
+   ```
+
+3. **Install skills** to `~/.claude/skills`:
+   ```bash
+   bk-install-skills
+   ```
+
+4. **Verify with the main menu**:
+   ```bash
+   bk
+   ```
 
 ## Available Scripts
 
-### list-skills.sh
+All `bk*` scripts require `$BK_HOME` to be set and provide consistent colored output with comprehensive error checking.
 
-Simple script that lists all available skills with their names and descriptions.
+### bk
 
-**Usage:**
-```bash
-./scripts/list-skills.sh
-```
-
-**Output:**
-```
-Available Claude Skills
-=======================
-
-📘 Skill: faq-generator
-   Description: This skill generates a comprehensive set of...
-
-📘 Skill: glossary-generator
-   Description: This skill automatically generates...
-...
-```
-
-### list-skills-format.sh
-
-Enhanced script that supports multiple output formats for different use cases.
+Main menu script that lists all available `bk*` utilities with descriptions and allows running them by number.
 
 **Usage:**
 ```bash
-./scripts/list-skills-format.sh [FORMAT]
+bk           # Show menu
+bk 1         # Run the first utility
 ```
 
-**Formats:**
-- `text` (default) - Human-readable text with emojis
-- `markdown` or `md` - Markdown table format
-- `csv` - Comma-separated values for spreadsheets
-- `json` - JSON format for programmatic use
+**Example output:**
+```
+════════════════════════════════════════════════════════════════
+Build/Book Utilities
+════════════════════════════════════════════════════════════════
+BK_HOME: /Users/dan/Documents/ws/claude-skills
 
-**Examples:**
+  1. bk-resize-images              Compress large images to ~300KB PNG format
+  2. bk-book-status                Display intelligent textbook building workflow status
+```
 
+### bk-install-scripts
+
+Installs symbolic links for all `bk*` scripts to `$HOME/.local/bin`.
+
+**Requirements:** `$BK_HOME` must be set
+
+**Usage:**
 ```bash
-# Default text format
-./scripts/list-skills-format.sh
-
-# Generate markdown table
-./scripts/list-skills-format.sh markdown
-
-# Generate CSV for spreadsheet
-./scripts/list-skills-format.sh csv > skills.csv
-
-# Generate JSON for automation
-./scripts/list-skills-format.sh json > skills.json
+bk-install-scripts
 ```
 
-**Sample Outputs:**
+**Features:**
+- Validates `$BK_HOME` exists
+- Creates `$HOME/.local/bin` if needed
+- Links all executable `bk*` scripts
+- Reports total count and lists all installed links
+- Checks if `$HOME/.local/bin` is in PATH
 
-**Markdown:**
-```markdown
-| Skill Name | Description | Location |
-|------------|-------------|----------|
-| **faq-generator** | This skill generates... | `./skills/faq-generator` |
+### bk-install-skills
+
+Creates symbolic links in `~/.claude/skills/` for all skills in `$BK_HOME/skills/`.
+
+**Requirements:** `$BK_HOME` must be set
+
+**Usage:**
+```bash
+bk-install-skills
 ```
 
-**CSV:**
-```csv
-Name,Description,Location
-"faq-generator","This skill generates...","./skills/faq-generator"
+**Features:**
+- Validates `$BK_HOME/skills` exists
+- Creates `~/.claude/skills` if needed
+- Links all skill directories
+- Reports installed skills with count
+- Checks for broken symlinks and suggests fixes
+
+### bk-list-skills
+
+Lists all available Claude skills from three locations: source (BK_HOME/skills), user (~/.claude/skills), and project (.claude/skills).
+
+**Requirements:** `$BK_HOME` must be set
+
+**Usage:**
+```bash
+bk-list-skills                    # Default: names with locations
+bk-list-skills --full             # Detailed descriptions
+bk-list-skills --names-only       # Just skill names
+bk-list-skills --json             # JSON format
 ```
 
-**JSON:**
-```json
-{
-  "skills": [
-    {
-      "name": "faq-generator",
-      "description": "This skill generates...",
-      "location": "./skills/faq-generator"
-    }
-  ],
-  "total": 8
-}
+**Features:**
+- Shows skills from source repository, global install, and project
+- Color-coded output by location
+- Counts skills from all three locations
+- JSON output includes all metadata
+
+**Example output:**
 ```
+faq-generator (source, global)
+glossary-generator (source, global)
+learning-graph-generator (source, global)
+
+Skill locations:
+  source  - Skills from /Users/dan/Documents/ws/claude-skills/skills
+  global  - Installed skills in ~/.claude/skills
+  project - Project-specific skills in .claude/skills
+```
+
+### bk-book-status
+
+Displays the status of intelligent textbook building workflow by running a Python analysis script.
+
+**Requirements:** `$BK_HOME` must be set, Python 3 installed
+
+**Usage:**
+```bash
+bk-book-status
+```
+
+**Features:**
+- Validates `$BK_HOME/src/site-metrics/book-status.py` exists
+- Checks for Python 3 availability
+- Runs workflow status analysis
+
+### bk-resize-images
+
+Compresses large images to approximately 300KB PNG format for web optimization.
+
+**Requirements:** `$BK_HOME` must be set, Python 3 and Pillow installed
+
+**Usage:**
+```bash
+bk-resize-images [args]
+```
+
+**Features:**
+- Validates `$BK_HOME/src/resize-images/compress-images.py` exists
+- Checks for Python 3 and Pillow/PIL
+- Passes all arguments to Python script
+- Changes to `$BK_HOME` before running
+
+### bk-install-social-override-plugin
+
+Installs the social_override plugin for mkdocs-material into the current directory for custom social media card images.
+
+**Requirements:** `$BK_HOME` must be set, pip installed
+
+**Usage:**
+```bash
+cd /path/to/mkdocs-project
+bk-install-social-override-plugin
+```
+
+**Features:**
+- Validates `$BK_HOME` is set
+- Warns if mkdocs.yml not found in current directory
+- Creates plugin files in current directory
+- Installs plugin with pip
+- Provides clear next steps for configuration
+
+## Architecture
+
+### Consistent Design Pattern
+
+All `bk*` scripts follow a consistent pattern:
+
+1. **Validation**: Check `$BK_HOME` is set and exists
+2. **Directory checks**: Validate required subdirectories exist
+3. **Colored output**: Use consistent color scheme (green=success, yellow=warning, blue=info, red=error)
+4. **Error handling**: Provide helpful error messages with suggestions
+5. **Visual formatting**: Use consistent separators and formatting
+
+### Color Scheme
+
+- **Green**: Success messages, checkmarks
+- **Yellow**: Warnings, important paths
+- **Blue**: Section headers, informational text
+- **Red**: Errors, failures
+
+### Error Messages
+
+All scripts provide actionable error messages:
+- What went wrong
+- What was expected
+- How to fix it (with examples)
 
 ## Requirements
 
-- Bash shell (version 4.0 or later)
-- Standard Unix tools: `sed`, `awk`, `find`
+- **Bash** shell (version 4.0 or later)
+- **$BK_HOME** environment variable set
+- Standard Unix tools: `find`, `grep`, `sed`
+- Python 3 (for scripts that call Python programs)
+- Specific Python packages as needed (Pillow for image scripts)
 
-## How It Works
+## Benefits of BK_HOME Design
 
-Both scripts:
-1. Scan the `./skills` directory for subdirectories
-2. Read the `SKILL.md` file in each skill directory
-3. Extract the `name:` and `description:` fields from the YAML frontmatter
-4. Format and display the information
-
-The YAML frontmatter in SKILL.md files looks like this:
-```yaml
----
-name: skill-name
-description: Description of what the skill does
-license: MIT
----
-```
-
-## Use Cases
-
-- **Documentation**: Generate markdown tables for documentation
-- **Automation**: Export to JSON for build scripts or CI/CD
-- **Spreadsheets**: Export to CSV for tracking or planning
-- **Quick Reference**: Use text format for quick terminal lookup
+1. **Consistency**: All scripts use the same base directory
+2. **Portability**: Works from any directory after installation
+3. **Validation**: Scripts check environment before running
+4. **Flexibility**: Easy to switch between different claude-skills installations
+5. **Error Prevention**: Clear error messages guide users to fix configuration
 
 ## Notes
 
-- Scripts must be run from the repository root directory
-- Both scripts automatically handle quoted values in YAML
-- Skills without SKILL.md files are skipped with a warning (text format only)
+- All `bk*` scripts validate `$BK_HOME` before running
+- Scripts use `$BK_HOME` to locate resources (skills, Python programs, etc.)
+- Symbolic linking strategy keeps scripts current with repository
+- Consistent error messages help troubleshooting
+- Scripts can be run from any directory (once installed)
+- The `bk` menu automatically discovers and lists all `bk*` scripts
