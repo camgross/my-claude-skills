@@ -1,13 +1,18 @@
 ---
 name: mermaid-generator
-description: This skill generates interactive workflow diagrams using the Mermaid JavaScript library. Use this skill when users request creating flowcharts, process diagrams, workflow visualizations, or decision trees for educational textbooks. The skill creates MicroSim packages with standalone HTML files featuring colorful backgrounds, 16-point fonts, and top-down rendering by default, saved to /docs/sims/ following the MicroSim pattern.
+description: This skill generates interactive workflow diagrams using the Mermaid JavaScript library
+for placement in a narrow region of a textbook using an iframe. Use this skill when users request creating flowcharts, process diagrams, workflow visualizations, or decision trees for educational textbooks. The skill creates MicroSim packages with standalone HTML files featuring colorful backgrounds, 16-point fonts, and top-down rendering by default, saved to /docs/sims/ following the MicroSim pattern.
 ---
 
 # Mermaid Diagram Generator
 
 ## Overview
 
-Generate interactive workflow diagrams using Mermaid.js for intelligent textbooks. Creates complete MicroSim packages with standalone HTML files, MkDocs integration, and Dublin Core metadata. Each diagram features colorful node backgrounds, 16-point fonts for optimal readability, and follows the educational MicroSim pattern.
+Generate simple minimalist but colorful interactive workflow diagrams using Mermaid.js for intelligent textbooks. Creates complete MicroSim packages with standalone HTML files, MkDocs integration, and Dublin Core metadata. Each diagram features colorful node backgrounds, 16-point fonts for optimal readability, and follows the educational MicroSim pattern.
+
+Because this skill is part of the workflow for creation of textbooks using mkdocs, the design goal
+is to create simple unadorned diagrams without any complex padding, borders or decoration.  This is
+because our focus is to educate, not entertain and show off our ability to do rounded corners and gradient shading.
 
 ## When to Use This Skill
 

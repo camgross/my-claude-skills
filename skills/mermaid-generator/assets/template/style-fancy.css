@@ -1,15 +1,12 @@
-/* Mermaid Diagram Stylesheet for Intelligent Textbooks
-   This CSS has been modified to be used in an iframe placed in a mkdocs center column 
-   See style-fancy.css for ornate designs 
-   The background has been changed to aliceblue to let the user know
-   it contains interactive elements like tooltips
-   */
+/* Mermaid Diagram Stylesheet */
 
 :root {
     --primary-color: #667eea;
     --secondary-color: #764ba2;
-    --background-color: aliceblue;
-    --text-color: black;
+    --background-color: #f8f9fa;
+    --text-color: #2c3e50;
+    --border-color: #dee2e6;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -31,15 +28,15 @@ body {
 
 header {
     text-align: center;
-    margin-bottom: 3pt;
-    padding-bottom: 3pt;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
     border-bottom: 2px solid var(--border-color);
 }
 
 header h1 {
     font-size: 2.5rem;
     color: var(--primary-color);
-    margin-bottom: 3pt;
+    margin-bottom: 0.5rem;
     font-weight: 700;
 }
 
@@ -50,15 +47,15 @@ header h1 {
 }
 
 main {
-    background: aliceblue;
+    background: white;
     padding: 0;
 }
 
 .diagram-container {
-    background: aliceblue;
-
-    padding: 0pt;
-    margin-bottom: 3pt;
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
     overflow-x: auto;
 }
 
@@ -102,8 +99,8 @@ main {
 
 footer {
     text-align: center;
-    margin-top: 3pt;
-    padding-top: 2pt;
+    margin-top: 3rem;
+    padding-top: 2rem;
     border-top: 1px solid var(--border-color);
     color: #6c757d;
     font-size: 0.9rem;
@@ -122,7 +119,7 @@ footer a:hover {
 /* Responsive Design */
 @media (max-width: 768px) {
     .container {
-        padding: 2px;
+        padding: 1rem;
     }
 
     header h1 {
@@ -134,11 +131,11 @@ footer a:hover {
     }
 
     main {
-        padding: 1px;
+        padding: 1rem;
     }
 
     .diagram-container {
-        padding: 1px;
+        padding: 1rem;
     }
 }
 
