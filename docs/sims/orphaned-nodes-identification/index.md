@@ -1,10 +1,30 @@
+---
+title: Orphaned Nodes Identification Chart
+description: Interactive Chart.js visualization showing orphaned nodes identification chart
+image: /sims/orphaned-nodes-identification/orphaned-nodes-identification.png
+og:image: /sims/orphaned-nodes-identification/orphaned-nodes-identification.png
+quality_score: 100
+---
+
+
 # Orphaned Nodes Identification Chart
+
+
+**Copy this iframe to your website:**
+
+```html
+<iframe src="https://dmccreary.github.io/claude-skills/sims/orphaned-nodes-identification/main.html" width="100%" height="600px"></iframe>
+```
+
+
+[Run Orphaned Nodes Identification Chart in Fullscreen](main.html){ .md-button .md-button--primary }
+
 
 An interactive scatter plot visualizing concept connectivity patterns by showing indegree (prerequisites) vs outdegree (dependents), helping identify foundational, intermediate, and orphaned concepts in a learning graph.
 
 ## Interactive Chart
 
-<iframe src="main.html" width="100%" height="900" frameborder="0"></iframe>
+
 
 [View Fullscreen](main.html){:target="_blank"}
 
@@ -245,6 +265,87 @@ This visualization is useful for:
 ### Warning Pattern: Linear Chain
 - Diagonal line pattern (each concept depends on exactly one previous)
 - **Fix**: Add lateral connections between concepts at similar levels
+
+## Lesson Plan
+
+### Learning Objectives
+
+After completing this lesson, students will be able to:
+
+- **Identify** (Remember) orphaned nodes in directed graphs using visual analysis
+- **Analyze** (Analyze) the pedagogical implications of concepts with no dependents
+- **Evaluate** (Evaluate) whether orphaned nodes indicate quality issues or valid terminal concepts
+- **Apply** (Apply) graph analysis techniques to improve learning graph structure
+- **Create** (Create) recommendations for resolving orphaned node issues
+
+### Target Audience
+
+- **Primary**: Instructional designers working with learning graphs
+- **Secondary**: Curriculum developers, educational data analysts
+- **Level**: Graduate education programs or professional development
+- **Prerequisites**: Understanding of directed graphs and learning graph concepts
+
+### Activities
+
+**Activity 1: Orphaned Node Detection (15 minutes)**
+
+1. Examine the chart showing orphaned nodes vs. integrated concepts
+2. Calculate what percentage of the 200-concept graph consists of orphaned nodes
+3. Identify the maximum in-degree for integrated concepts
+4. Discuss: Is having 8 orphaned nodes (4%) a problem for a 200-concept graph?
+
+**Activity 2: Root Cause Analysis (25 minutes)**
+
+For each identified orphaned node, determine the likely cause:
+
+1. **Too advanced**: Concept has no simpler concepts depending on it
+2. **Too specific**: Niche topic not needed for other concepts
+3. **Incorrectly placed**: Should be in a different domain/course
+4. **Valid terminal**: Legitimate endpoint in the learning progression
+
+Categorize the 8 orphaned nodes using these criteria.
+
+**Activity 3: Resolution Strategies (30 minutes)**
+
+For 3 different orphaned nodes, propose resolution strategies:
+
+1. **Option 1**: Remove the orphaned concept entirely (when appropriate?)
+2. **Option 2**: Add dependent concepts that build on it
+3. **Option 3**: Merge it with a related concept
+4. **Option 4**: Keep as-is (justify why it's a valid terminal concept)
+
+Write a 1-paragraph rationale for each chosen strategy.
+
+**Activity 4: Graph Quality Improvement (40 minutes)**
+
+Using a provided learning graph CSV:
+
+1. Run a script to identify all orphaned nodes (in-degree = 0 from other concepts)
+2. Visualize orphaned vs. integrated concepts using Chart.js
+3. Propose 5 new concepts that could depend on orphaned nodes
+4. Update the CSV to add these dependencies and verify orphans are resolved
+
+### Assessment
+
+**Formative Assessment:**
+- During Activity 2: Can students correctly categorize orphaned node types?
+- During Activity 3: Do resolution strategies match the orphaned node characteristics?
+
+**Summative Assessment:**
+
+Analyze and improve a learning graph with orphaned nodes:
+
+1. **Detection** (25 points): Correctly identify all orphaned nodes in a 150-concept graph
+2. **Analysis** (30 points): Categorize each orphaned node by type with clear rationale
+3. **Resolution Plan** (25 points): Propose specific, actionable fixes for each orphan
+4. **Implementation** (20 points): Update graph structure and verify improvement
+
+**Success Criteria:**
+- Orphaned node percentage reduced to <3%
+- All remaining orphans justified as valid terminal concepts
+- No new orphans introduced during resolution
+- Graph maintains DAG structure (no cycles)
+
 
 ## References
 

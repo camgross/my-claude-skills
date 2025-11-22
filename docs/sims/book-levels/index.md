@@ -1,13 +1,19 @@
 ---
-hide:
-  - toc
+title: Book Levels MicroSim
+description: Interactive p5.js visualization showing the five levels of intelligent textbooks
+image: /sims/book-levels/book-levels.png
+og:image: /sims/book-levels/book-levels.png
+quality_score: 80
 ---
+
 # Book Levels MicroSim
+
+<iframe src="main.html" width="100%" height="600px"></iframe>
+
 
 Use this MicroSim to create an interactive tool to view the five levels of intelligent textbooks.
 
-<iframe src="./main.html" width="600px" height="500px" scrolling="no"
-  style="overflow: hidden;"></iframe>
+
 
 
 [Run the Book Levels MicroSim - Responsive Version](main.html){ .md-button .md-button--primary }
@@ -17,8 +23,7 @@ Use this MicroSim to create an interactive tool to view the five levels of intel
 Copy this line of HTML into your website to include this MicroSim in your class website:
 
 ```html
-<iframe src="https://dmccreary.github.io/intelligent-textbooks/sims/book-levels/main.html" height="500px" scrolling="no"
-  style="overflow: hidden;"></iframe>
+
 ```
 
 ## How to Use Five Levels of Intelligent Textbooks Infographic in Your Classroom
@@ -107,5 +112,3 @@ The MicroSim is built using p5.js and adapts to different screen sizes by:
 - Maintaining touch functionality for mobile devices
 
 By exploring this MicroSim, users can gain a deeper understanding of how educational content is evolving with technology and the important considerations that come with these advancements.
-
-

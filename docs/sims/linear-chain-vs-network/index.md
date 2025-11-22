@@ -1,10 +1,33 @@
+---
+title: Linear Chain vs Network Structure Comparison
+description: Interactive vis-network visualization showing linear chain vs network structure comparison
+image: /sims/linear-chain-vs-network/linear-chain-vs-network.png
+og:image: /sims/linear-chain-vs-network/linear-chain-vs-network.png
+quality_score: 80
+---
+
+
 # Linear Chain vs Network Structure Comparison
+
+
+<iframe src="main.html" width="100%" height="600px"></iframe>
+
+
+**Copy this iframe to your website:**
+
+```html
+<iframe src="https://dmccreary.github.io/claude-skills/sims/linear-chain-vs-network/main.html" width="100%" height="600px"></iframe>
+```
+
+
+[Run Linear Chain vs Network Structure Comparison in Fullscreen](main.html){ .md-button .md-button--primary }
+
 
 This interactive visualization compares poor (linear chain) and good (networked) learning graph structures side-by-side.
 
 ## Interactive Diagram
 
-<iframe src="main.html" width="100%" height="900px" style="border: 2px solid #ccc; border-radius: 8px;"></iframe>
+
 
 ## Overview
 

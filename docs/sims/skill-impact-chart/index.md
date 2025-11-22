@@ -1,13 +1,23 @@
+---
+title: Skill Development Priority Matrix Visualization
+description: Interactive Chart.js visualization showing skill development priority matrix visualization
+image: /sims/skill-impact-chart/skill-impact-chart.png
+og:image: /sims/skill-impact-chart/skill-impact-chart.png
+quality_score: 70
+---
+
+
 # Skill Development Priority Matrix Visualization
+
 
 An interactive Chart.js bubble chart that visualizes the priority matrix for skill development in creating educational visualizations. This chart helps identify which visualization types should be prioritized based on their impact (frequency of use) versus effort (similarity to existing MicroSims).
 
 ## Interactive Chart
 
-<iframe src="main.html" width="100%" height="700px" scrolling="no"></iframe>
+
 
 ```html
-<iframe src="https://dmccreary.github.io/claude-skills/sims/skill-impact-chart/main.html" width="100%" height="700px" scrolling="no"></iframe>
+
 
 ```
 

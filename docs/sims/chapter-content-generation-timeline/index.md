@@ -1,12 +1,12 @@
 ---
 title: Chapter Content Generation Workflow Timeline
-description: Interactive process timeline visualization showing the 8 sequential stages of the chapter-content-generator skill workflow, from initial file validation through final reporting. Total duration 2 minutes 24 seconds with proportional stage widths.
+description: Interactive timeline showing the 8 sequential stages of chapter content generation
 image: /sims/chapter-content-generation-timeline/chapter-content-generation-timeline.png
 og:image: /sims/chapter-content-generation-timeline/chapter-content-generation-timeline.png
+quality_score: 100
 ---
-# Chapter Content Generation Workflow Timeline
 
-<iframe src="main.html" width="100%" height="720px" scrolling="no"></iframe>
+# Chapter Content Generation Workflow Timeline
 
 An interactive process timeline visualization showing the 8 sequential stages of the chapter-content-generator skill workflow, from initial file validation through final reporting.
 
@@ -15,7 +15,7 @@ An interactive process timeline visualization showing the 8 sequential stages of
 [View the Timeline Data](timeline.json){ .md-button }
 
 ```html
-<iframe src="main.html" width="100%" height="720px" scrolling="no"></iframe>
+
 ```
 
 ## Overview
@@ -280,6 +280,96 @@ const options = {
 };
 ```
 
+## Lesson Plan
+
+### Learning Objectives
+
+After completing this lesson, students will be able to:
+
+- **Understand** (Understand) the sequential stages of automated educational content generation workflows
+- **Analyze** (Analyze) time and resource distribution across different workflow phases
+- **Evaluate** (Evaluate) bottlenecks and optimization opportunities in multi-stage processes
+- **Apply** (Apply) timeline visualization techniques to document their own workflows
+- **Create** (Create) interactive process timelines for technical documentation using vis-timeline
+
+### Target Audience
+
+- **Primary**: Software developers, educational technology specialists, workflow designers
+- **Secondary**: Technical writers, project managers, instructional designers
+- **Level**: Undergraduate computer science or professional development
+- **Prerequisites**: Basic understanding of software workflows, familiarity with JSON data structures
+
+### Activities
+
+**Activity 1: Workflow Stage Analysis (20 minutes)**
+
+1. Open the interactive timeline and identify the longest-running stage (Stage 5: Content Generation)
+2. Calculate what percentage of total workflow time is spent on content generation (typically 70-80%)
+3. Examine substeps for Stage 3 (Reading Level Analysis) - which substep would you expect to take longest?
+4. Discuss: Why does validation (Stages 1-2) happen before resource loading (Stage 4)?
+
+**Activity 2: Timeline Interaction Exploration (15 minutes)**
+
+1. Use zoom controls to examine Stage 5 (Content Generation) in detail
+2. Click on Stage 3 to view expanded information about Reading Level Analysis
+3. Filter the timeline to show only "Analysis" stages (Green)
+4. Take a screenshot showing Stages 6-8 (Quality Assurance and Completion phases)
+
+**Activity 3: Bottleneck Identification (25 minutes)**
+
+Using the timeline data and stage descriptions:
+
+1. Identify the 2 stages that account for >80% of total execution time
+2. For Stage 5 (Content Generation), propose 3 ways to optimize token usage to reduce time
+3. Analyze whether parallel processing could speed up any stages (consider dependencies)
+4. Write a 1-paragraph optimization recommendation
+
+**Activity 4: Create Your Own Timeline (45 minutes)**
+
+1. Document a workflow from your own experience (e.g., software build pipeline, research process, course preparation)
+2. Break it into 6-10 sequential stages with realistic time estimates
+3. Create a JSON data file following the timeline.json structure
+4. Customize the timeline HTML with your data and appropriate colors
+5. Test interactivity (zoom, filter, click events)
+
+### Assessment
+
+**Formative Assessment:**
+
+- During Activity 1: Can students correctly identify stage dependencies and time distributions?
+- During Activity 3: Do students understand which stages could potentially run in parallel?
+
+**Summative Assessment:**
+
+Students demonstrate mastery through a practical project:
+
+1. **Timeline Creation** (40 points): Build a functional interactive timeline for a real-world workflow
+   - Minimum 6 stages with accurate time estimates
+   - Appropriate color coding by workflow phase
+   - Valid JSON structure
+
+2. **Documentation** (30 points): Write comprehensive descriptions for each stage
+   - Explain purpose and outputs
+   - List substeps (3-5 per major stage)
+   - Document resource usage (time, tokens, API calls)
+
+3. **Analysis** (30 points): Provide workflow analysis addressing:
+   - Which stages are critical path (cannot be parallelized)?
+   - Where are optimization opportunities?
+   - How would you handle stage failures/retries?
+
+**Success Criteria:**
+- Timeline renders correctly with proper stage sequencing
+- Students can articulate why certain stages must be sequential
+- Students demonstrate understanding of time-scaled visualization benefits
+- Students can modify timeline.json to represent different workflows
+
+### Extension Activities
+
+- **Advanced**: Add custom stage types with different visual indicators (diamonds for decision points, circles for milestones)
+- **Integration**: Connect the timeline to a real build system to display live progress
+- **Comparison**: Create parallel timelines showing "before" and "after" optimization
+
 ## Educational Applications
 
 This timeline pattern can be adapted for:
@@ -289,6 +379,17 @@ This timeline pattern can be adapted for:
 - **Project management** - Task sequences and dependencies
 - **Course schedules** - Lesson progression and timing
 - **Research workflows** - Experimental procedure stages
+
+## References
+
+- [vis-timeline Documentation](https://visjs.github.io/vis-timeline/docs/timeline/) - 2024 - vis.js - Official documentation for the vis-timeline JavaScript library with API reference, examples, and configuration options
+- [Timeline Visualization Best Practices](https://www.interaction-design.org/literature/article/timeline-design-best-practices) - 2023 - Interaction Design Foundation - Guidelines for creating effective timeline visualizations in user interfaces
+- [Workflow Documentation Patterns](https://www.nngroup.com/articles/workflow-diagrams/) - 2022 - Nielsen Norman Group - Research-based recommendations for documenting multi-stage processes
+- [Process Mining Fundamentals](https://link.springer.com/book/10.1007/978-3-662-49851-4) - 2016 - Springer - Academic text on analyzing and visualizing business processes (relevant for workflow optimization)
+- [chapter-content-generator Skill Documentation](../../skills/chapter-content-generator/) - 2024 - Claude Skills Repository - Complete documentation of the skill this timeline visualizes
+- [Intelligent Textbook Creation Workflow](../../skills/intelligent-textbook/) - 2024 - Claude Skills Repository - End-to-end textbook generation process overview
+- [D3.js Time Scales](https://d3js.org/d3-scale/time) - 2024 - D3.js - Alternative approach to timeline visualization for comparison with vis-timeline
+- [Gantt Charts vs. Timeline Visualizations](https://www.projectmanager.com/blog/gantt-chart-vs-timeline) - 2023 - ProjectManager.com - Discusses when to use different temporal visualization formats
 
 ## Related Resources
 

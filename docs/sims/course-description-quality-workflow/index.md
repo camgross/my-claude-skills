@@ -1,18 +1,22 @@
 ---
 title: Course Description Quality Impact on Workflow
-description: Interactive infographic showing how course description quality affects the intelligent textbook generation workflow
+description: Interactive p5.js workflow diagram showing exponential quality impacts
+image: /sims/course-description-quality-workflow/course-description-quality-workflow.png
+og:image: /sims/course-description-quality-workflow/course-description-quality-workflow.png
+quality_score: 80
 ---
+
 # Course Description Quality Impact on Workflow
 
 <h1>Course Description Quality Impact on Workflow</h1>
 <div class="subtitle">Interactive workflow diagram showing how a high quality course description will have exponential impacts on the quality of textbook generation</div>
 
-<iframe src="main.html" width="100%" height="800px" scrolling="no"></iframe>
+
 
 Place this HTML in your website to include this diagram in your course:
 
 ```html
-<iframe src="https://dmccreary.github.io/claude-skills/sims/course-description-quality/main.html" width="100%" height="800" scrolling="no"></iframe>
+
 ```
 
 [View Fullscreen](./main.html){ .md-button .md-button--primary }

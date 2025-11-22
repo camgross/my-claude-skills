@@ -1,4 +1,27 @@
+---
+title: MkDocs GitHub Pages Deployment Workflow
+description: Interactive Mermaid visualization showing mkdocs github pages deployment workflow
+image: /sims/mkdocs-github-pages-deployment/mkdocs-github-pages-deployment.png
+og:image: /sims/mkdocs-github-pages-deployment/mkdocs-github-pages-deployment.png
+quality_score: 100
+---
+
+
 # MkDocs GitHub Pages Deployment Workflow
+
+
+<iframe src="main.html" width="100%" height="600px"></iframe>
+
+
+**Copy this iframe to your website:**
+
+```html
+<iframe src="https://dmccreary.github.io/claude-skills/sims/mkdocs-github-pages-deployment/main.html" width="100%" height="600px"></iframe>
+```
+
+
+[Run MkDocs GitHub Pages Deployment Workflow in Fullscreen](main.html){ .md-button .md-button--primary }
+
 
 This interactive diagram shows the complete workflow from local markdown editing to a published GitHub Pages site.
 
@@ -12,7 +35,7 @@ The deployment process spans three distinct swimlanes:
 
 ## Interactive Diagram
 
-<iframe src="main.html" width="100%" height="900px" style="border: 2px solid #ccc; border-radius: 8px;"></iframe>
+
 
 ## Workflow Steps
 
@@ -154,9 +177,86 @@ Using `mkdocs gh-deploy` instead of manual deployment:
 - **Responsive:** Adapts to container width
 - **Accessibility:** WCAG AA compliant color contrast
 
+## Lesson Plan
+
+### Learning Objectives
+
+After completing this lesson, students will be able to:
+
+- **Understand** (Understand) the complete deployment workflow for MkDocs sites on GitHub Pages
+- **Apply** (Apply) GitHub Actions for automated documentation deployment
+- **Analyze** (Analyze) the differences between local builds and CI/CD deployments
+- **Evaluate** (Evaluate) deployment configurations for correctness and security
+- **Create** (Create) automated deployment pipelines for documentation sites
+
+### Target Audience
+
+- **Primary**: Web developers, documentation engineers, DevOps practitioners
+- **Secondary**: Technical writers, open source maintainers
+- **Level**: Intermediate to advanced (requires Git and CI/CD familiarity)
+- **Prerequisites**: Basic Git, GitHub, command line, and YAML syntax
+
+### Activities
+
+**Activity 1: Workflow Stage Mapping (15 minutes)**
+
+1. Identify all decision points in the deployment workflow (commit to main?, build successful?)
+2. Trace the path from "Push to main branch" through to "Site live on GitHub Pages"
+3. List what happens during the "Install Dependencies" stage
+4. Explain why "Deploy to gh-pages branch" happens after build verification
+
+**Activity 2: Failure Scenario Analysis (25 minutes)**
+
+1. What happens if the MkDocs build fails? (Trace the "No" path from "Build Successful?")
+2. Identify 3 common causes of build failures (missing files, invalid YAML, broken links)
+3. For each failure cause, describe how you would debug using GitHub Actions logs
+4. Discuss: Why is it better to fail at the build stage than after deployment?
+
+**Activity 3: Implement Your Own Deployment (60 minutes)**
+
+1. Fork a sample MkDocs repository or use your own documentation project
+2. Create a `.github/workflows/deploy.yml` file following the workflow diagram
+3. Configure GitHub Pages settings to use the gh-pages branch
+4. Make a test commit and verify automated deployment works
+5. Check that your site is live at `https://username.github.io/repo-name`
+
+**Activity 4: Deployment Optimization (30 minutes)**
+
+1. Add build caching to speed up dependency installation
+2. Implement branch protection rules to prevent failed builds from deploying
+3. Add deployment status badges to your README.md
+4. Configure custom domain (if available) or document the process
+
+### Assessment
+
+**Formative Assessment:**
+- During Activity 1: Can students correctly trace workflow paths?
+- During Activity 3: Does the deployment pipeline execute successfully?
+
+**Summative Assessment:**
+
+Implement a complete documentation deployment system:
+
+1. **Workflow Implementation** (35 points): Functional GitHub Actions workflow
+2. **Build Configuration** (25 points): Correct MkDocs configuration and dependencies
+3. **Deployment Verification** (20 points): Site successfully deploys and is accessible
+4. **Documentation** (20 points): README with deployment instructions and troubleshooting
+
+**Success Criteria:**
+- Automated deployment triggers on commits to main branch
+- Build failures are caught before deployment
+- Site updates appear within 2-3 minutes of commits
+- Deployment process is documented for team members
+
+
 ## References
 
 - [MkDocs Documentation](https://www.mkdocs.org/)
 - [GitHub Pages Documentation](https://docs.github.com/en/pages)
 - [mkdocs gh-deploy command](https://www.mkdocs.org/user-guide/deploying-your-docs/)
 - [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
+
+
+## Overview
+
+This MicroSim uses Mermaid to provide an interactive visualization.

@@ -1,4 +1,24 @@
+---
+title: Concept Label Length Histogram
+description: Interactive Chart.js visualization showing concept label length histogram
+image: /sims/concept-length-histogram/concept-length-histogram.png
+og:image: /sims/concept-length-histogram/concept-length-histogram.png
+quality_score: 80
+---
+
+
 # Concept Label Length Histogram
+
+
+**Copy this iframe to your website:**
+
+```html
+<iframe src="https://dmccreary.github.io/claude-skills/sims/concept-length-histogram/main.html" width="100%" height="600px"></iframe>
+```
+
+
+[Run Concept Label Length Histogram in Fullscreen](main.html){ .md-button .md-button--primary }
+
 
 ## Overview
 
@@ -49,7 +69,7 @@ The 32-character guideline helps ensure labels remain readable in compact graph 
 
 ## Try It
 
-<iframe src="main.html" width="100%" height="800" frameborder="0"></iframe>
+
 
 ## Related Files
 

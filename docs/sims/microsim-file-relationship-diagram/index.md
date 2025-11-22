@@ -1,4 +1,21 @@
+---
+title: MicroSim File Relationship Diagram
+description: Interactive p5.js visualization showing microsim file relationship diagram
+image: /sims/microsim-file-relationship-diagram/microsim-file-relationship-diagram.png
+og:image: /sims/microsim-file-relationship-diagram/microsim-file-relationship-diagram.png
+quality_score: 100
+---
+
+
 # MicroSim File Relationship Diagram
+
+
+**Copy this iframe to your website:**
+
+```html
+<iframe src="https://dmccreary.github.io/claude-skills/sims/microsim-file-relationship-diagram/main.html" width="100%" height="600px"></iframe>
+```
+
 
 A block diagram showing how the three core MicroSim files (index.md, main.html, metadata.json) relate to each other and integrate into the MkDocs intelligent textbook architecture.
 
@@ -235,9 +252,7 @@ MicroSims can also be embedded directly in chapter content:
 
 See how pendulum period depends on length:
 
-<iframe src="../../sims/pendulum-motion/main.html"
-        width="100%" height="600"
-        frameborder="0"></iframe>
+
 
 [View full documentation](../../sims/pendulum-motion/index.md)
 ```
@@ -330,6 +345,78 @@ This architectural pattern enables:
 - [p5.js Documentation](https://p5js.org/)
 - [MkDocs Material Documentation](https://squidfunk.github.io/mkdocs-material/)
 - [Dublin Core Metadata Initiative](https://www.dublincore.org/)
+
+## Lesson Plan
+
+### Learning Objectives
+
+After completing this lesson, students will be able to:
+
+- **Understand** (Understand) the file structure and relationships in MicroSim projects
+- **Analyze** (Analyze) dependencies between HTML, CSS, JavaScript, and metadata files
+- **Apply** (Apply) MicroSim structural patterns to create new interactive visualizations
+- **Evaluate** (Evaluate) whether a MicroSim meets structural quality standards
+- **Create** (Create) properly structured MicroSim directories with all required files
+
+### Target Audience
+
+- **Primary**: Educational technology developers, MicroSim creators
+- **Secondary**: Web developers learning educational content patterns
+- **Level**: Undergraduate web development or professional development
+- **Prerequisites**: Basic HTML, CSS, and JavaScript knowledge
+
+### Activities
+
+**Activity 1: File Relationship Identification (15 minutes)**
+
+1. Examine the diagram and identify which file is the entry point (index.md)
+2. Trace the path from index.md to main.html through the iframe element
+3. Identify how main.html loads style.css and script.js
+4. List the purpose of metadata.json in the MicroSim structure
+
+**Activity 2: Dependency Analysis (20 minutes)**
+
+1. Count how many files directly depend on main.html (1: index.md via iframe)
+2. Identify files that could be optional vs. required for minimum functionality
+3. Discuss: Why is metadata.json separate from index.md YAML frontmatter?
+4. Create a checklist of required files for a valid MicroSim
+
+**Activity 3: Create a MicroSim Structure (45 minutes)**
+
+1. Create a new MicroSim directory following the kebab-case naming convention
+2. Generate all 5 core files: index.md, main.html, style.css, script.js, metadata.json
+3. Implement a simple interactive visualization (student's choice: chart, diagram, animation)
+4. Test that the iframe embed works correctly in index.md
+
+**Activity 4: Quality Validation (20 minutes)**
+
+Using the microsim-standardization checklist:
+
+1. Verify your MicroSim has all required files
+2. Check that metadata.json contains all 9 Dublin Core fields
+3. Ensure index.md has proper YAML frontmatter with image references
+4. Calculate your MicroSim's quality score using the rubric
+
+### Assessment
+
+**Formative Assessment:**
+- During Activity 1: Can students correctly identify file dependencies?
+- During Activity 3: Does the created MicroSim follow the correct structure?
+
+**Summative Assessment:**
+
+Create a complete MicroSim from scratch that meets these criteria:
+
+1. **Structure** (30 points): All required files present and properly named
+2. **Functionality** (30 points): Interactive visualization works in iframe
+3. **Metadata** (20 points): Complete Dublin Core metadata and YAML frontmatter
+4. **Documentation** (20 points): Clear index.md with overview and usage instructions
+
+**Success Criteria:**
+- MicroSim achieves quality score ≥ 80/100
+- All file relationships function correctly
+- Documentation clearly explains the visualization's purpose
+
 
 ## References
 

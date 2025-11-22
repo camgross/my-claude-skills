@@ -1,10 +1,30 @@
+---
+title: Average Dependencies Distribution Bar Chart
+description: Interactive Chart.js visualization showing average dependencies distribution bar chart
+image: /sims/average-dependencies-distribution/average-dependencies-distribution.png
+og:image: /sims/average-dependencies-distribution/average-dependencies-distribution.png
+quality_score: 100
+---
+
+
 # Average Dependencies Distribution Bar Chart
+
+
+**Copy this iframe to your website:**
+
+```html
+<iframe src="https://dmccreary.github.io/claude-skills/sims/average-dependencies-distribution/main.html" width="100%" height="600px"></iframe>
+```
+
+
+[Run Average Dependencies Distribution Bar Chart in Fullscreen](main.html){ .md-button .md-button--primary }
+
 
 An interactive histogram visualizing the distribution of prerequisite counts across all concepts in a learning graph, helping assess the quality and pedagogical structure of concept dependencies.
 
 ## Interactive Chart
 
-<iframe src="main.html" width="100%" height="800" frameborder="0"></iframe>
+
 
 [View Fullscreen](main.html){:target="_blank"}
 
@@ -182,6 +202,90 @@ This chart type is useful for:
 - **Pedagogical planning** - Plan teaching sequence based on dependency patterns
 - **Comparative analysis** - Compare multiple learning graphs
 - **Documentation** - Communicate graph structure to stakeholders
+
+## Lesson Plan
+
+### Learning Objectives
+
+After completing this lesson, students will be able to:
+
+- **Analyze** (Analyze) prerequisite distribution patterns in learning graphs to identify structural strengths and weaknesses
+- **Evaluate** (Evaluate) whether a learning graph has appropriate complexity distribution using quantitative metrics
+- **Interpret** (Understand) statistical measures (mean, median, mode) in the context of educational concept dependencies
+- **Apply** (Apply) optimal range criteria (2-4 prerequisites) to assess concept granularity
+- **Create** (Create) recommendations for improving learning graph structure based on distribution analysis
+
+### Target Audience
+
+- **Primary**: Instructional designers and curriculum developers working with learning graphs
+- **Secondary**: Educators creating structured course content, educational technology specialists
+- **Level**: Graduate-level education programs, professional development for curriculum designers
+- **Prerequisites**: Basic understanding of learning graphs, familiarity with statistical measures (mean, median, mode)
+
+### Activities
+
+**Activity 1: Identifying Distribution Patterns (15 minutes)**
+
+1. Examine the bar chart and identify which prerequisite count has the highest number of concepts
+2. Calculate what percentage of concepts fall within the optimal range (2-4 prerequisites)
+3. Compare the mean (3.1) with the median (2) - what does this tell you about the distribution shape?
+4. Discuss: Why might having 12 foundational concepts (0 prerequisites) be appropriate for a 200-concept graph?
+
+**Activity 2: Evaluating Quality Using Red Flags (20 minutes)**
+
+Using the "Red Flags" criteria from the Interpretation Guide:
+
+1. Assess whether this learning graph has too many foundational concepts (check if >15%)
+2. Check if too many concepts have 6+ prerequisites (should be <10%)
+3. Evaluate if the distribution resembles a bell curve or is heavily skewed
+4. Write a 2-3 sentence quality assessment of this learning graph
+
+**Activity 3: Comparative Analysis (25 minutes)**
+
+1. Modify the data array in main.html to create a "problematic" learning graph with:
+   - 40% foundational concepts (80 concepts with 0 prerequisites)
+   - Flat distribution across other ranges
+2. Compare the two visualizations side-by-side
+3. Document 3 specific ways the problematic graph fails quality criteria
+4. Propose how you would restructure the problematic graph to improve it
+
+**Activity 4: Real-World Application (30 minutes)**
+
+1. Use the provided Python code to analyze your own learning graph CSV file
+2. Generate the prerequisite distribution data
+3. Customize the chart with your data (update the data array and metrics)
+4. Write an interpretation report addressing:
+   - Is your distribution healthy? Why or why not?
+   - What percentage falls in the optimal range?
+   - What structural improvements would you recommend?
+
+### Assessment
+
+**Formative Assessment:**
+
+- During Activity 1: Can students correctly identify the mode and calculate the optimal range percentage?
+- During Activity 2: Do students accurately apply red flag criteria to evaluate graph quality?
+
+**Summative Assessment:**
+
+Students should demonstrate mastery by completing a practical analysis:
+
+1. **Data Analysis** (30 points): Calculate mean, median, mode, and optimal range percentage from a provided dataset
+2. **Visual Interpretation** (30 points): Identify structural issues in 3 different learning graph distributions
+3. **Quality Evaluation** (20 points): Write a comprehensive quality assessment using all red flag criteria
+4. **Recommendations** (20 points): Propose specific, actionable improvements for a problematic learning graph
+
+**Success Criteria:**
+- Students can independently evaluate a learning graph's prerequisite distribution
+- Students can articulate why 70-90% of concepts should fall in the 1-5 prerequisite range
+- Students can generate their own distribution charts from CSV data
+- Students can distinguish between healthy bell-curve distributions and problematic patterns
+
+### Extension Activities
+
+- **Advanced**: Use the Chart.js Annotation Plugin to add custom quality threshold lines
+- **Research**: Investigate how different subject domains (math vs. history vs. programming) might have different optimal distributions
+- **Collaborative**: Compare learning graphs across a cohort and identify discipline-specific patterns
 
 ## References
 

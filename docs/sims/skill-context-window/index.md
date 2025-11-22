@@ -1,20 +1,19 @@
 ---
 title: Skill Context Window
-description: A MicroSim demonstrating the progressive disclosure principle for Claude Skills, showing how different components are loaded into context at different times.
+description: Interactive p5.js visualization of skill context window concept
 image: /sims/skill-context-window/skill-context-window.png
 og:image: /sims/skill-context-window/skill-context-window.png
+quality_score: 100
 ---
 
 # Skill Context Window
-
-<iframe src="main.html" height="502px" width="100%" scrolling="no"></iframe>
 
 ## How to Embed This MicroSim
 
 You can include this MicroSim on your website using the following `iframe`:
 
 ```html
-<iframe src="https://dmccreary.github.io/intro-to-graph/sims/skill-context-window/main.html" height="502px" width="100%" scrolling="no"></iframe>
+
 ```
 
 [Run the Skill Context Window MicroSim Fullscreen](./main.html){ .md-button .md-button--primary }

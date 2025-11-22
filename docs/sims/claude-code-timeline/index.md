@@ -1,4 +1,14 @@
+---
+title: Evolution of AI: From Neural Networks to Claude Code
+description: Interactive HTML/CSS/JavaScript visualization showing evolution of ai: from neural networks to claude code
+image: /sims/claude-code-timeline/claude-code-timeline.png
+og:image: /sims/claude-code-timeline/claude-code-timeline.png
+quality_score: 75
+---
+
+
 # Evolution of AI: From Neural Networks to Claude Code
+
 
 An interactive timeline visualization chronicling 52 pivotal moments in artificial intelligence history, from the invention of the Perceptron in 1957 to the official announcement of Claude Skills in 2025.
 
@@ -8,7 +18,7 @@ An interactive timeline visualization chronicling 52 pivotal moments in artifici
 
 You can use this timeline on any website using the following `iframe` HTML element:
 ```html
-<iframe src="https://dmccreary.github.io/claude-skills/sims/claude-code-timeline/main.html" height="1005" width="100%"></iframe>
+
 ```
 
 ## Overview

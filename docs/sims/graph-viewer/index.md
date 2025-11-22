@@ -1,4 +1,24 @@
+---
+title: Learning Graph Viewer
+description: Interactive vis-network visualization showing learning graph viewer
+image: /sims/graph-viewer/graph-viewer.png
+og:image: /sims/graph-viewer/graph-viewer.png
+quality_score: 80
+---
+
+
 # Learning Graph Viewer
+
+
+<iframe src="main.html" width="100%" height="600px"></iframe>
+
+
+**Copy this iframe to your website:**
+
+```html
+<iframe src="https://dmccreary.github.io/claude-skills/sims/graph-viewer/main.html" width="100%" height="600px"></iframe>
+```
+
 
 [Run the Learning Graph Viewer](main.html){ .md-button .md-button--primary }
 
@@ -68,3 +88,8 @@ This viewer follows the standard vis.js architectural patterns:
 - **Concept exploration** - Search for specific concepts and see their dependencies
 - **Gap analysis** - Use orphan count to identify disconnected concepts
 - **Progressive learning** - Start with foundation concepts, gradually enable advanced topics
+
+
+## Overview
+
+This MicroSim uses vis-network to provide an interactive visualization.

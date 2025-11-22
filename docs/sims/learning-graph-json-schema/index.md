@@ -1,10 +1,33 @@
+---
+title: Learning Graph JSON Schema
+description: Interactive Mermaid visualization showing learning graph json schema
+image: /sims/learning-graph-json-schema/learning-graph-json-schema.png
+og:image: /sims/learning-graph-json-schema/learning-graph-json-schema.png
+quality_score: 80
+---
+
+
 # Learning Graph JSON Schema
+
+
+<iframe src="main.html" width="100%" height="600px"></iframe>
+
+
+**Copy this iframe to your website:**
+
+```html
+<iframe src="https://dmccreary.github.io/claude-skills/sims/learning-graph-json-schema/main.html" width="100%" height="600px"></iframe>
+```
+
+
+[Run Learning Graph JSON Schema in Fullscreen](main.html){ .md-button .md-button--primary }
+
 
 This Mermaid tree diagram shows the structure of the learning graph JSON format used for vis-network visualization.
 
 ## Interactive Diagram
 
-<iframe src="main.html" width="100%" height="800px" style="border: 2px solid #ccc; border-radius: 8px;"></iframe>
+
 
 ## Overview
 

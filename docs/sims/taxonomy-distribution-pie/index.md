@@ -1,10 +1,30 @@
+---
+title: Taxonomy Distribution Pie Chart
+description: Interactive Chart.js visualization showing taxonomy distribution pie chart
+image: /sims/taxonomy-distribution-pie/taxonomy-distribution-pie.png
+og:image: /sims/taxonomy-distribution-pie/taxonomy-distribution-pie.png
+quality_score: 100
+---
+
+
 # Taxonomy Distribution Pie Chart
+
+
+**Copy this iframe to your website:**
+
+```html
+<iframe src="https://dmccreary.github.io/claude-skills/sims/taxonomy-distribution-pie/main.html" width="100%" height="600px"></iframe>
+```
+
+
+[Run Taxonomy Distribution Pie Chart in Fullscreen](main.html){ .md-button .md-button--primary }
+
 
 An interactive pie chart visualizing how 200 concepts are distributed across 8 taxonomy categories in a learning graph, helping assess balanced coverage and appropriate categorization.
 
 ## Interactive Chart
 
-<iframe src="main.html" width="100%" height="900" frameborder="0"></iframe>
+
 
 [View Fullscreen](main.html){:target="_blank"}
 
@@ -298,6 +318,96 @@ This visualization is useful for:
 - One category: >35%
 - Others: <10% each
 - **Issue**: Curriculum imbalance, consider reorganizing taxonomy
+
+## Lesson Plan
+
+### Learning Objectives
+
+After completing this lesson, students will be able to:
+
+- **Interpret** (Understand) taxonomy distribution patterns in learning graphs
+- **Analyze** (Analyze) whether concept categorization is balanced across domains
+- **Evaluate** (Evaluate) the appropriateness of taxonomy category percentages
+- **Apply** (Apply) Chart.js pie chart techniques to visualize categorical data
+- **Create** (Create) custom taxonomy schemes for new subject domains
+
+### Target Audience
+
+- **Primary**: Instructional designers, curriculum developers
+- **Secondary**: Data visualization specialists, educational researchers
+- **Level**: Graduate education or professional development
+- **Prerequisites**: Basic statistics, familiarity with learning graphs
+
+### Activities
+
+**Activity 1: Distribution Analysis (20 minutes)**
+
+1. Identify the three largest taxonomy categories in the pie chart
+2. Calculate what percentage of concepts fall outside the top 3 categories
+3. Determine if any single category exceeds 30% (potential over-concentration)
+4. Compare the largest and smallest categories - what's the ratio?
+
+**Activity 2: Balance Evaluation (25 minutes)**
+
+Using taxonomic distribution best practices:
+
+1. Assess whether the distribution indicates good coverage across domains
+2. Identify any categories that seem under-represented (<3%)
+3. Evaluate if any categories could be merged due to semantic overlap
+4. Propose an "ideal" distribution for a well-balanced course (percentages for each category)
+
+**Activity 3: Interactive Chart Modification (30 minutes)**
+
+1. Modify the Chart.js data array to represent your own course's concept distribution
+2. Add a new taxonomy category and update colors appropriately
+3. Implement hover tooltips showing concept count + percentage
+4. Add a legend positioned to the right of the chart
+
+**Activity 4: Create Custom Taxonomy (45 minutes)**
+
+For a new course domain (e.g., "Introduction to Cybersecurity"):
+
+1. Design 8-12 taxonomy categories that span the subject comprehensively
+2. Assign 3-letter abbreviation codes to each category
+3. Create a balanced target distribution (sum to 100%)
+4. Generate a pie chart visualization with your taxonomy and target percentages
+5. Write 2-3 sentences explaining your category choices
+
+### Assessment
+
+**Formative Assessment:**
+- During Activity 1: Can students correctly calculate percentages from visual data?
+- During Activity 4: Do custom taxonomy categories cover the domain comprehensively?
+
+**Summative Assessment:**
+
+Design and visualize a complete taxonomy system:
+
+1. **Taxonomy Design** (30 points): Create 10-12 categories for a specified subject
+   - Categories are mutually exclusive
+   - Complete domain coverage
+   - Clear, descriptive labels
+
+2. **Distribution Planning** (25 points): Assign target percentages summing to 100%
+   - No category exceeds 30%
+   - Justification for distribution choices
+
+3. **Visualization** (25 points): Create functional Chart.js pie chart
+   - Accurate data representation
+   - Appropriate color scheme
+   - Readable labels and legend
+
+4. **Documentation** (20 points): Write taxonomy usage guidelines
+   - When to use each category
+   - Example concepts for each
+   - Decision criteria for edge cases
+
+**Success Criteria:**
+- Taxonomy categories are comprehensive and non-overlapping
+- Distribution is balanced without over-concentration
+- Visualization clearly communicates proportions
+- Documentation enables consistent categorization
+
 
 ## References
 
