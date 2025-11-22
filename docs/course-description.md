@@ -24,17 +24,25 @@ The course emphasizes practical, hands-on skills for educators, instructional de
 
 Through this professional development opportunity, learners will gain expertise in both the technical aspects of working with Claude Skills and the educational design principles that make intelligent textbooks effective learning tools.
 
+We place an emphasis on being frugal with using tokens in textbook generation.  We realize that
+most teachers can't afford to pay for the Claude Code Max ($100/month) and want to built their
+textbooks using the lower-cost Claude Pro ($20/month) account.  So we show how each
+skill can be monitored for time and token usage and we present ideas to lower the cost of generating
+textbooks and MicroSims.
+
 ## Main Topics Covered
 
 - Prompt engineering for educational content
 - Claude Skills architecture and components
 - Skill packaging and distribution
+- Monitoring Skill resource utilization
 - Intelligent textbook workflows
 - Learning graphs and concept mapping
 - Graph databases and algorithms
 - Educational book structure and organization
 - Git and revision control for content management
 - Visual Studio Code for content development
+- Integrating Claude Code into your IDE
 - Installing, generating, and publishing skills
 - Testing and debugging skills
 - Security and permission management
@@ -52,7 +60,7 @@ Through this professional development opportunity, learners will gain expertise 
 While this course provides comprehensive coverage of Claude Skills for intelligent textbook creation, the following topics are explicitly out of scope:
 
 - Advanced machine learning theory or model training
-- General web development beyond MkDocs
+- General web development beyond MkDocs and some simple CSS
 - Database administration beyond graph database basics
 - Advanced Git workflows for large development teams
 - General Python programming (only specific scripts used in the workflow)
@@ -72,6 +80,7 @@ After completing this course, students will be able to:
 - Remember the steps in creating an intelligent textbook
 - Remember what a learning graph is
 - Remember what a Claude skill is
+- Remember that skill resource utilization can be monitored
 - Remember the steps to install a Claude skill
 - Remember the steps to install a Claude command
 - Remember how to list Claude skills
@@ -81,6 +90,7 @@ After completing this course, students will be able to:
 
 - Understand how skills are used
 - Understand how skills are created
+- Understand how hooks can be used to monitor skill elapsed time and token usage
 - Understand what skills intelligent textbooks need
 - Understand how a learning graph is used as a roadmap for guiding students on their learning journey
 - Understand the order skills should be run
@@ -88,9 +98,10 @@ After completing this course, students will be able to:
 ### Apply
 *Carrying out or using a procedure in a given situation.*
 
-- Apply prompt engineering to create a skill
+- Apply prompt engineering to create a skill using the skill-creator skill
 - Apply the skill creator skill to create a new skill
 - Apply the command creation steps to create new commands
+- Apply skill usage log files to analyze time and token consumption for each skill
 
 ### Analyze
 *Breaking material into constituent parts and determining how the parts relate to one another and to an overall structure or purpose.*
@@ -101,12 +112,14 @@ After completing this course, students will be able to:
 - Analyze if a skill needs to be improved
 - Analyze why skills do not install correctly
 - Analyze if quality reports are working
+- Analyze skill usage log files and dashboard reports
 
 ### Evaluate
 *Making judgments based on criteria and standards through checking and critiquing.*
 
 - Evaluate the quality of a course description
 - Evaluate the quality of a skill
+- Evaluate if quality tests are a good use of tokens
 - Evaluate the quality of a book
 - Evaluate the quality of a book announcement
 - Evaluate the quality of preview images for social media posts
@@ -117,4 +130,5 @@ After completing this course, students will be able to:
 - Create new skills from scratch
 - Create new intelligent textbooks for various subjects
 - Create new commands for Claude workflows
+- Create new dashboards for monitoring skill resource utilization
 - Design and implement a complete intelligent textbook project (capstone)
