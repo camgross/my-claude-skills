@@ -1,0 +1,121 @@
+#!/bin/bash
+# bk-capture-screenshot
+#
+# Capture a screenshot of a MicroSim using Chrome headless mode
+# Can be run from within a MicroSim directory or by specifying a path
+# Usage:
+#   cd /path/to/microsim && bk-capture-screenshot
+#   bk-capture-screenshot /path/to/microsim
+
+# Colors for output
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+# Determine MicroSim directory
+if [ $# -eq 0 ]; then
+    # No argument provided - use current directory
+    MICROSIM_DIR="$(pwd)"
+else
+    # Argument provided - use it
+    MICROSIM_DIR="$1"
+fi
+
+# Validate directory exists
+if [ ! -d "$MICROSIM_DIR" ]; then
+    echo -e "${RED}Error: Directory does not exist: $MICROSIM_DIR${NC}"
+    exit 1
+fi
+
+# Validate main.html exists
+if [ ! -f "$MICROSIM_DIR/main.html" ]; then
+    echo -e "${RED}Error: main.html not found in $MICROSIM_DIR${NC}"
+    echo -e "${YELLOW}This script must be run from a MicroSim directory or provided a path to one.${NC}"
+    echo ""
+    echo "A MicroSim directory should contain:"
+    echo "  - main.html (the simulation file)"
+    echo "  - index.md (documentation)"
+    echo "  - metadata.json (metadata)"
+    exit 1
+fi
+
+# Extract MicroSim name from directory path
+MICROSIM_NAME=$(basename "$MICROSIM_DIR")
+
+# Construct paths
+MAIN_HTML_PATH="$MICROSIM_DIR/main.html"
+OUTPUT_IMAGE="$MICROSIM_DIR/${MICROSIM_NAME}.png"
+
+# Get absolute path for file:// URL
+ABSOLUTE_PATH=$(cd "$MICROSIM_DIR" && pwd)/main.html
+
+# Chrome paths to try (in order of preference)
+CHROME_PATHS=(
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    "/usr/bin/google-chrome"
+    "/usr/bin/chromium"
+    "google-chrome"
+    "chromium"
+)
+
+# Find Chrome
+CHROME_BIN=""
+for path in "${CHROME_PATHS[@]}"; do
+    if [ -f "$path" ] || command -v "$path" &> /dev/null; then
+        CHROME_BIN="$path"
+        break
+    fi
+done
+
+if [ -z "$CHROME_BIN" ]; then
+    echo -e "${RED}Error: Chrome/Chromium not found.${NC}"
+    echo "Please install Google Chrome from: https://www.google.com/chrome/"
+    exit 1
+fi
+
+echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
+echo -e "${GREEN}MicroSim Screenshot Capture${NC}"
+echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
+echo ""
+echo -e "📸 Capturing screenshot of MicroSim: ${YELLOW}$MICROSIM_NAME${NC}"
+echo -e "   Source: ${BLUE}$ABSOLUTE_PATH${NC}"
+echo -e "   Output: ${BLUE}$OUTPUT_IMAGE${NC}"
+echo ""
+
+# Capture screenshot using Chrome headless mode
+# Key flags:
+#   --headless=new: Use new headless mode
+#   --disable-gpu: Disable GPU acceleration for consistency
+#   --screenshot: Capture screenshot
+#   --window-size: Set viewport size
+#   --hide-scrollbars: Remove scrollbars from capture
+#   --disable-web-security: Allow loading external resources (CDNs)
+#   --allow-file-access-from-files: Allow file:// URLs to load resources
+#   --timeout: Give JavaScript time to load and render
+
+"$CHROME_BIN" \
+    --headless=new \
+    --disable-gpu \
+    --screenshot="$OUTPUT_IMAGE" \
+    --window-size=1200,800 \
+    --hide-scrollbars \
+    --disable-web-security \
+    --allow-file-access-from-files \
+    --timeout=5000 \
+    "file://$ABSOLUTE_PATH" \
+    2>&1 | grep -v "CVDisplayLink" | grep -v "SharedImageManager" || true
+
+# Verify screenshot was created
+if [ -f "$OUTPUT_IMAGE" ]; then
+    SIZE=$(ls -lh "$OUTPUT_IMAGE" | awk '{print $5}')
+    echo -e "${GREEN}✅ Screenshot captured successfully!${NC}"
+    echo -e "   File: ${YELLOW}$OUTPUT_IMAGE${NC} (${SIZE})"
+    echo ""
+    echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
+else
+    echo -e "${RED}❌ Failed to capture screenshot${NC}"
+    echo "Chrome may have encountered an error. Try running with more verbose output."
+    exit 1
+fi

@@ -2,6 +2,7 @@ site
 .DS_Store
 ~$*
 .cache
+.vscode
 mcp-servers/**/*.pyc
 mcp-servers/**/__pycache__/
 mcp-servers/**/*.egg-info/
@@ -9,3 +10,5 @@ mcp-servers/**/dist/
 mcp-servers/**/build/
 mcp-servers/**/.venv/
 mcp-servers/**/venv/
+.claude/activity-logs/
+.claude/settings.local.json

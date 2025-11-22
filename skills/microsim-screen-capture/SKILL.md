@@ -39,12 +39,12 @@ Before capturing a screenshot, verify:
 Execute the provided shell script with the MicroSim directory path:
 
 ```bash
-bash scripts/capture_screenshot.sh <microsim-directory-path>
+bash scripts/capture-screenshot.sh <microsim-directory-path>
 ```
 
 **Example:**
 ```bash
-bash scripts/capture_screenshot.sh /Users/dan/Documents/ws/intro-to-graph/docs/sims/org-chart
+bash scripts/capture-screenshot.sh /Users/dan/Documents/ws/intro-to-graph/docs/sims/org-chart
 ```
 
 The script will:
@@ -131,7 +131,7 @@ python -m http.server 8000 &
 # With: "http://localhost:8000/docs/sims/microsim-name/main.html"
 
 # Capture screenshot
-bash scripts/capture_screenshot.sh /path/to/microsim
+bash scripts/capture-screenshot.sh /path/to/microsim
 
 # Stop the server
 pkill -f "http.server"
@@ -171,7 +171,7 @@ To customize dimensions, modify the `--window-size` flag in the script.
 
 ## Resources
 
-### scripts/capture_screenshot.sh
+### scripts/capture-screenshot.sh
 
 Bash script that automates the entire screenshot capture process. The script:
 - Validates input and checks for required files

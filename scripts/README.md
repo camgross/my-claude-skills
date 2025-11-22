@@ -92,6 +92,7 @@ All `bk*` scripts require `$BK_HOME` to be set and provide consistent colored ou
 
 **Image Processing:**
 - `bk-resize-images` - Compress images for web
+- `bk-capture-screenshot` - Capture MicroSim screenshots
 
 **Plugin Installation:**
 - `bk-install-social-override-plugin` - Install MkDocs social override plugin
@@ -244,6 +245,38 @@ bk-resize-images [args]
 - Checks for Python 3 and Pillow/PIL
 - Passes all arguments to Python script
 - Changes to `$BK_HOME` before running
+
+### bk-capture-screenshot
+
+Captures high-quality screenshots of MicroSims using Chrome headless mode. Can be run from within a MicroSim directory or by providing a path.
+
+**Requirements:** Google Chrome or Chromium installed
+
+**Usage:**
+```bash
+cd /path/to/microsim && bk-capture-screenshot   # Use current directory
+bk-capture-screenshot /path/to/microsim         # Specify directory path
+```
+
+**Features:**
+- Automatically detects MicroSim name from directory
+- Validates main.html exists
+- Uses Chrome headless mode for rendering
+- Handles JavaScript-heavy visualizations with proper timeout
+- Allows loading external CDN resources
+- Generates PNG file named after the MicroSim
+- Provides clear success/failure feedback with file size
+
+**Output:**
+- Creates `{microsim-name}.png` in the MicroSim directory
+- Screenshot size: 1200x800 pixels
+- Includes all rendered content after JavaScript execution
+
+**Technical details:**
+- Uses `--headless=new` for latest Chrome headless mode
+- 5-second timeout for JavaScript rendering
+- Disables web security to allow CDN resources
+- Hides scrollbars for clean captures
 
 ### bk-install-social-override-plugin
 
