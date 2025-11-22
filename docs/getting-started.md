@@ -1,21 +1,94 @@
-# Getting Started Using Intelligent Textbook Skills
+# Getting Started Guide for Installing Textbook Generation Skills in Claude Code
 
-This document guides you through the steps to install these intelligent textbook skills on your local computer so they are accessible to Claude Code. At the end of this chapter you should be able to run all the skills and book-building utilities in this project.
+This document guides you through the steps to install a set of Claude Code Skills
+used to generate intelligent textbook skills on your 
+local computer so they are accessible to Claude Code. At the end of this getting
+started build you should be 
+able to run all the skills and book-building utilities in this project.
+
+!!! Note
+  Claude does not currently run on the Windows PowerShell.  See details below.
 
 ## Quick Start Summary
 
-Here's a quick overview of the installation process:
+Here's a quick overview of the five main steps of the installation process.
+These steps assume you are familiar with using the UNIX Terminal or shell.
+You can find details on teach step later in the document in the [Detailed Installation Options for New Users](#detailed-installation-options-for-new-users).
+The Quick Start steps if you are an experienced UNIX user and have git already installed on your computer.
 
-1. **Set environment variables** - Configure `BK_HOME` and add `~/.local/bin` to your `PATH`
-2. **Clone the repository** - Download the claude-skills repository
-3. **Install book utilities** - Run `bk-install-scripts` to install book-building commands
-4. **Install Claude skills** - Run `install-claude-skills.sh` to install skills globally
-5. **Install /skills command** (optional) - Enable the `/skills` slash command in Claude Code
-6. **Verify installation** - Check that everything is working correctly
+### Step 1: Clone the Claude Skills GitHub Repo
+
+Download the claude-skills repository from GitHub to your local drive.
+
+```bash
+mkdir -m "$HOME/projects"
+cd "$HOME/projects"
+git clone https://github.com/dmccreary/claude-skills
+```
+
+### Step 2: Set the BK_HOME and Configure PATH
+Set environment variables in your shell startup file.
+Set `BK_HOME` and add `~/.local/bin` to your `PATH` if it is not already on your path
+
+```bash
+BK_HOME="$HOME/projects/claude-skills"
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+Restart you shell and type: ```echo $BK_HOME``` to verify the environment variable is set
+
+### Step 3: Install The Book Building Scripts
+
+Install book utilities
+Run `bk-install-scripts` to install book-building commands
+
+```bash
+$BK_HOME/scripts/bk-install-scripts
+```
+
+Type ```bk``` and you should see a list of the book building commmands
+
+### Step 4: Install Claude Skills
+
+To install skills globally, you just need to type the following command
+
+```
+bk-install-claude-skills
+```
+
+This will install all the book builder scripts in your ~/.claude/skills directory
+
+### Step 5 Verify installation
+
+Check that everything is working correctly by asking Claude what skills it knows about.
+
+```bash
+claude
+what skills do you know about?
+```
+
+Here is a sample response:
+
+```
+⏺ I have access to 23 specialized skills in this repository for creating intelligent educational textbooks.
+  Here's an overview:...
+```
+
+!!! Warning
+  The installation process only installs **symbolic links** in your ~./local/bin and your ~/.claude/skills.
+  This allows you to just do a `git pull` to get new updates to existing skills.
+  You must not delete the claude-skills or the skills will stop working.
+  When new skills or scripts are added you MUST reinstall them to get the new symbolic links installed.
+  When in doubt do a git pull and rerun the installers for both scripts and skills.
 
 Detailed instructions for each step are provided below.
 
-## Installation Options
+## Detailed Installation Options For New Users
+
+This section of the Getting Started Guide walks new users through some of the 
+detailed step-by-step guide for getting the Claude skills loaded into
+your local computer.
+
 
 There are two installation options for Claude skills:
 
@@ -24,7 +97,53 @@ There are two installation options for Claude skills:
 
 The book-building utilities are always installed globally to `~/.local/bin`.
 
-## Prerequisites
+### Prerequisites
+
+#### Git Installation
+
+Git comes install on many operating systems including
+
+1. MacOS
+2. Linux (many versions)
+3. Raspberry Pi OS
+4. Windows Subsystem for Linux (WSL)
+
+!!! note
+  Although git can be installed on Windows, you can't run Claude with PowerShell.
+  You must run the Windows Subsystem for Linux (WSL) or the git bash shell
+
+You can test that git is installed by running:
+
+```sh
+git --version
+```
+
+Sample response:
+```
+git version 2.50.1 (Apple Git-155)
+```
+
+#### Background on UNIX Environment Variables
+
+The Claude Skills depend on running a set of UNIX shell commands.
+To find the shell commands the UNIX shell looks in a series of specified locations
+in your PATH variable.  You can see your current PATH by doing the following:
+
+```sh
+echo $PATH
+```
+
+By default, the claude program and the book building scripts are stored in a
+directory that your personal account always has write access to.
+This is called your "Hidden Local Binaries" location.
+
+```sh
+ls ~/.local/bin
+```
+
+The tilde character `~` is a shorthand for the home directory you are in when your shell starts up.
+This is referred to as your `$HOME` directory.  Note that you should never put `~` in your startup file.
+Always use `$HOME` in the startup files.
 
 Before installing the skills, you must complete two important setup steps:
 
@@ -34,12 +153,12 @@ The `BK_HOME` environment variable must point to the root directory of your clon
 
 **For Bash** (add to `~/.bashrc` or `~/.bash_profile`):
 ```bash
-export BK_HOME=/Users/YOUR_USERNAME/Documents/ws/claude-skills
+export BK_HOME=~/projects/claude-skills
 ```
 
 **For Zsh** (add to `~/.zshrc`):
 ```bash
-export BK_HOME=/Users/YOUR_USERNAME/Documents/ws/claude-skills
+export BK_HOME=~/projects/claude-skills
 ```
 
 **For Fish** (add to `~/.config/fish/config.fish`):
@@ -47,7 +166,7 @@ export BK_HOME=/Users/YOUR_USERNAME/Documents/ws/claude-skills
 set -gx BK_HOME /Users/YOUR_USERNAME/Documents/ws/claude-skills
 ```
 
-Replace `/Users/YOUR_USERNAME/Documents/ws/claude-skills` with the actual path where you cloned the repository.
+Replace `$HOME/projects/claude-skills` with the actual path where you cloned the repository.
 
 ### 2. Add ~/.local/bin to Your PATH
 
@@ -78,15 +197,17 @@ source ~/.bashrc  # or ~/.zshrc, depending on your shell
 The best way to download the skills is to use the git clone command:
 
 ```sh
-cd ~/Documents/ws  # or your preferred workspace directory
+cd ~/projects  # or your preferred workspace directory
 git clone https://github.com/dmccreary/claude-skills.git
 ```
 
-This assumes that `ws` (workspace) is the directory where you check out your GitHub repositories. You can use any directory you prefer, just remember to update your `BK_HOME` environment variable accordingly.
+This assumes that `projects`  is the directory where you check out your GitHub repositories. 
+You can use any directory you prefer, just remember to update your `BK_HOME` environment variable accordingly.
 
 ## Installing Book-Building Scripts
 
-Before installing the Claude skills, you should install the book-building utility scripts. These are scripts prefixed with `bk-` that help you manage and build intelligent textbooks.
+Before installing the Claude skills, you should install the book-building utility scripts. 
+These are scripts prefixed with `bk-` that help you manage and build intelligent textbooks.
 
 Run the installation script:
 
