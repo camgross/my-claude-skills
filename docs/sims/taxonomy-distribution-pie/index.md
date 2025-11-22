@@ -5,10 +5,9 @@ image: /sims/taxonomy-distribution-pie/taxonomy-distribution-pie.png
 og:image: /sims/taxonomy-distribution-pie/taxonomy-distribution-pie.png
 quality_score: 100
 ---
-
-
 # Taxonomy Distribution Pie Chart
 
+<iframe src="main.html" width="100%" height="620px"></iframe>
 
 **Copy this iframe to your website:**
 
@@ -16,14 +15,10 @@ quality_score: 100
 <iframe src="https://dmccreary.github.io/claude-skills/sims/taxonomy-distribution-pie/main.html" width="100%" height="600px"></iframe>
 ```
 
-
 [Run Taxonomy Distribution Pie Chart in Fullscreen](main.html){ .md-button .md-button--primary }
 
 
 An interactive pie chart visualizing how 200 concepts are distributed across 8 taxonomy categories in a learning graph, helping assess balanced coverage and appropriate categorization.
-
-## Interactive Chart
-
 
 
 [View Fullscreen](main.html){:target="_blank"}
@@ -103,6 +98,16 @@ The visualization helps educators evaluate whether their learning graph provides
 **8 categories represented**: Comprehensive coverage across all concept types from foundational to advanced.
 
 **Top 3 categories = 59%**: BASIC, ARCH, and IMPL represent the core curriculum focus while maintaining breadth.
+
+## Analysis
+
+**Balanced Distribution:** The largest category (BASIC at 21%) is within healthy range, ensuring no single taxonomy dominates the learning graph.
+
+**Comprehensive Coverage:** All 8 taxonomy categories are represented, providing diverse learning pathways through foundational, intermediate, and advanced concepts.
+
+**Appropriate Specialization:** Advanced concepts comprise 2.5% of the graph, suggesting appropriate depth without overwhelming learners.
+
+**Quality Assessment:** The top 3 categories (BASIC, ARCH, IMPL) represent 59% of concepts, indicating strong focus on core curriculum while maintaining breadth.
 
 ### Healthy Distribution Characteristics
 
