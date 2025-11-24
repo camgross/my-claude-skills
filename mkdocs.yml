@@ -91,15 +91,17 @@ nav:
     - List of MicroSims: sims/index.md
     - Adding Taxonomy Workflow: sims/adding-taxonomy-workflow/index.md
     - Average Dependencies Distribution: sims/average-dependencies-distribution/index.md
+    - Chapter Content Generation Timeline: sims/chapter-content-generation-timeline/index.md
     - Chapter Index Structure: sims/chapter-index-structure/index.md
     - Chapter Organization Workflow: sims/chapter-organization-workflow/index.md
-    - Chapter Content Generation Timeline: sims/chapter-content-generation-timeline/index.md
     - Claude Code Timeline: sims/claude-code-timeline/index.md
+    - Claude Code T-Shirt Design: sims/claude-code-tshirt-design/index.md
     - Concept Length Histogram: sims/concept-length-histogram/index.md
     - Course Description Quality Workflow: sims/course-description-quality-workflow/index.md
     - DAG Validation Algorithm: sims/dag-validation-algorithm/index.md
     - FAQ Pattern Analysis: sims/faq-pattern-analysis/index.md
     - Git Workflow Skill Development: sims/git-workflow-skill-development/index.md
+    - Graph Color Test: sims/graph-color-test/index.md
     - Graph Viewer: sims/graph-viewer/index.md
     - Learning Graph JSON Schema: sims/learning-graph-json-schema/index.md
     - Linear Chain vs Network: sims/linear-chain-vs-network/index.md
@@ -110,8 +112,8 @@ nav:
     - Orphaned Nodes Identification: sims/orphaned-nodes-identification/index.md
     - p5.js Architecture: sims/p5js-architecture/index.md
     - Security Zones Diagram: sims/security-zones-diagram/index.md
-    - Skill Context Window: sims/skill-context-window/index.md
     - Sine Function Plot: sims/sine-function-plot/index.md
+    - Skill Context Window: sims/skill-context-window/index.md
     - Skill Directory Structure: sims/skill-directory-structure/index.md
     - Skill Impact Chart: sims/skill-impact-chart/index.md
     - Skill Installation Workflow: sims/skill-installation-workflow/index.md
