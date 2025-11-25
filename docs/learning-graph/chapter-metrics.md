@@ -1,22 +1,22 @@
 # Chapter Metrics
 
-This file contains chapter-by-chapter metrics.
+This file contains chapter-by-chapter metrics for student-facing content.
 
-| Chapter | Name | Sections | Diagrams | Words |
-|---------|------|----------|----------|-------|
-| 1 | [Introduction to AI and Intelligent Textbooks](../chapters/01-intro-ai-intelligent-textbooks/index.md) | 20 | 6 | 5,959 |
-| 2 | [Getting Started with Claude and Skills](../chapters/02-getting-started-claude-skills/index.md) | 48 | 7 | 6,835 |
-| 3 | [Course Design and Educational Theory](../chapters/03-course-design-educational-theory/index.md) | 23 | 6 | 6,618 |
-| 4 | [Introduction to Learning Graphs](../chapters/04-intro-learning-graphs/index.md) | 16 | 5 | 5,708 |
-| 5 | [Concept Enumeration and Dependencies](../chapters/05-concept-enumeration-dependencies/index.md) | 21 | 9 | 7,042 |
-| 6 | [Learning Graph Quality and Validation](../chapters/06-learning-graph-quality-validation/index.md) | 28 | 6 | 5,802 |
-| 7 | [Taxonomy and Data Formats](../chapters/07-taxonomy-data-formats/index.md) | 29 | 6 | 5,845 |
-| 8 | [MkDocs Platform and Documentation](../chapters/08-mkdocs-platform-documentation/index.md) | 17 | 5 | 2,889 |
-| 9 | [Claude Skills Architecture and Development](../chapters/09-claude-skills-architecture-development/index.md) | 32 | 5 | 5,394 |
-| 10 | [Content Creation Workflows](../chapters/10-content-creation-workflows/index.md) | 27 | 6 | 6,998 |
-| 11 | [Educational Resources and Assessment](../chapters/11-educational-resources-assessment/index.md) | 23 | 4 | 11,395 |
-| 12 | [Interactive Elements and MicroSims](../chapters/12-interactive-elements-microsims/index.md) | 17 | 6 | 8,327 |
-| 13 | [Development Tools, Version Control, and Deployment](../chapters/13-dev-tools-version-control-deployment/index.md) | 72 | 5 | 6,952 |
+| Chapter | Name | Sections | Diagrams | Equations | Words | Links |
+|---------|------|----------|----------|-----------|-------|-------|
+| 1 | [Introduction to AI and Intelligent Textbooks](../chapters/01-intro-ai-intelligent-textbooks/index.md) | 20 | 6 | 0 | 5,959 | 17 |
+| 2 | [Getting Started with Claude and Skills](../chapters/02-getting-started-claude-skills/index.md) | 48 | 7 | 0 | 6,835 | 16 |
+| 3 | [Course Design and Educational Theory](../chapters/03-course-design-educational-theory/index.md) | 23 | 6 | 0 | 6,618 | 13 |
+| 4 | [Introduction to Learning Graphs](../chapters/04-intro-learning-graphs/index.md) | 16 | 5 | 0 | 5,708 | 13 |
+| 5 | [Concept Enumeration and Dependencies](../chapters/05-concept-enumeration-dependencies/index.md) | 21 | 9 | 0 | 7,042 | 13 |
+| 6 | [Learning Graph Quality and Validation](../chapters/06-learning-graph-quality-validation/index.md) | 28 | 6 | 0 | 5,802 | 14 |
+| 7 | [Taxonomy and Data Formats](../chapters/07-taxonomy-data-formats/index.md) | 29 | 6 | 0 | 5,845 | 15 |
+| 8 | [MkDocs Platform and Documentation](../chapters/08-mkdocs-platform-documentation/index.md) | 17 | 5 | 0 | 2,889 | 16 |
+| 9 | [Claude Skills Architecture and Development](../chapters/09-claude-skills-architecture-development/index.md) | 32 | 5 | 4 | 5,394 | 15 |
+| 10 | [Content Creation Workflows](../chapters/10-content-creation-workflows/index.md) | 27 | 6 | 0 | 6,998 | 16 |
+| 11 | [Educational Resources and Assessment](../chapters/11-educational-resources-assessment/index.md) | 23 | 4 | 1 | 11,395 | 16 |
+| 12 | [Interactive Elements and MicroSims](../chapters/12-interactive-elements-microsims/index.md) | 17 | 6 | 0 | 8,327 | 16 |
+| 13 | [Development Tools, Version Control, and Deployment](../chapters/13-dev-tools-version-control-deployment/index.md) | 72 | 5 | 22 | 6,952 | 19 |
 
 ## Metrics Explanation
 
@@ -24,4 +24,6 @@ This file contains chapter-by-chapter metrics.
 - **Name**: Chapter title from index.md
 - **Sections**: Count of H2 and H3 headers in chapter markdown files
 - **Diagrams**: Count of H4 headers starting with '#### Diagram:'
+- **Equations**: LaTeX expressions using $ and $$ delimiters
 - **Words**: Word count across all markdown files in the chapter
+- **Links**: Markdown-formatted links `[text](url)`

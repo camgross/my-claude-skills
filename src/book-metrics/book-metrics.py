@@ -21,6 +21,9 @@ from collections import defaultdict
 class BookMetricsGenerator:
     """Generates metrics for intelligent textbooks."""
 
+    # Directories to exclude from student-facing content metrics
+    EXCLUDED_DIRS = {'prompts', 'learning-graph'}
+
     def __init__(self, docs_dir: str = "docs"):
         """Initialize the metrics generator.
 
@@ -33,6 +36,23 @@ class BookMetricsGenerator:
         self.sims_dir = self.docs_dir / "sims"
         self.glossary_file = self.docs_dir / "glossary.md"
         self.faq_file = self.docs_dir / "faq.md"
+
+    def _is_excluded_path(self, path: Path) -> bool:
+        """Check if a path is in an excluded directory.
+
+        Args:
+            path: Path to check
+
+        Returns:
+            True if path is in an excluded directory
+        """
+        try:
+            relative_path = path.relative_to(self.docs_dir)
+            # Check if any parent directory is in excluded list
+            return any(part in self.EXCLUDED_DIRS for part in relative_path.parts)
+        except ValueError:
+            # Path is not relative to docs_dir
+            return False
 
     def count_chapters(self) -> Tuple[int, List[Dict[str, Any]]]:
         """Count number of chapter directories and collect chapter info.
@@ -200,8 +220,11 @@ class BookMetricsGenerator:
             print(f"Warning: Could not read {markdown_file}: {e}")
             return 0
 
-    def count_all_diagrams(self) -> int:
+    def count_all_diagrams(self, exclude_non_content: bool = True) -> int:
         """Count all diagrams in all markdown files.
+
+        Args:
+            exclude_non_content: If True, exclude prompts/ and learning-graph/ directories
 
         Returns:
             Total number of diagrams
@@ -210,6 +233,8 @@ class BookMetricsGenerator:
 
         # Search all markdown files in docs directory
         for md_file in self.docs_dir.rglob('*.md'):
+            if exclude_non_content and self._is_excluded_path(md_file):
+                continue
             total += self.count_diagrams_in_file(md_file)
 
         return total
@@ -248,8 +273,11 @@ class BookMetricsGenerator:
             print(f"Warning: Could not read {markdown_file}: {e}")
             return 0
 
-    def count_all_equations(self) -> int:
+    def count_all_equations(self, exclude_non_content: bool = True) -> int:
         """Count all equations in all markdown files.
+
+        Args:
+            exclude_non_content: If True, exclude prompts/ and learning-graph/ directories
 
         Returns:
             Total number of equations
@@ -258,6 +286,8 @@ class BookMetricsGenerator:
 
         # Search all markdown files in docs directory
         for md_file in self.docs_dir.rglob('*.md'):
+            if exclude_non_content and self._is_excluded_path(md_file):
+                continue
             total += self.count_equations_in_file(md_file)
 
         return total
@@ -303,8 +333,11 @@ class BookMetricsGenerator:
             print(f"Warning: Could not read {markdown_file}: {e}")
             return 0
 
-    def count_total_words(self) -> int:
+    def count_total_words(self, exclude_non_content: bool = True) -> int:
         """Count total words in all markdown files.
+
+        Args:
+            exclude_non_content: If True, exclude prompts/ and learning-graph/ directories
 
         Returns:
             Total word count
@@ -313,6 +346,8 @@ class BookMetricsGenerator:
 
         # Search all markdown files in docs directory
         for md_file in self.docs_dir.rglob('*.md'):
+            if exclude_non_content and self._is_excluded_path(md_file):
+                continue
             total += self.count_words_in_file(md_file)
 
         return total
@@ -335,8 +370,11 @@ class BookMetricsGenerator:
             print(f"Warning: Could not read {markdown_file}: {e}")
             return 0
 
-    def count_all_links(self) -> int:
+    def count_all_links(self, exclude_non_content: bool = True) -> int:
         """Count all links in all markdown files.
+
+        Args:
+            exclude_non_content: If True, exclude prompts/ and learning-graph/ directories
 
         Returns:
             Total number of links
@@ -345,6 +383,8 @@ class BookMetricsGenerator:
 
         # Search all markdown files in docs directory
         for md_file in self.docs_dir.rglob('*.md'):
+            if exclude_non_content and self._is_excluded_path(md_file):
+                continue
             total += self.count_links_in_file(md_file)
 
         return total
@@ -406,20 +446,50 @@ class BookMetricsGenerator:
         # Count sections in index.md
         sections = self.count_sections_in_file(index_file)
 
-        # Count diagrams in all markdown files in chapter directory
+        # Count diagrams, equations, words, and links in all markdown files in chapter directory
         diagrams = 0
+        equations = 0
         words = 0
+        links = 0
         for md_file in chapter_dir.rglob('*.md'):
             diagrams += self.count_diagrams_in_file(md_file)
+            equations += self.count_equations_in_file(md_file)
             words += self.count_words_in_file(md_file)
+            links += self.count_links_in_file(md_file)
 
         return {
             'number': chapter['number'],
             'name': chapter['name'],
             'sections': sections,
             'diagrams': diagrams,
-            'words': words
+            'equations': equations,
+            'words': words,
+            'links': links
         }
+
+    def get_aggregated_chapter_metrics(self) -> Dict[str, int]:
+        """Aggregate metrics across all chapters for comparison.
+
+        Returns:
+            Dict with aggregated metrics from all chapters
+        """
+        _, chapters = self.count_chapters()
+
+        aggregated = {
+            'diagrams': 0,
+            'equations': 0,
+            'words': 0,
+            'links': 0
+        }
+
+        for chapter in chapters:
+            metrics = self.get_chapter_metrics(chapter)
+            aggregated['diagrams'] += metrics['diagrams']
+            aggregated['equations'] += metrics['equations']
+            aggregated['words'] += metrics['words']
+            aggregated['links'] += metrics['links']
+
+        return aggregated
 
     def generate_book_metrics_md(self) -> str:
         """Generate the book-metrics.md content.
@@ -427,22 +497,29 @@ class BookMetricsGenerator:
         Returns:
             Markdown content as string
         """
-        # Collect all metrics
+        # Collect all metrics (excluding non-content directories)
         chapter_count, chapters = self.count_chapters()
         concepts = self.count_concepts()
         glossary_terms = self.count_glossary_terms()
         faqs = self.count_faqs()
         quiz_questions = self.count_quiz_questions()
-        diagrams = self.count_all_diagrams()
-        equations = self.count_all_equations()
+        diagrams = self.count_all_diagrams(exclude_non_content=True)
+        equations = self.count_all_equations(exclude_non_content=True)
         microsims = self.count_microsims()
-        total_words = self.count_total_words()
-        links = self.count_all_links()
+        total_words = self.count_total_words(exclude_non_content=True)
+        links = self.count_all_links(exclude_non_content=True)
         equivalent_pages = self.calculate_equivalent_pages(total_words, diagrams, microsims)
+
+        # Get chapter-aggregated metrics for comparison
+        chapter_aggregated = self.get_aggregated_chapter_metrics()
 
         # Build markdown table
         md = "# Book Metrics\n\n"
         md += "This file contains overall metrics for the intelligent textbook.\n\n"
+        md += "**Note**: Student-facing content metrics exclude `prompts/` and `learning-graph/` directories. "
+        md += "Chapter-only metrics show what students see in the main chapters.\n\n"
+
+        md += "## Overall Metrics\n\n"
         md += "| Metric Name | Value | Link | Notes |\n"
         md += "|-------------|-------|------|-------|\n"
 
@@ -452,25 +529,39 @@ class BookMetricsGenerator:
         md += f"| Glossary Terms | {glossary_terms} | [Glossary](../glossary.md) | Defined terms |\n"
         md += f"| FAQs | {faqs} | [FAQ](../faq.md) | Frequently asked questions |\n"
         md += f"| Quiz Questions | {quiz_questions} | - | Questions across all chapters |\n"
-        md += f"| Diagrams | {diagrams} | - | Level 4 headers starting with '#### Diagram:' |\n"
-        md += f"| Equations | {equations} | - | LaTeX expressions (inline and display) |\n"
         md += f"| MicroSims | {microsims} | [Simulations](../sims/index.md) | Interactive MicroSims |\n"
-        md += f"| Total Words | {total_words:,} | - | Words in all markdown files |\n"
-        md += f"| Links | {links} | - | Hyperlinks in markdown format |\n"
-        md += f"| Equivalent Pages | {equivalent_pages} | - | Estimated pages (250 words/page + visuals) |\n"
+
+        md += "\n## Student-Facing Content Metrics\n\n"
+        md += "Excludes administrative directories (`prompts/`, `learning-graph/`).\n\n"
+        md += "| Metric Name | All Content | Chapters Only | Notes |\n"
+        md += "|-------------|-------------|---------------|-------|\n"
+        md += f"| Diagrams | {diagrams} | {chapter_aggregated['diagrams']} | H4 headers starting with '#### Diagram:' |\n"
+        md += f"| Equations | {equations} | {chapter_aggregated['equations']} | LaTeX expressions (inline and display) |\n"
+        md += f"| Total Words | {total_words:,} | {chapter_aggregated['words']:,} | Words in markdown files |\n"
+        md += f"| Links | {links} | {chapter_aggregated['links']} | Hyperlinks in markdown format |\n"
+        md += f"| Equivalent Pages | {equivalent_pages} | {self.calculate_equivalent_pages(chapter_aggregated['words'], chapter_aggregated['diagrams'], microsims)} | Estimated pages (250 words/page + visuals) |\n"
 
         md += "\n## Metrics Explanation\n\n"
+        md += "### Structural Metrics\n\n"
         md += "- **Chapters**: Count of chapter directories containing index.md files\n"
         md += "- **Concepts**: Number of rows in learning-graph.csv\n"
         md += "- **Glossary Terms**: H4 headers in glossary.md\n"
         md += "- **FAQs**: H3 headers in faq.md\n"
         md += "- **Quiz Questions**: H4 headers with numbered questions (e.g., '#### 1.') or H2 headers in quiz.md files\n"
+        md += "- **MicroSims**: Directories in docs/sims/ with index.md files\n\n"
+
+        md += "### Content Metrics\n\n"
         md += "- **Diagrams**: H4 headers starting with '#### Diagram:'\n"
         md += "- **Equations**: LaTeX expressions using $ and $$ delimiters\n"
-        md += "- **MicroSims**: Directories in docs/sims/ with index.md files\n"
         md += "- **Total Words**: All words in markdown files (excluding code blocks and URLs)\n"
         md += "- **Links**: Markdown-formatted links `[text](url)`\n"
-        md += "- **Equivalent Pages**: Based on 250 words/page + 0.25 page/diagram + 0.5 page/MicroSim\n"
+        md += "- **Equivalent Pages**: Based on 250 words/page + 0.25 page/diagram + 0.5 page/MicroSim\n\n"
+
+        md += "### Column Explanations\n\n"
+        md += "- **All Content**: Includes all student-facing content (chapters, glossary, FAQ, sims, etc.) but excludes administrative directories\n"
+        md += "- **Chapters Only**: Aggregated from chapter directories only - represents the core textbook content students read\n\n"
+
+        md += "**Excluded Directories**: `prompts/`, `learning-graph/` (administrative content not visible to students)\n"
 
         return md
 
@@ -488,9 +579,9 @@ class BookMetricsGenerator:
 
         # Build markdown table
         md = "# Chapter Metrics\n\n"
-        md += "This file contains chapter-by-chapter metrics.\n\n"
-        md += "| Chapter | Name | Sections | Diagrams | Words |\n"
-        md += "|---------|------|----------|----------|-------|\n"
+        md += "This file contains chapter-by-chapter metrics for student-facing content.\n\n"
+        md += "| Chapter | Name | Sections | Diagrams | Equations | Words | Links |\n"
+        md += "|---------|------|----------|----------|-----------|-------|-------|\n"
 
         # Add rows for each chapter
         for chapter in chapters:
@@ -498,14 +589,16 @@ class BookMetricsGenerator:
             # Create link to chapter index.md (relative to learning-graph directory)
             chapter_dir_name = chapter['path'].name
             chapter_link = f"[{metrics['name']}](../chapters/{chapter_dir_name}/index.md)"
-            md += f"| {metrics['number']} | {chapter_link} | {metrics['sections']} | {metrics['diagrams']} | {metrics['words']:,} |\n"
+            md += f"| {metrics['number']} | {chapter_link} | {metrics['sections']} | {metrics['diagrams']} | {metrics['equations']} | {metrics['words']:,} | {metrics['links']} |\n"
 
         md += "\n## Metrics Explanation\n\n"
         md += "- **Chapter**: Chapter number (leading zeros removed)\n"
         md += "- **Name**: Chapter title from index.md\n"
         md += "- **Sections**: Count of H2 and H3 headers in chapter markdown files\n"
         md += "- **Diagrams**: Count of H4 headers starting with '#### Diagram:'\n"
+        md += "- **Equations**: LaTeX expressions using $ and $$ delimiters\n"
         md += "- **Words**: Word count across all markdown files in the chapter\n"
+        md += "- **Links**: Markdown-formatted links `[text](url)`\n"
 
         return md
 
@@ -552,7 +645,11 @@ def main():
     generator = BookMetricsGenerator(docs_dir)
     generator.generate_metrics()
 
-    print("\n✅ Book metrics generation version 0.02 complete!")
+    print("\n✅ Book metrics generation version 0.03 complete!")
+    print("\nUpdates in v0.03:")
+    print("  - Excludes prompts/ and learning-graph/ directories from content metrics")
+    print("  - Adds chapter-aggregated metrics for comparison")
+    print("  - Shows 'All Content' vs 'Chapters Only' columns")
     print("\nhttp://localhost:8000/conversational-ai/learning-graph/book-metrics/")
     print("http://localhost:8000/conversational-ai/learning-graph/chapter-metrics/")
 

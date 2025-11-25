@@ -2,6 +2,10 @@
 
 This file contains overall metrics for the intelligent textbook.
 
+**Note**: Student-facing content metrics exclude `prompts/` and `learning-graph/` directories. Chapter-only metrics show what students see in the main chapters.
+
+## Overall Metrics
+
 | Metric Name | Value | Link | Notes |
 |-------------|-------|------|-------|
 | Chapters | 13 | [Chapters](../chapters/index.md) | Number of chapter directories |
@@ -9,23 +13,42 @@ This file contains overall metrics for the intelligent textbook.
 | Glossary Terms | 205 | [Glossary](../glossary.md) | Defined terms |
 | FAQs | 66 | [FAQ](../faq.md) | Frequently asked questions |
 | Quiz Questions | 140 | - | Questions across all chapters |
-| Diagrams | 76 | - | Level 4 headers starting with '#### Diagram:' |
-| Equations | 156 | - | LaTeX expressions (inline and display) |
 | MicroSims | 32 | [Simulations](../sims/index.md) | Interactive MicroSims |
-| Total Words | 269,862 | - | Words in all markdown files |
-| Links | 918 | - | Hyperlinks in markdown format |
-| Equivalent Pages | 1114 | - | Estimated pages (250 words/page + visuals) |
+
+## Student-Facing Content Metrics
+
+Excludes administrative directories (`prompts/`, `learning-graph/`).
+
+| Metric Name | All Content | Chapters Only | Notes |
+|-------------|-------------|---------------|-------|
+| Diagrams | 76 | 76 | H4 headers starting with '#### Diagram:' |
+| Equations | 70 | 27 | LaTeX expressions (inline and display) |
+| Total Words | 144,352 | 85,764 | Words in markdown files |
+| Links | 561 | 199 | Hyperlinks in markdown format |
+| Equivalent Pages | 612 | 378 | Estimated pages (250 words/page + visuals) |
 
 ## Metrics Explanation
+
+### Structural Metrics
 
 - **Chapters**: Count of chapter directories containing index.md files
 - **Concepts**: Number of rows in learning-graph.csv
 - **Glossary Terms**: H4 headers in glossary.md
 - **FAQs**: H3 headers in faq.md
 - **Quiz Questions**: H4 headers with numbered questions (e.g., '#### 1.') or H2 headers in quiz.md files
+- **MicroSims**: Directories in docs/sims/ with index.md files
+
+### Content Metrics
+
 - **Diagrams**: H4 headers starting with '#### Diagram:'
 - **Equations**: LaTeX expressions using $ and $$ delimiters
-- **MicroSims**: Directories in docs/sims/ with index.md files
 - **Total Words**: All words in markdown files (excluding code blocks and URLs)
 - **Links**: Markdown-formatted links `[text](url)`
 - **Equivalent Pages**: Based on 250 words/page + 0.25 page/diagram + 0.5 page/MicroSim
+
+### Column Explanations
+
+- **All Content**: Includes all student-facing content (chapters, glossary, FAQ, sims, etc.) but excludes administrative directories
+- **Chapters Only**: Aggregated from chapter directories only - represents the core textbook content students read
+
+**Excluded Directories**: `prompts/`, `learning-graph/` (administrative content not visible to students)
