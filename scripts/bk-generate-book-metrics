@@ -33,7 +33,7 @@ if [ ! -d "$BK_HOME/src" ]; then
 fi
 
 # Path to the Python script
-PYTHON_SCRIPT="$BK_HOME/src/book-metrics/generate-metrics.py"
+PYTHON_SCRIPT="$BK_HOME/src/book-metrics/book-metrics.py"
 
 # Check if Python script exists
 if [ ! -f "$PYTHON_SCRIPT" ]; then
@@ -58,9 +58,19 @@ fi
 # Run the Python script
 echo -e "${BLUE}Generating book metrics...${NC}"
 echo -e "BK_HOME: ${YELLOW}$BK_HOME${NC}"
+echo -e "Working directory: ${YELLOW}$(pwd)${NC}"
 echo ""
 
-cd "$BK_HOME" || exit 1
-python3 "$PYTHON_SCRIPT" "$@"
+# Run from current directory, passing docs directory as argument if not already provided
+if [ $# -eq 0 ]; then
+    # Check if docs directory exists in current directory
+    if [ -d "$(pwd)/docs" ]; then
+        python3 "$PYTHON_SCRIPT" "$(pwd)/docs"
+    else
+        python3 "$PYTHON_SCRIPT" "$(pwd)"
+    fi
+else
+    python3 "$PYTHON_SCRIPT" "$@"
+fi
 
 exit $?

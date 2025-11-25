@@ -214,9 +214,12 @@ class BookMetricsGenerator:
 
         return total
 
-    # TODO: Fix bug in equation counting to avoid double counting dollar amounts in numbers
     def count_equations_in_file(self, markdown_file: Path) -> int:
         """Count LaTeX equations in a single markdown file.
+
+        Fixed to:
+        1. Remove display math before counting inline math (avoids double-counting)
+        2. Exclude dollar amounts like $500 from being counted as equations
 
         Args:
             markdown_file: Path to markdown file
@@ -227,16 +230,24 @@ class BookMetricsGenerator:
         try:
             with open(markdown_file, 'r', encoding='utf-8') as f:
                 content = f.read()
+
+                # Count display math: $$...$$ (must come first)
+                display_matches = re.findall(r'\$\$[^$]+?\$\$', content, re.DOTALL)
+                display = len(display_matches)
+
+                # Remove all display math blocks to avoid double-counting
+                content_no_display = re.sub(r'\$\$[^$]+?\$\$', '', content, flags=re.DOTALL)
+
                 # Count inline math: $...$
-                inline = len(re.findall(r'\$[^$]+\$', content))
-                # Count display math: $$...$$
-                display = len(re.findall(r'\$\$[^$]+\$\$', content))
+                # Negative lookahead (?!\d) ensures we don't match dollar amounts like $500
+                inline_matches = re.findall(r'\$(?!\d)([^\$]+?)\$', content_no_display)
+                inline = len(inline_matches)
+
                 return inline + display
         except Exception as e:
             print(f"Warning: Could not read {markdown_file}: {e}")
             return 0
 
-    # TODO: Fix bug in equation counting to avoid double counting dollar amounts in numbers
     def count_all_equations(self) -> int:
         """Count all equations in all markdown files.
 
