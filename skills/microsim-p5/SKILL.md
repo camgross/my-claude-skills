@@ -117,7 +117,7 @@ let drawHeight = 400;                // Drawing/simulation area height
 let controlHeight = 50;              // Controls area height
 let canvasHeight = drawHeight + controlHeight;
 let margin = 25;                     // Margin for visual elements
-let sliderLeftMargin = 105;          // Left margin for slider positioning.  This is the sum of the horizontal size of the largest label and value.
+let sliderLeftMargin = 140;          // Left margin for slider positioning. Adjust based on label widths.
 let defaultTextSize = 16;            // Base text size
 
 function setup() {
@@ -133,33 +133,48 @@ function setup() {
 
 function draw() {
   updateCanvasSize();
-  // Drawing area (light blue background)
+
+  // Drawing area (light blue background with silver border)
   fill('aliceblue');
-  rect(0, 0, width, drawHeight);
+  stroke('silver');
+  rect(0, 0, canvasWidth, drawHeight);
 
   // Control area (white background)
   fill('white');
-  rect(0, drawHeight, width, controlHeight);
+  noStroke();
+  rect(0, drawHeight, canvasWidth, controlHeight);
 
-  // Place the title in the top center of the canvas
+  // IMPORTANT: Draw grid and axes FIRST, then title
+  // This prevents title from being overwritten by background elements
+
+  // Draw grid here (if applicable)
+  // Draw axes here (if applicable)
+
+  // Draw title AFTER grid/axes
+  // If annotation panels or axis labels exist on the right side,
+  // offset the title to the left to avoid overlap (e.g., canvasWidth * 0.35)
   fill('black');
-  textSize(36); // larger font for the title
+  textSize(24);
   textAlign(CENTER, TOP);
   noStroke();
-  text('Title of MicroSim', canvasWidth/2, margin);
-  // return default setting to avoid bugs in the main drawing code
-  stroke();
+  text('Title of MicroSim', canvasWidth/2, 10);  // Or canvasWidth * 0.35 if right-side elements exist
+
+  // Reset to default text settings
   textAlign(LEFT, CENTER);
   textSize(defaultTextSize);
 
-  // main drawing code here
+  // Main drawing code here
 
-  // Draw control labels and values here in the controls areal
+  // Draw control labels and values in the control area
 
 }
 ```
 
-Note that every MicroSim should have a title centered at the top.
+**Title Positioning Guidelines:**
+
+- For simple MicroSims without annotation panels: center the title at `canvasWidth/2`
+- For MicroSims with right-side annotation panels or vertical axis labels: offset title to the left (e.g., `canvasWidth * 0.35`) to avoid overlap with axis labels
+- Always draw the title AFTER drawing grid/axes to prevent it from being overwritten
 
 ### Responsive Design (REQUIRED)
 
@@ -185,12 +200,26 @@ function updateCanvasSize() {
 }
 ```
 
+### Drawing Order (IMPORTANT)
+
+The order in which elements are drawn affects visibility. Follow this sequence in the `draw()` function:
+
+1. **Background areas first** - Drawing area rect, control area rect
+2. **Grid lines** - If applicable
+3. **Axes** - Coordinate axes with labels
+4. **Title** - Draw AFTER grid/axes so it doesn't get overwritten
+5. **Main visualization** - The primary educational content
+6. **Annotation panels** - Info boxes, value displays
+7. **Control labels** - Slider labels and values in control area
+
+This order ensures that important elements like titles and annotations appear on top of background elements.
+
 ### Visual Design Standards
 
 **Color Scheme**:
-- Drawing area background: `'aliceblue'`
+- Drawing area background: `'aliceblue'` with `stroke('silver')` border
 - Control area background: `'white'`
-- Borders: `'silver'`, 1px width
+- Borders: `'silver'`, 1px weight
 - Interactive elements: Use high-contrast, colorblind-safe colors
 
 **Typography**:
@@ -198,19 +227,37 @@ function updateCanvasSize() {
 Try to avoid using any text smaller than 16pt.  We want the MicroSim text to be
 readable from the back of the classroom.
 
-- Default title size: 36px
+- Default title size: 24px (reduced from 36px to fit better with annotations)
 - Default text size: 16px
 - Control labels: Bold, positioned consistently in the control region
 - Value displays: Show current parameter values
+
+**Axis Labels**:
+- Use full descriptive labels like "Real Axis" and "Imaginary Axis" instead of abbreviations like "Re" and "Im"
+- This improves clarity for students unfamiliar with conventions
+
+**Annotation Panels**:
+When creating info panels or annotation boxes:
+- Use rounded corners with radius 10: `rect(x, y, w, h, 10)`
+- Semi-transparent white background: `fill(255, 255, 255, 230)`
+- Light gray border: `stroke(200)`
+- Generous vertical spacing (allow 20px per line of text)
+- Position panels to avoid overlapping with title or axis labels
 
 ### Control Patterns
 
 **Horizontal Sliders In Control Region** (for continuous parameters):
 
-Sliders are create with min, max, default and step parameters.
+Sliders are created with min, max, default and step parameters.
 
-They are then placed below the drawHeight and X over at the sliderLeftMargin.
-The width of the slider is controlled by the size method and spans the width of the canvas less the sliderLeftMargin - 15;
+They are placed below the drawHeight at the x-position of sliderLeftMargin.
+The width of the slider is controlled by the `size()` method and spans from sliderLeftMargin to `canvasWidth - margin`.
+
+**sliderLeftMargin Guidelines:**
+- Default value: 140px (sufficient for most label/value combinations)
+- Increase to 200-240px when buttons appear before sliders (e.g., Play/Pause + Reset buttons)
+- Calculate as: button widths + label text width + value display width + padding
+- When multiple controls exist in control area, ensure sliders don't overlap with buttons or labels
 
 #### Slider Initialization
 
