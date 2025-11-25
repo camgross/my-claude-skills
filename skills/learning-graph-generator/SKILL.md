@@ -278,15 +278,15 @@ The groups section creates a legend of concept types with distinct colors for vi
 
 **Important:**
 - The groups section uses taxonomy IDs (e.g., "FOUND", "DEF") as keys
-- Each group must have a `classifierName` field containing the human-readable name (e.g., "Foundation Concepts")
-- Each group must have a `color` field (CSS color value)
+- Each group must have a `classifierName` field containing a **descriptive human-readable name** (e.g., "Foundation Concepts", NOT just "FOUND")
+- Each group must have a `color` field using **named CSS colors** (NOT hex codes like "#E74C3C")
 - Each group should have a `font` object with a `color` field for text readability
 
 **Key structure:**
 - **Group key**: Use the TaxonomyID from the CSV (uppercase, no spaces, e.g., "FOUND")
-- **classifierName**: Display name with Title Case and spaces (e.g., "Foundation Concepts")
-- **color**: Choose distinct colors for each taxonomy
-- **font.color**: "white" for dark backgrounds, "black" for light backgrounds
+- **classifierName**: Descriptive display name with Title Case and spaces (e.g., "Foundation Concepts"). NEVER just repeat the TaxonomyID abbreviation.
+- **color**: Use named CSS pastel colors for readability. Recommended colors: LightCoral, Plum, PowderBlue, LightPink, PaleTurquoise, PeachPuff, PaleGreen, LightSteelBlue, LightYellow, Thistle, Gainsboro, Honeydew, Aquamarine, Lavender, MistyRose, LavenderBlush. Avoid AliceBlue as it is often used for backgrounds.
+- **font.color**: Use "black" for pastel/light backgrounds (most cases)
 
 Below is an example of the groups section:
 
@@ -294,58 +294,58 @@ Below is an example of the groups section:
 "groups": {
     "FOUND": {
       "classifierName": "Foundation Concepts",
-      "color": "red",
+      "color": "LightCoral",
       "font": {
-        "color": "white"
+        "color": "black"
       }
     },
     "DEF": {
       "classifierName": "Definitions",
-      "color": "orange",
+      "color": "PeachPuff",
       "font": {
         "color": "black"
       }
     },
     "CORE": {
       "classifierName": "Core Concepts",
-      "color": "gold",
+      "color": "LightYellow",
       "font": {
         "color": "black"
       }
     },
     "INTER": {
-      "classifierName": "Intermediate",
-      "color": "green",
+      "classifierName": "Intermediate Concepts",
+      "color": "PaleGreen",
       "font": {
-        "color": "white"
+        "color": "black"
       }
     },
     "ADV": {
-      "classifierName": "Advanced",
-      "color": "blue",
+      "classifierName": "Advanced Concepts",
+      "color": "PowderBlue",
       "font": {
-        "color": "white"
+        "color": "black"
       }
     },
     "MISC": {
       "classifierName": "Miscellaneous Concepts",
-      "color": "indigo",
+      "color": "Gainsboro",
       "font": {
-        "color": "white"
+        "color": "black"
       }
     },
     "PROJ": {
       "classifierName": "Project Ideas",
-      "color": "violet",
+      "color": "Lavender",
       "font": {
-        "color": "white"
+        "color": "black"
       }
     },
     "CAP": {
       "classifierName": "Capstone Projects",
-      "color": "gray",
+      "color": "Plum",
       "font": {
-        "color": "white"
+        "color": "black"
       }
     }
   }
