@@ -13,11 +13,12 @@ This list is ordered based on the most general purpose tools to the most case sp
 2. **General Chart Generation with ChartJS** - used for generating charts
 3. **Mermaid Generator**  - used for static workflow and flow chart diagrams
 4. **Vis Network Graph Generator** - used to generate interactive network graph diagrams
-5. **Math Function Plot Generator** - uses the powerful Plotly.js library for plotting math functions
-6. **Timeline Generator** - used to generate timelines from a list of events
-7. **Map Generator** - generates maps using the Leaflet library
-8. **Venn Diagram Generator** - generates Venn Diagrams
-9. **Bubble Chart Generator** - specialize to only generate bubble charts
+5. **Causal Loop Diagram Generator** - creates interactive causal loop diagrams for systems thinking education
+6. **Math Function Plot Generator** - uses the powerful Plotly.js library for plotting math functions
+7. **Timeline Generator** - used to generate timelines from a list of events
+8. **Map Generator** - generates maps using the Leaflet library
+9. **Venn Diagram Generator** - generates Venn Diagrams
+10. **Bubble Chart Generator** - specialize to only generate bubble charts
 
 ## Common Elements to All MicroSims
 
@@ -102,6 +103,23 @@ This skill will create a graph network diagram using the vis-network JavaScript 
 The user should provide a list of nodes and edges as well as an optional list of groups.
 
 See the [Vis Network](./vis-network.md) skill description.
+
+## Causal Loop Diagram Generator
+
+**Name:** causal-loop-microsim-generator<br/>
+**Width Responsive:** Yes
+
+This skill creates interactive Causal Loop Diagram (CLD) MicroSims for systems thinking education using vis-network. CLDs visualize cause-and-effect relationships, feedback loops (reinforcing and balancing), and system dynamics. Key features include:
+
+- **Polarity indicators**: Green (+) for positive relationships, Red (-) for negative relationships
+- **Loop markers**: R (reinforcing) and B (balancing) loop indicators with automatic placement
+- **Interactive details**: Click nodes, edges, or loops to see descriptions
+- **Systems archetypes**: Built-in support for common patterns (limits to growth, fixes that fail, tragedy of the commons)
+- **Educational content**: Discussion questions, key insights, and learning objectives
+
+Causal loop diagrams are ideal for teaching systems thinking concepts like feedback dynamics, exponential growth/decay, goal-seeking behavior, and intervention leverage points.
+
+See the [Causal Loop MicroSim Generator](./causal-loop-microsim-generator.md) skill description.
 
 ## Math Function Plotter
 
