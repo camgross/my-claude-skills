@@ -1,0 +1,48 @@
+#!/bin/bash
+# bk-check-loops - Check for loops/cycles in a learning graph
+#
+# This script checks a vis-network JSON learning graph file for cycles.
+# Learning graphs should be Directed Acyclic Graphs (DAGs), so any loops
+# indicate a problem with concept dependencies.
+#
+# Usage:
+#   bk-check-loops [path-to-learning-graph.json]
+#
+# If no path is provided, defaults to docs/learning-graph/learning-graph.json
+#
+# Exit codes:
+#   0 - No loops found (graph is a valid DAG)
+#   1 - Loops found or error occurred
+
+set -e
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Path to the Python script
+PYTHON_SCRIPT="$SCRIPT_DIR/../src/learning-graph/check-loops.py"
+
+# Default learning graph path (relative to current directory)
+DEFAULT_GRAPH="docs/learning-graph/learning-graph.json"
+
+# Use provided path or default
+GRAPH_PATH="${1:-$DEFAULT_GRAPH}"
+
+# Check if the Python script exists
+if [[ ! -f "$PYTHON_SCRIPT" ]]; then
+    echo "Error: Python script not found at: $PYTHON_SCRIPT"
+    exit 1
+fi
+
+# Check if the graph file exists
+if [[ ! -f "$GRAPH_PATH" ]]; then
+    echo "Error: Learning graph file not found: $GRAPH_PATH"
+    echo ""
+    echo "Usage: bk-check-loops [path-to-learning-graph.json]"
+    echo ""
+    echo "If no path is provided, defaults to: $DEFAULT_GRAPH"
+    exit 1
+fi
+
+# Run the Python script
+python3 "$PYTHON_SCRIPT" "$GRAPH_PATH"
