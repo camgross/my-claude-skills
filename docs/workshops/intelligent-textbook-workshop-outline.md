@@ -5,11 +5,12 @@
 !!! note Update
    We are hosting one at [The Thinking Spot](https://www.thethinkingspot.us/) on Monday Dec. 1st from 6:30 pm to 8:30 pm.  Please let Dan know if you can attend.
 
-[Cheat Sheet](intelligent-textbook-cheat-sheet.md)
+[Cheat Sheet (PDF)](https://github.com/dmccreary/claude-skills/blob/main/slides/Workshop-Cheat-Sheet.pdf)
 
 **Prerequisites:**
-- Course description prepared
-- Claude Code installed with all skills loaded and usage visible
+- Please come with a detailed course description prepared
+- Please make sure that Claude Code installed with all skills loaded and usage visible
+   Test: "`> What skills do you know?`
 - Users know how to check and extend their own token usage: [https://claude.ai/settings/usage](https://claude.ai/settings/usage)
 - Basic familiarity with markdown and command-line tools
 
@@ -47,16 +48,19 @@ The following shows how these tools also depend on other systems.
 
 #### 2.1 Course Description Quality (10 min)
 - Components of a quality course description
-- ISO 11179 standards for definitions
-- Bloom's Taxonomy integration
+- Use Bloom's 2001 Taxonomy to list the learning objectives of the course
+- Create precise definitions of terms you plan to use in the course
 
-**Demo:** Use `/skill course-description-analyzer` on sample course description
+
+**Demo:** Use `/skill course-description-analyzer` on sample course description.  The goal is to
+get your course description above 85 of 100 points before you go to the next step (learning graph generation)
 
 **Hands-on:** Participants analyze their own course descriptions and refine based on feedback
 
 #### 2.2 Learning Graph Generation (20 min)
 - What is a learning graph? (concepts + dependencies)
 - DAG (Directed Acyclic Graph) constraints
+- No circular links (bk-check-loops)
 - Taxonomy categorization (12 categories)
 - Quality metrics interpretation
 
@@ -68,6 +72,10 @@ The following shows how these tools also depend on other systems.
    - `learning-graph.json` (vis-network visualization data)
 
 **Hands-on:** Each participant generates their learning graph and reviews quality metrics
+
+#### View Your Learning Graph
+
+`> run the install-learning-graph viewer skill`
 
 ---
 
