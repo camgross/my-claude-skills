@@ -9,16 +9,20 @@ will adapt to various screen sizes and window resize events.
 
 This list is ordered based on the most general purpose tools to the most case specific tool.
 
-1. **General MicroSim with p5:** - use for most general MicroSim used for interactive animations and simulations
+1. **General MicroSim with p5** - use for most general MicroSim used for interactive animations and simulations
 2. **General Chart Generation with ChartJS** - used for generating charts
-3. **Mermaid Generator**  - used for static workflow and flow chart diagrams
+3. **Mermaid Generator** - used for static workflow and flow chart diagrams
 4. **Vis Network Graph Generator** - used to generate interactive network graph diagrams
 5. **Causal Loop Diagram Generator** - creates interactive causal loop diagrams for systems thinking education
 6. **Math Function Plot Generator** - uses the powerful Plotly.js library for plotting math functions
 7. **Timeline Generator** - used to generate timelines from a list of events
 8. **Map Generator** - generates maps using the Leaflet library
 9. **Venn Diagram Generator** - generates Venn Diagrams
-10. **Bubble Chart Generator** - specialize to only generate bubble charts
+10. **Bubble Chart Generator** - specialized to only generate bubble charts
+11. **MicroSim Matcher** - helps select the right generator for a specification
+12. **MicroSim Screen Capture** - captures screenshots using Chrome headless
+13. **MicroSim Add Icons** - adds CC and fullscreen icons to MicroSims
+14. **MicroSim Standardization** - validates MicroSim quality and structure
 
 ## Common Elements to All MicroSims
 
@@ -164,6 +168,43 @@ See the [Venn Diagram Generator ](./venn-diagram-generator.md) skill description
 
 ## Bubble Chart
 
-This is a specialization of the ChartJS skill.  
+This is a specialization of the ChartJS skill.
 
 See the [Bubble Chart](./bubble-chart-generator.md) skill description.
+
+## Map Generator
+
+**Name:** map-generator<br/>
+**Width Responsive:** Yes
+
+This skill generates interactive maps using the Leaflet JavaScript library. It creates geographic visualizations with markers, popups, and various map layers.
+
+See the [Map Generator](./map-generator.md) skill description.
+
+## MicroSim Utility Skills
+
+The following skills help with MicroSim development and maintenance:
+
+### MicroSim Matcher
+
+Analyzes diagram, chart, or simulation specifications and returns a ranked list of the most suitable MicroSim generator skills to use. Provides match scores (0-100) with detailed reasoning.
+
+See the [MicroSim Matcher](./microsim-matcher.md) skill description.
+
+### MicroSim Screen Capture
+
+Automates the capture of high-quality screenshots for MicroSim visualizations using Chrome headless mode. Handles JavaScript-heavy visualizations that require proper rendering time.
+
+See the [MicroSim Screen Capture](./microsim-screen-capture.md) skill description.
+
+### MicroSim Add Icons
+
+Adds clickable Creative Commons license and fullscreen navigation icons to the control region of an existing p5.js MicroSim.
+
+See the [MicroSim Add Icons](./microsim-add-icons.md) skill description.
+
+### MicroSim Standardization
+
+Validates MicroSim directories against a comprehensive quality checklist including structure, metadata, documentation, and required components.
+
+See the [MicroSim Standardization](./microsim-standardization.md) skill description.

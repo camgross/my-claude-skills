@@ -60,7 +60,7 @@ nav:
     - Book Generation Skills:
       - Overview: skill-descriptions/book/index.md
       - 1 Install MkDocs Template: skill-descriptions/book/install-mkdocs-template.md
-      - 2 Course Description Generator and Analyzer: skill-descriptions/book/course-description-analyzer.md
+      - 2 Course Description Analyzer: skill-descriptions/book/course-description-analyzer.md
       - 3 Learning Graph Generator: skill-descriptions/book/learning-graph-generator.md
       - 4 Install Learning Graph Viewer: skill-descriptions/book/install-learning-graph-viewer.md
       - 5 Book Chapter Structure Generator: skill-descriptions/book/book-chapter-generator.md
@@ -69,23 +69,32 @@ nav:
       - 8 FAQ Generator: skill-descriptions/book/faq-generator.md
       - 9 Quiz Generator: skill-descriptions/book/quiz-generator.md
       - 10 Reference Generator: skill-descriptions/book/reference-generator.md
-    
+      - 11 Book Metrics Generator: skill-descriptions/book/book-metrics-generator.md
+      - 12 Diagram Reports Generator: skill-descriptions/book/diagram-reports-generator.md
+      - 13 README Generator: skill-descriptions/book/readme-generator.md
+      - 14 LinkedIn Announcement Generator: skill-descriptions/book/linkedin-announcement-generator.md
+
     - MicroSim Generation Skills:
-      - Bubble Chart: skill-descriptions/microsims/bubble-chart-generator.md
-      - Chart Generator: skill-descriptions/microsims/chartjs-generator.md
-      - List MicroSim Skills: skill-descriptions/microsims/index.md
-      # List in the order they are selected
-      - Math Function Plotter: skill-descriptions/microsims/math-function-plotter-plotly.md
-      - Map: skill-descriptions/microsims/map-generator.md
-      - Mermaid: skill-descriptions/microsims/mermaid-generator.md
+      - Overview: skill-descriptions/microsims/index.md
       - MicroSims p5 Generator: skill-descriptions/microsims/microsim-p5.md
-      - Timeline: skill-descriptions/microsims/timeline-generator.md
+      - Chart Generator: skill-descriptions/microsims/chartjs-generator.md
+      - Mermaid: skill-descriptions/microsims/mermaid-generator.md
       - Vis Network: skill-descriptions/microsims/vis-network.md
+      - Causal Loop Diagram: skill-descriptions/microsims/causal-loop-microsim-generator.md
+      - Math Function Plotter: skill-descriptions/microsims/math-function-plotter-plotly.md
+      - Timeline: skill-descriptions/microsims/timeline-generator.md
+      - Map Generator: skill-descriptions/microsims/map-generator.md
       - Venn Diagram: skill-descriptions/microsims/venn-diagram-generator.md
-    
+      - Bubble Chart: skill-descriptions/microsims/bubble-chart-generator.md
+      - MicroSim Matcher: skill-descriptions/microsims/microsim-matcher.md
+      - MicroSim Screen Capture: skill-descriptions/microsims/microsim-screen-capture.md
+      - MicroSim Add Icons: skill-descriptions/microsims/microsim-add-icons.md
+      - MicroSim Standardization: skill-descriptions/microsims/microsim-standardization.md
+
     - Specialized Skills:
-      - skill-descriptions/specialized-skills/index.md
-      - skill-descriptions/specialized-skills/moving-rainbow.md
+      - Overview: skill-descriptions/specialized-skills/index.md
+      - Moving Rainbow: skill-descriptions/specialized-skills/moving-rainbow.md
+      - Install Skill Tracker: skill-descriptions/specialized-skills/install-skill-tracker.md
   
   - MicroSims:
     - List of MicroSims: sims/index.md

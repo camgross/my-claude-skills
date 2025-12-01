@@ -40,4 +40,18 @@ Generate interactive multiple-choice quizzes aligned to learning graph concepts 
 Generate curated, verified reference lists for textbooks with level-appropriate resources (10 for junior-high, 20 for senior-high, 30 for college, 40 for graduate) formatted with links and relevance descriptions.
 [Read full description](./reference-generator.md)
 
+### 11. Book Metrics Generator
+Generate comprehensive metrics reports for intelligent textbooks analyzing chapters, concepts, glossary terms, FAQs, quiz questions, diagrams, equations, MicroSims, word counts, and links.
+[Read full description](./book-metrics-generator.md)
 
+### 12. Diagram Reports Generator
+Automatically generate comprehensive reports of all diagrams and MicroSims in an intelligent textbook by analyzing chapter markdown files with status tracking and complexity analysis.
+[Read full description](./diagram-reports-generator.md)
+
+### 13. README Generator
+Create or update comprehensive README.md files for GitHub repositories with badges, project overview, site metrics, getting started instructions, and best practices formatting.
+[Read full description](./readme-generator.md)
+
+### 14. LinkedIn Announcement Generator
+Generate professional LinkedIn announcement text for intelligent textbooks with key statistics, educational features, relevant hashtags, and links to the published site.
+[Read full description](./linkedin-announcement-generator.md)
