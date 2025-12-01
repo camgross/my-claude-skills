@@ -5,6 +5,8 @@
 !!! note Update
    We are hosting one at [The Thinking Spot](https://www.thethinkingspot.us/) on Monday Dec. 1st from 6:30 pm to 8:30 pm.  Please let Dan know if you can attend.
 
+[Cheat Sheet](intelligent-textbook-cheat-sheet.md)
+
 **Prerequisites:**
 - Course description prepared
 - Claude Code installed with all skills loaded and usage visible
