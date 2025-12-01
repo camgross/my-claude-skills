@@ -19,15 +19,15 @@ creation workflow and have generated core components for their own textbook usin
 
 ## Workshop Outline
 
-### Part 1: Introduction & Setup (15 minutes)
+### Step 1: Introduction & Setup
 
-#### 1.1 Welcome & Overview (5 min)
+#### 1.1 Welcome & Overview
 
 - What are intelligent textbooks? (5 levels of intelligence)
 - Why use Claude skills for textbook creation?
 - Workshop structure and expected outcomes
 
-#### 1.2 Environment Setup (10 min)
+#### 1.2 Environment Setup
 
 Our book building tools depend on Claude Code Skills and the mkdocs build system.
 The following shows how these tools also depend on other systems.
@@ -44,20 +44,20 @@ The following shows how these tools also depend on other systems.
 
 ---
 
-### Part 2: Foundation - Course Description & Learning Graph (30 minutes)
+### Step 2: Course Description
 
-#### 2.1 Course Description Quality (10 min)
+#### Course Description Quality
 - Components of a quality course description
 - Use Bloom's 2001 Taxonomy to list the learning objectives of the course
 - Create precise definitions of terms you plan to use in the course
-
 
 **Demo:** Use `/skill course-description-analyzer` on sample course description.  The goal is to
 get your course description above 85 of 100 points before you go to the next step (learning graph generation)
 
 **Hands-on:** Participants analyze their own course descriptions and refine based on feedback
 
-#### 2.2 Learning Graph Generation (20 min)
+### Step 3: Learning Graph Generation
+
 - What is a learning graph? (concepts + dependencies)
 - DAG (Directed Acyclic Graph) constraints
 - No circular links (bk-check-loops)
@@ -73,46 +73,64 @@ get your course description above 85 of 100 points before you go to the next ste
 
 **Hands-on:** Each participant generates their learning graph and reviews quality metrics
 
-#### View Your Learning Graph
+### Step 4: View and Edit Your Learning Graph
 
-`> run the install-learning-graph viewer skill`
+`> run the install-learning-graph-viewer skill`
+
+Note that you may need to redo the legend for color and ordering of the taxonomy.
 
 ---
 
-### Part 3: Content Generation Workflow (40 minutes)
+### Step 5: Generate Book Structure
 
-#### 3.1 Glossary Creation (10 min)
-- ISO 11179 definition standards (precise, concise, distinct, non-circular)
-- Automatic glossary generation from concept list
+`> run the book-chapter-generator skill`
 
-**Demo:** Use `/skill glossary-generator` to create `docs/glossary.md`
+After this step there will be a docs/chapters directory with one directory for each chapter.
+The index.md file has a overview of each chapter and a list of the concepts that must be covered in the chapter
 
-**Hands-on:** Participants generate glossaries and review 3-5 definitions for quality
+**Discussion:** How were concepts distributed across chapters? Does the ordering make pedagogical sense?
 
-#### 3.2 Chapter Structure Planning (10 min)
+!!! tip
+   By looking at the shell output you can see tradeoffs of breaking different concepts into balanced chapters.
+   You can also try `log this session to logs/book-chapter-generator.md`
+
+### Step 6: Generate Content
 - Concept-to-chapter mapping
 - Respecting dependency order
 - Balancing chapter length and complexity
 
-**Demo:** Use `/skill book-chapter-generator` to create chapter structure
+`run the chapter-content-generator on chapter 1 @docs/chapters/01-*/index.md`
 
-**Discussion:** How were concepts distributed across chapters? Does the ordering make pedagogical sense?
-
-#### 3.3 Chapter Content Generation (15 min)
-- Content generation at appropriate reading level
-- Bloom's Taxonomy level distribution
-- Non-text elements (diagrams, infographics, MicroSims)
-
-**Demo:** Generate content for one chapter with `/skill chapter-content-generator`
+Repeat this for several chapters
 
 **Review together:**
 - Markdown structure and formatting
 - Admonitions and callouts
-- Practice problems and worked examples
+- Breaking up the "Wall of Text" problem
+- Insertion of non-pure-text items (lists, tables, MicroSims)
+
+The remainder of this class is "Supplementary Materials"
+
+### Step 7: Glossary Creation 
+- ISO 11179 definition standards (precise, concise, distinct, non-circular)
+- Automatic glossary generation from concept list and terms in chapters
+- Suggest terms that might have been missed
+
+**Demo:** Use `run the glossary-generator skill` to create `docs/glossary.md`
+
+**Hands-on:** Participants generate glossaries and review 3-5 definitions for qualit
+
+**Demo:** Generate content for one chapter with `/skill chapter-content-generator`
 
 **Hands-on:** Participants generate content for their first chapter
 
-#### 3.4 Quiz Generation (5 min)
+### Step 8: FAQ Generation
+
+- The default generate about 70 FAQs but you can ask for fewer or more
+- Use for helping chatbots get started
+- Used to map multiple intents into standardized responses
+
+#### Step 9: Quiz Generation (5 min)
 - Bloom's Taxonomy-aligned questions
 - Concept mapping to learning graph
 - Interactive quiz format
@@ -123,14 +141,17 @@ get your course description above 85 of 100 points before you go to the next ste
 
 ---
 
-### Part 4: Interactive Elements - MicroSims (25 minutes)
+### Step 10 Interactive Elements - MicroSims
 
-#### 4.1 Introduction to MicroSims (5 min)
+#### Introduction to MicroSims 
 - What are MicroSims? (interactive p5.js simulations)
 - MicroSim directory structure (`docs/sims/[sim-name]/`)
+- Designed for reuse and placement in any chapter or any website
+- Use `iframe` to insert into a chapter
 - Educational value of interactivity
+- There are over 10 types of stills that know how to create MicroSims
 
-#### 4.2 p5.js MicroSim Creation (10 min)
+#### p5.js MicroSim Creation
 - Two-region pattern (drawing canvas + controls)
 - Seeded randomness for reproducibility
 - Iframe embedding in chapter content
