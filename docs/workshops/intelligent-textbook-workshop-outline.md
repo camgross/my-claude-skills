@@ -2,6 +2,9 @@
 
 **Duration:** 2 hours
 
+!!! note Update
+   We are hosting one at [The Thinking Spot](https://www.thethinkingspot.us/) on Monday Dec. 1st from 6:30 pm to 8:30 pm.  Please let Dan know if you can attend.
+
 **Prerequisites:**
 - Course description prepared
 - Claude Code installed with all skills loaded and usage visible
@@ -22,6 +25,12 @@ creation workflow and have generated core components for their own textbook usin
 - Workshop structure and expected outcomes
 
 #### 1.2 Environment Setup (10 min)
+
+Our book building tools depend on Claude Code Skills and the mkdocs build system.
+The following shows how these tools also depend on other systems.
+
+<iframe src="../../sims/install-book-env/main.html" width="100%" height="500px"></iframe>
+[Fullscreen](../sims/install-book-env/main.html)
 
 - Verify Claude Code installation
 - List available skills with `/skills` command
