@@ -1,18 +1,20 @@
 # Install MkDocs Template
 
 The install-mkdocs-template skill creates a complete MkDocs Material project
-structure optimized for intelligent textbooks. It generates all configuration
-files, custom styling, and the social_override plugin for custom social media
-cards.
+structure optimized for intelligent textbooks. It sets up a Conda virtual
+environment, installs dependencies, generates all configuration files, and
+deploys to GitHub Pages.
 
 ## Key Capabilities
 
-This skill sets up a fully-configured MkDocs Material project with:
+This skill provides end-to-end project setup:
 
-1. **Complete mkdocs.yml** - All Material theme options pre-configured
-2. **Custom CSS** - Brand color customization with CSS variables
-3. **Social Override Plugin** - Per-page custom social media card images
-4. **Directory Structure** - Standard intelligent textbook layout
+1. **Conda Environment** - Creates `mkdocs` virtual environment with Python 3.11
+2. **Dependencies** - Installs MkDocs, Material theme, and required packages
+3. **Complete mkdocs.yml** - All Material theme options pre-configured
+4. **Custom CSS** - Brand color customization with CSS variables
+5. **Social Override Plugin** - Per-page custom social media card images
+6. **Build & Deploy** - Builds site and deploys to GitHub Pages
 
 ## What Gets Created
 
@@ -81,14 +83,45 @@ image: img/my-custom-social-card.png
 
 This overrides the auto-generated social card for that specific page.
 
-## Post-Installation Steps
+## Prerequisites
 
-After the skill creates all files:
+- Conda (Miniconda or Anaconda) installed
+- Git repository initialized with remote origin configured
+- GitHub repository created
 
-1. Run `pip install -e .` to install the social_override plugin
-2. Add your logo to `docs/img/logo.png` (50x50px recommended)
-3. Add your favicon to `docs/img/favicon.ico`
-4. Run `mkdocs serve` to verify the installation
+## Workflow Summary
+
+The skill executes these steps:
+
+1. Create Conda environment: `conda create -n mkdocs python=3.11 -y`
+2. Activate and install: `conda activate mkdocs && pip install mkdocs mkdocs-material ...`
+3. Create all project files (mkdocs.yml, CSS, plugins, starter content)
+4. Install social_override plugin: `pip install -e .`
+5. Build site: `mkdocs build`
+6. Deploy to GitHub Pages: `mkdocs gh-deploy`
+7. Provide the live site URL
+
+## After Deployment
+
+The skill provides the GitHub Pages URL for testing:
+
+```
+https://<username>.github.io/<repo-name>/
+```
+
+User should:
+
+1. Add logo to `docs/img/logo.png` (50x50px recommended)
+2. Add favicon to `docs/img/favicon.ico`
+3. Verify the live site loads correctly
+
+## Reactivating the Environment
+
+When returning to work on the textbook:
+
+```bash
+conda activate mkdocs
+```
 
 ## Integration
 

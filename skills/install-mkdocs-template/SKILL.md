@@ -1,6 +1,6 @@
 ---
 name: install-mkdocs-template
-description: This skill creates a complete MkDocs Material project structure for intelligent textbooks. It generates mkdocs.yml with all Material theme options, custom CSS for branding, the social_override plugin for custom social media cards, and the standard directory structure. Use this skill when starting a new intelligent textbook project or when setting up MkDocs with the full Material theme configuration.
+description: This skill creates a complete MkDocs Material project structure for intelligent textbooks. It sets up a Conda virtual environment named 'mkdocs', installs all dependencies, generates mkdocs.yml with all Material theme options, custom CSS for branding, the social_override plugin for custom social media cards, builds the site, and deploys to GitHub Pages. Use this skill when starting a new intelligent textbook project.
 ---
 
 # Install MkDocs Template
@@ -18,13 +18,32 @@ This skill creates a complete MkDocs Material project structure optimized for in
 
 ## Prerequisites
 
-- Python 3.8 or higher
-- pip package manager
-- MkDocs and Material theme installed (`pip install mkdocs mkdocs-material`)
+- Conda (Miniconda or Anaconda) installed
+- Git repository initialized with remote origin configured
+- GitHub repository created (for GitHub Pages deployment)
 
 ## Workflow
 
-### Step 1: Gather Project Information
+### Step 1: Create Conda Environment
+
+Create a new Conda environment named `mkdocs` with Python 3:
+
+```bash
+conda create -n mkdocs python=3.11 -y
+```
+
+### Step 2: Activate Environment and Install Dependencies
+
+Activate the environment and install MkDocs with Material theme:
+
+```bash
+conda activate mkdocs
+pip install mkdocs mkdocs-material mkdocs-material-extensions pillow cairosvg
+```
+
+The additional packages (`pillow`, `cairosvg`) are required for social media card generation.
+
+### Step 3: Gather Project Information
 
 Before creating files, collect the following information from the user:
 
@@ -37,7 +56,7 @@ Before creating files, collect the following information from the user:
 7. **primary_color_rgb** - Primary brand color as RGB values (default: 218, 120, 87 - Anthropic brown)
 8. **google_analytics_id** - Optional Google Analytics property ID
 
-### Step 2: Create Directory Structure
+### Step 4: Create Directory Structure
 
 Create the following directory structure in the current working directory:
 
@@ -63,7 +82,7 @@ project-root/
 └── setup.py
 ```
 
-### Step 3: Create mkdocs.yml
+### Step 5: Create mkdocs.yml
 
 Use the template from `assets/mkdocs-template.yml` as the base. Replace placeholders with user-provided values:
 
@@ -75,11 +94,11 @@ Use the template from `assets/mkdocs-template.yml` as the base. Replace placehol
 - `{{REPO_URL}}` - repo_url
 - `{{GOOGLE_ANALYTICS_ID}}` - google_analytics_id (remove analytics section if not provided)
 
-### Step 4: Create extra.css
+### Step 6: Create extra.css
 
 Use the template from `assets/extra.css` as the base. Replace the RGB color values with user-provided primary_color_rgb if different from default.
 
-### Step 5: Create Social Override Plugin
+### Step 7: Create Social Override Plugin
 
 Copy the following files from assets:
 
@@ -87,7 +106,7 @@ Copy the following files from assets:
 - `assets/plugins/social_override.py` → `plugins/social_override.py`
 - `assets/setup.py` → `setup.py`
 
-### Step 6: Create Starter Content Files
+### Step 8: Create Starter Content Files
 
 Create minimal starter files for each directory:
 
@@ -127,25 +146,72 @@ This section contains the learning graph visualization and concept dependencies.
 This section contains MicroSims - interactive educational simulations.
 ```
 
-### Step 7: Install the Plugin
+### Step 9: Install the Social Override Plugin
 
-After creating all files, instruct the user to run:
+After creating all files, install the social_override plugin in editable mode:
 
 ```bash
 pip install -e .
 ```
 
-This installs the social_override plugin in editable mode.
+### Step 10: Build the Site
 
-### Step 8: Verify Installation
+Build the static site to verify everything is configured correctly:
 
-Instruct the user to verify the installation:
+```bash
+mkdocs build
+```
+
+This creates a `site/` directory with the generated HTML. Check for any build warnings or errors.
+
+### Step 11: Test Locally (Optional)
+
+To preview the site locally before deploying:
 
 ```bash
 mkdocs serve
 ```
 
-The site should be accessible at http://localhost:8000
+The site will be accessible at http://localhost:8000
+
+### Step 12: Deploy to GitHub Pages
+
+Deploy the site to GitHub Pages:
+
+```bash
+mkdocs gh-deploy
+```
+
+This command:
+1. Builds the site
+2. Creates/updates the `gh-pages` branch
+3. Pushes to GitHub
+4. Configures GitHub Pages to serve from that branch
+
+### Step 13: Provide the GitHub Pages URL
+
+After deployment, provide the user with the live site URL:
+
+```
+https://{{GITHUB_USERNAME}}.github.io/{{REPO_NAME}}/
+```
+
+For example, if the repo_url is `https://github.com/dmccreary/my-textbook`, the site URL would be:
+
+```
+https://dmccreary.github.io/my-textbook/
+```
+
+**Important**: The site may take 1-2 minutes to become available after the first deployment. Subsequent deployments are usually faster.
+
+### Step 14: Verify Deployment
+
+Instruct the user to:
+
+1. Visit the GitHub Pages URL
+2. Check that the home page loads correctly
+3. Verify navigation works
+4. Test on mobile devices for responsive layout
 
 ## MkDocs Material Features Included
 
@@ -203,8 +269,48 @@ After running the skill, the user must provide:
 1. `docs/img/logo.png` - Site logo (recommended: 50x50px)
 2. `docs/img/favicon.ico` - Browser favicon
 
+## Quick Reference - All Commands
+
+Here is the complete sequence of commands for reference:
+
+```bash
+# Step 1: Create Conda environment
+conda create -n mkdocs python=3.11 -y
+
+# Step 2: Activate and install dependencies
+conda activate mkdocs
+pip install mkdocs mkdocs-material mkdocs-material-extensions pillow cairosvg
+
+# Steps 3-8: Create files (done by Claude)
+
+# Step 9: Install social_override plugin
+pip install -e .
+
+# Step 10: Build the site
+mkdocs build
+
+# Step 11: Test locally (optional)
+mkdocs serve
+
+# Step 12: Deploy to GitHub Pages
+mkdocs gh-deploy
+
+# Step 13: Access your site at:
+# https://<username>.github.io/<repo-name>/
+```
+
+## Reactivating the Environment
+
+When returning to work on the textbook in a new terminal session:
+
+```bash
+conda activate mkdocs
+```
+
 ## Notes
 
 - The template uses a custom primary color defined in CSS rather than Material's built-in palette
 - Google Analytics is optional - remove the `analytics` section from mkdocs.yml if not needed
 - The edit_uri points to the `blob/master/docs` path - adjust if using a different branch
+- The Conda environment is reusable across multiple MkDocs projects
+- First deployment may take 1-2 minutes to appear on GitHub Pages
