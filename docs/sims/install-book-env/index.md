@@ -1,6 +1,8 @@
 ---
 title: Install Book Environment Dependencies
 description: An interactive dependency graph visualization showing all software components required to set up an intelligent textbook development environment using MkDocs Material and Claude Skills.
+image: /sims/install-book-env/install-book-env.png
+og:image: /sims/install-book-env/install-book-env.png
 quality_score: 90
 ---
 
