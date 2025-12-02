@@ -9,16 +9,14 @@
 
 ## Prerequisites
 
-- **Cluade Code Account:** - All users **must** to have the $20/month Claude Code account.  We do not use ChatGPT.
-Visitors are welcome to watch others, but to leave with a working textbooks Claude Code is required.
+- **Cluade Code Account:** - All users **must** have the $20/month Claude Code Pro account.  We do not use ChatGPT.
+Visitors are welcome to watch others. However, to leave the workshop with your own working textbook, Claude Code is required.
 - **Background:** Users should know how to use a computer keyboard (including copy and paste), the computer mouse and have basic familiarity with tools like GitHub, markdown and command-line tools in the Terminal or Shell.
 - **Course Description:** Please come with a detailed course description prepared and ask your AI to classify learning objectives using the 2001 Bloom Taxonomy.
 - **GitHub Account:** Users should have created and tested a GitHub account before they arrive at class.
-- **Claude Code Skills Installed:** Please make sure that Claude Code installed with all skills loaded and usage visible
+- **Claude Code Skills Installed:** Please make sure that Claude Code installed with all skills loaded and usage visible.  Test the installation like this:
 
-```sh
-> What skills do you know about?
-```
+   > \> Hi Claude!  What skills do you know about?
 
 This should return a list of about 30 Skills
 
