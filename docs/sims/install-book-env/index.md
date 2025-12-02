@@ -15,7 +15,7 @@ This MicroSim visualizes the dependency graph for setting up an intelligent text
 Copy this iframe to embed in your website:
 
 ```html
-<iframe src="https://dmccreary.github.io/claude-skills/sims/install-book-env/main.html" width="100%" height="500px"></iframe>
+<iframe src="https://dmccreary.github.io/claude-skills/sims/install-book-env/main.html" width="100%" height="400px"></iframe>
 ```
 
 ## Reading the Graph
@@ -89,3 +89,7 @@ To set up the environment, install components in this order:
 1. [MkDocs Documentation](https://www.mkdocs.org/) - Official documentation for the MkDocs static site generator
 2. [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) - Documentation for the Material theme with advanced features
 3. [Claude Code Documentation](https://docs.anthropic.com/claude-code) - Official guide for Claude Code CLI tool
+
+## Developer Notes
+
+**vis-network edge label bug:** vis-network has a rendering bug with edge labels on perfectly horizontal edges (where both nodes share the same y-coordinate). The label may not appear on initial load but becomes visible after any node interaction. The workaround is to apply a slight y-offset between connected nodes to give the edge enough angle for the label to render correctly on initial load.
