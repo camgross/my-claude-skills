@@ -137,7 +137,7 @@ The remainder of this class is "Supplementary Materials"
 
 **Demo:** Use `run the glossary-generator skill` to create `docs/glossary.md`
 
-**Hands-on:** Participants generate glossaries and review 3-5 definitions for qualit
+**Hands-on:** Participants generate glossaries and review 3-5 definitions for quality
 
 **Demo:** Generate content for one chapter with `/skill chapter-content-generator`
 
@@ -168,7 +168,7 @@ The remainder of this class is "Supplementary Materials"
 - Designed for reuse and placement in any chapter or any website
 - Use `iframe` to insert into a chapter
 - Educational value of interactivity
-- There are over 10 types of stills that know how to create MicroSims
+- There are over 10 types of skills that know how to create MicroSims
 
 #### p5.js MicroSim Creation
 - Two-region pattern (drawing canvas + controls)
