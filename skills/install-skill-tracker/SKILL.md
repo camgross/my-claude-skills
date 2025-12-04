@@ -16,11 +16,18 @@ This skill automates the installation of a **global** skill tracking system for 
 Use this skill when:
 - Setting up skill usage tracking that works across all your Claude Code projects
 - Wanting to analyze which skills are used most frequently across your entire workflow
+- **Measuring how long each skill takes** to identify optimization opportunities
 - Monitoring API costs and token usage across all skill executions
 - Identifying time-consuming skills that may need optimization
 - Discovering patterns in work that could be automated with new skills
 - Tracking productivity gains and cost efficiency from skill automation
 - Understanding prompt cache effectiveness and optimization opportunities
+
+**Why Timing Matters:** Understanding how long skills take helps you:
+- Identify slow skills that need optimization
+- Estimate total time saved through automation
+- Make informed decisions about which skills to invest in improving
+- Track productivity improvements over time
 
 ## Installation Workflow
 
@@ -89,6 +96,30 @@ ls -la ~/.claude/scripts/
 cat ~/.claude/settings.json
 ```
 
+### Step 7: Test Timing Data Collection
+
+**IMPORTANT:** After installation, verify that timing data is being collected correctly by running a skill and checking the logs.
+
+1. Run any skill (e.g., a simple one like `glossary-generator`)
+2. Check that the skill-usage.jsonl contains timing data:
+
+```bash
+tail -5 ~/.claude/activity-logs/skill-usage.jsonl
+```
+
+3. Run the analysis report to verify timing appears:
+
+```bash
+bk-analyze-skill-usage
+```
+
+Look for these timing metrics in the report:
+- **Time from Prompt** column in Recent Skill Usage table
+- **Avg Time** column in Token Usage by Skill table
+- **Timing Summary** section with total and average time
+
+If timing shows "N/A" or "0s", see the Troubleshooting section below.
+
 ## Using the Tracking System
 
 ### Automatic Logging
@@ -98,9 +129,12 @@ After installation, the tracking system operates automatically across all projec
 2. Each skill invocation is logged with timestamp, duration, token usage, and triggering prompt
 3. Logs accumulate in `~/.claude/activity-logs/` as JSONL files (centralized for all projects)
 
-**What Gets Tracked (v1.2):**
+**What Gets Tracked (v2.1):**
 - Skill name and invocation time
-- Execution duration (in seconds)
+- **Timing metrics:**
+  - Time from prompt submission to skill completion
+  - Duration between start and end events
+  - Session activity timeline (time between prompts)
 - Token usage metrics:
   - Input tokens (new content)
   - Output tokens (generated response)
@@ -127,12 +161,14 @@ Run the analysis scripts to generate insights:
 
 The analysis reports include:
 - **Skill frequency** - Most commonly used skills
-- **Performance metrics** - Average and total duration per skill
-- **Token usage metrics** - Input/output/cache tokens per skill (NEW)
-- **Cost estimation** - Calculate API costs based on token usage (NEW)
-- **Cache efficiency** - Identify cache hit rates and optimization opportunities (NEW)
+- **Timing metrics** - Time from prompt to completion, average time per skill
+- **Timing summary** - Total time spent in skills, average time per skill
+- **Session activity timeline** - Time gaps between prompts to understand work patterns
+- **Token usage metrics** - Input/output/cache tokens per skill
+- **Cost estimation** - Calculate API costs based on token usage
+- **Cache efficiency** - Identify cache hit rates and optimization opportunities
 - **Prompt patterns** - Common prompts that trigger skills
-- **Usage history** - Recent skill invocations with details
+- **Usage history** - Recent skill invocations with timing and token details
 - **Insights** - Suggestions for optimization and new skill opportunities
 
 ### Example Analysis Output
@@ -142,26 +178,43 @@ The analysis reports include:
 
 **Total skill invocations:** 15
 
-## Most Used Skills
+## Token Usage by Skill
 
-- **microsim-p5**: 7x
-- **learning-graph-generator**: 5x
-- **glossary-generator**: 3x
+| Skill | Invocations | Total Tokens | Avg Time | Cache Read | Cache Creation |
+|-------|-------------|--------------|----------|------------|----------------|
+| learning-graph-generator | 5x | 420.5K | 2m 34s | 380.2K | 15.3K |
+| microsim-p5 | 7x | 168.7K | 1m 12s | 145.6K | 8.1K |
+| glossary-generator | 3x | 45.2K | 45s | 38.9K | 2.4K |
 
-## Skill Performance (Average Duration)
+## Timing Summary
 
-- **learning-graph-generator**
-  - Average: 2m 34s
-  - Total time: 12m 50s
-  - Invocations: 5x
+| Metric | Value |
+|--------|-------|
+| Total time in skills | 45m 23s |
+| Average time per skill | 3m 1s |
+| Skills with timing data | 15 of 15 |
 
-## Insights & Suggestions
+## Recent Skill Usage
 
-### Frequently Used Skills
-- **microsim-p5** (7x): Could benefit from optimization or templates
+| Timestamp | Skill | Tokens | Time from Prompt | Prompt (truncated) |
+|-----------|-------|--------|------------------|---------------------|
+| 2025-12-03 14:25:33 | microsim-p5 | 24.1K | 1m 15s | create a bubble chart microsim... |
+| 2025-12-03 14:12:41 | glossary-generator | 15.1K | 42s | generate glossary from learning... |
 
-### Total Time Automated
-Skills have automated **45m 23s** of work
+## Session Activity Timeline
+
+| Timestamp | Time Since Previous | Prompt (truncated) |
+|-----------|---------------------|---------------------|
+| 2025-12-03 14:25:33 | 12m 52s | create a bubble chart microsim... |
+| 2025-12-03 14:12:41 | 3m 15s | generate glossary from learning... |
+
+## Insights
+
+### Most Token-Intensive Skills
+- **learning-graph-generator**: 420.5K total (84.1K avg)
+
+### Cache Efficiency
+✅ Good cache utilization (89.2% cache hits)
 ```
 
 ## Log Data Format

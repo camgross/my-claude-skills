@@ -19,20 +19,27 @@ A complete activity tracking system for Claude Code that automatically logs skil
 The Skill Tracker system uses Claude Code's hooks mechanism to automatically collect telemetry data about skill usage **globally across all your projects** without requiring any manual intervention. This data enables:
 
 - **Pattern Discovery** - Identify frequently repeated workflows that could become new skills
+- **Timing Analysis** - Measure how long each skill takes from prompt to completion
 - **Performance Analysis** - Track which skills take the most time and may need optimization
 - **Productivity Metrics** - Quantify time saved through skill automation
 - **Usage Insights** - Understand which skills provide the most value across all projects
 - **Cost Tracking** - Monitor API costs and token usage across your entire workflow
+
+**Why Timing Data Matters:** After installation, always verify that timing data is being collected. The timing metrics help you understand:
+- Which skills are slow and may need optimization
+- Total time invested in skill-assisted work
+- Patterns in your workflow (gaps between prompts, session duration)
 
 ### Key Features
 
 - **Global tracking** - Single centralized log for all projects in `~/.claude/activity-logs/`
 - **Zero-overhead tracking** - Uses lightweight hooks that don't impact performance
 - **Automatic correlation** - Links prompts to skill invocations via session IDs
-- **Duration measurement** - Calculates precise execution time for each skill
+- **Comprehensive timing** - Tracks time from prompt submission to skill completion
+- **Session timeline** - Shows time gaps between prompts to understand work patterns
 - **Token usage tracking** - Captures input, output, and cache token metrics for cost analysis
 - **Project identification** - Each log entry includes the project directory for filtering
-- **Rich analytics** - Generates comprehensive reports with insights and suggestions
+- **Rich analytics** - Generates HTML reports with timing summaries and insights
 - **Privacy-first** - All data stored locally, never transmitted externally
 - **JSONL format** - Industry-standard format for easy parsing and analysis
 
@@ -202,6 +209,28 @@ chmod +x ~/.claude/scripts/*
 cp skills/install-skill-tracker/assets/settings.json ~/.claude/settings.json
 ```
 
+### Post-Installation: Verify Timing Data
+
+**IMPORTANT:** After installation, verify that timing data is being collected correctly.
+
+1. **Run a skill** to generate log data
+2. **Check the logs** for timing information:
+   ```bash
+   tail -5 ~/.claude/activity-logs/skill-usage.jsonl
+   ```
+3. **Run the analysis report**:
+   ```bash
+   bk-analyze-skill-usage
+   ```
+
+4. **Verify these timing sections appear in the HTML report:**
+   - **Timing Summary** table with total and average time
+   - **Avg Time** column in Token Usage by Skill table
+   - **Time from Prompt** column in Recent Skill Usage table
+   - **Session Activity Timeline** showing gaps between prompts
+
+If timing shows "N/A" or "0s", check the [Troubleshooting](#common-issues--troubleshooting) section.
+
 ## Data Format
 
 ### JSONL (JSON Lines) Format
@@ -357,54 +386,52 @@ Cache tokens significantly reduce costs:
 
 ### Sample Report Output
 
+The `bk-analyze-skill-usage` command generates an HTML report with these sections:
+
 ```markdown
 # Skill Usage Analysis Report
 
 **Log directory:** `~/.claude/activity-logs`
 **Total skill invocations:** 15
-**Analysis date:** 2025-11-22 14:30:00
+**Report generated:** 2025-12-03 14:30:00
 
-## Most Used Skills
+## Token Usage by Skill
 
-- **microsim-p5**: 7x
-- **learning-graph-generator**: 5x
-- **glossary-generator**: 3x
+| Skill | Invocations | Total Tokens | Avg Time | Cache Read | Cache Creation |
+|-------|-------------|--------------|----------|------------|----------------|
+| learning-graph-generator | 5x | 420.5K | 2m 34s | 380.2K | 15.3K |
+| microsim-p5 | 7x | 168.7K | 1m 12s | 145.6K | 8.1K |
+| glossary-generator | 3x | 45.2K | 45s | 38.9K | 2.4K |
 
-## Skill Performance (Average Duration)
+## Timing Summary
 
-- **learning-graph-generator**
-  - Average: 2m 34s
-  - Total time: 12m 50s
-  - Invocations: 5x
+| Metric | Value |
+|--------|-------|
+| Total time in skills | 45m 23s |
+| Average time per skill | 3m 1s |
+| Skills with timing data | 15 of 15 |
 
-- **microsim-p5**
-  - Average: 1m 12s
-  - Total time: 8m 24s
-  - Invocations: 7x
+## Recent Skill Usage
 
-## Common Prompts Leading to Skill Usage
+| Timestamp | Skill | Tokens | Time from Prompt | Prompt (truncated) |
+|-----------|-------|--------|------------------|---------------------|
+| 2025-12-03 14:25:33 | microsim-p5 | 24.1K | 1m 15s | create a bubble chart microsim... |
+| 2025-12-03 14:12:41 | glossary-generator | 15.1K | 42s | generate glossary from learning... |
 
-3x: "create a new microsim for..."
-2x: "generate the learning graph..."
-2x: "update the glossary with..."
+## Session Activity Timeline
 
-## Recent Skill Usage (Last 20)
+| Timestamp | Time Since Previous | Prompt (truncated) |
+|-----------|---------------------|---------------------|
+| 2025-12-03 14:25:33 | 12m 52s | create a bubble chart microsim... |
+| 2025-12-03 14:12:41 | 3m 15s | generate glossary from learning... |
 
-| Timestamp | Skill | Duration | Prompt (truncated) |
-|-----------|-------|----------|---------------------|
-| 2025-11-22 14:25:33 | microsim-p5 | 1m 15s | create a bubble chart microsim for priority matrix... |
-| 2025-11-22 14:12:41 | glossary-generator | 3m 42s | generate glossary from learning graph... |
+## Insights
 
-## Insights & Suggestions
+### Most Token-Intensive Skills
+- **learning-graph-generator**: 420.5K total (84.1K avg)
 
-### Frequently Used Skills
-- **microsim-p5** (7x): Could benefit from optimization or templates
-
-### Slowest Skills
-- **learning-graph-generator**: 12m 50s total (2m 34s avg)
-
-### Total Time Automated
-Skills have automated **45m 23s** of work
+### Cache Efficiency
+✅ Good cache utilization (89.2% cache hits)
 ```
 
 ### Interpreting Results
@@ -477,7 +504,34 @@ chmod +x ~/.claude/hooks/*.sh
 test -f ~/.claude/settings.json && echo "Settings found" || echo "Settings missing"
 ```
 
-### Issue: Duration Shows "unknown"
+### Issue: Timing Shows "N/A" or "0s"
+
+**Symptom:**
+Analysis report shows "N/A" or "0s" for timing metrics in the HTML report.
+
+**Understanding the Timing:**
+The tracker measures "Time from Prompt" which is the elapsed time between when you submit a prompt and when the Skill tool completes. This is calculated by comparing epoch timestamps in the logs.
+
+**Possible Causes:**
+1. **Skill tool fires instantly** - The Skill tool hook fires when the skill *starts* expanding, not when all work completes. The actual work happens in subsequent tool calls (Bash, Edit, etc.) which aren't tracked by these hooks.
+2. **Same-second execution** - If the prompt and skill completion happen in the same second, duration shows as 0s.
+3. **Missing prompt correlation** - The prompt log entry might not exist or have a mismatched session ID.
+
+**Diagnosis:**
+```bash
+# Check epoch timestamps in logs
+tail -10 ~/.claude/activity-logs/skill-usage.jsonl | jq '.epoch'
+tail -10 ~/.claude/activity-logs/prompts.jsonl | jq '.epoch'
+
+# Verify session IDs match
+tail -5 ~/.claude/activity-logs/skill-usage.jsonl | jq '.session'
+tail -5 ~/.claude/activity-logs/prompts.jsonl | jq '.session'
+```
+
+**Solution:**
+The "Time from Prompt" metric should show meaningful values (typically 2-10 seconds for skill invocation). If you see consistent timing data, the system is working correctly. The timing represents the overhead of skill invocation, not the total time for all work the skill triggers.
+
+### Issue: Duration Shows "unknown" (Legacy)
 
 **Symptom:**
 Analysis report shows `Duration: unknown` for skills
@@ -630,6 +684,15 @@ jq -s 'group_by(.project) | map({project: .[0].project, skills: (group_by(.skill
 ```
 
 ## Version History
+
+**v2.1** (2025-12-03)
+- **NEW:** Enhanced timing analysis with "Time from Prompt" metric
+- **NEW:** Timing Summary section in HTML reports
+- **NEW:** Session Activity Timeline showing gaps between prompts
+- **NEW:** Avg Time column in Token Usage by Skill table
+- Added post-installation verification steps for timing data
+- Improved troubleshooting documentation for timing issues
+- HTML reports now generated via `bk-analyze-skill-usage` command
 
 **v2.0** (2025-12-02)
 - **BREAKING:** Changed to global-only installation in `~/.claude/`

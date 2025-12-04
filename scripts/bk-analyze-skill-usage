@@ -41,30 +41,57 @@ if [ ! -f "$ANALYZE_SCRIPT" ]; then
     exit 1
 fi
 
+# Function to find project root by walking up looking for .claude directory
+find_project_root() {
+    local dir="$1"
+    while [ "$dir" != "/" ]; do
+        if [ -d "$dir/.claude" ]; then
+            echo "$dir"
+            return 0
+        fi
+        dir=$(dirname "$dir")
+    done
+    return 1
+}
+
 # Determine log directory with clear precedence
 LOG_SOURCE=""
 if [ -n "$1" ]; then
     # Option 1: Command-line argument provided
     LOG_DIR="$1"
     LOG_SOURCE="command-line argument"
-elif [ -d "$(pwd)/.claude/activity-logs" ]; then
-    # Option 2: Current working directory has activity logs
-    LOG_DIR="$(pwd)/.claude/activity-logs"
-    LOG_SOURCE="current directory"
-elif [ -d "$BK_HOME/.claude/activity-logs" ]; then
-    # Option 3: Fall back to BK_HOME
-    LOG_DIR="$BK_HOME/.claude/activity-logs"
-    LOG_SOURCE="BK_HOME fallback"
 else
-    # No logs found anywhere
-    echo -e "${RED}Error: No activity logs found.${NC}"
-    echo ""
-    echo "Searched in:"
-    echo "  1. Current directory: $(pwd)/.claude/activity-logs"
-    echo "  2. BK_HOME: $BK_HOME/.claude/activity-logs"
-    echo ""
-    echo "To enable skill tracking, run the install-skill-tracker skill in your project."
-    exit 1
+    # Try to find project root from current directory
+    PROJECT_ROOT=$(find_project_root "$(pwd)")
+
+    if [ -n "$PROJECT_ROOT" ] && [ -d "$PROJECT_ROOT/.claude/activity-logs" ]; then
+        # Option 2: Found activity logs in project root
+        LOG_DIR="$PROJECT_ROOT/.claude/activity-logs"
+        LOG_SOURCE="project directory ($PROJECT_ROOT)"
+    elif [ -d "$BK_HOME/.claude/activity-logs" ]; then
+        # Option 3: Fall back to BK_HOME
+        LOG_DIR="$BK_HOME/.claude/activity-logs"
+        LOG_SOURCE="BK_HOME fallback"
+    elif [ -d "$HOME/.claude/activity-logs" ]; then
+        # Option 4: Global Claude activity logs
+        LOG_DIR="$HOME/.claude/activity-logs"
+        LOG_SOURCE="global ~/.claude"
+    else
+        # No logs found anywhere
+        echo -e "${RED}Error: No activity logs found.${NC}"
+        echo ""
+        echo "Searched in:"
+        if [ -n "$PROJECT_ROOT" ]; then
+            echo "  1. Project root: $PROJECT_ROOT/.claude/activity-logs"
+        else
+            echo "  1. Current directory: $(pwd)/.claude/activity-logs (no .claude dir found)"
+        fi
+        echo "  2. BK_HOME: $BK_HOME/.claude/activity-logs"
+        echo "  3. Global: $HOME/.claude/activity-logs"
+        echo ""
+        echo "To enable skill tracking, run the install-skill-tracker skill in your project."
+        exit 1
+    fi
 fi
 
 # Verify the log directory exists and has files
@@ -91,6 +118,10 @@ fi
 # Determine project directory (parent of .claude/activity-logs)
 PROJECT_DIR=$(dirname $(dirname "$LOG_DIR"))
 
+# Generate output filename with date
+DATE_STAMP=$(date +%Y-%m-%d)
+HTML_OUTPUT="/tmp/bk-analyze-skill-usage-${DATE_STAMP}.html"
+
 # Display header with directory info
 echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
 echo -e "${GREEN}Skill Usage Analysis Report${NC}"
@@ -101,8 +132,17 @@ echo -e "${CYAN}Project:${NC} $PROJECT_DIR"
 echo -e "${CYAN}Source:${NC} $LOG_SOURCE"
 echo ""
 
-# Run the Python analysis script with project directory
-python3 "$ANALYZE_SCRIPT" "$LOG_DIR" --project "$PROJECT_DIR"
+# Run the Python analysis script with HTML output
+python3 "$ANALYZE_SCRIPT" "$LOG_DIR" --project "$PROJECT_DIR" --html -o "$HTML_OUTPUT"
+
+# Open the HTML report in default browser
+if [ -f "$HTML_OUTPUT" ]; then
+    echo -e "${GREEN}Opening report in browser...${NC}"
+    open "$HTML_OUTPUT"
+else
+    echo -e "${RED}Failed to generate HTML report${NC}"
+    exit 1
+fi
 
 echo ""
 echo -e "${BLUE}════════════════════════════════════════════════════════════════${NC}"
