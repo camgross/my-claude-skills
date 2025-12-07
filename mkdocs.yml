@@ -151,8 +151,6 @@ nav:
     - Diagram Table: learning-graph/diagram-table.md
     - Diagram Details: learning-graph/diagram-details.md
     - MicroSim Quality Report: learning-graph/microsim-quality-report.md
-    - Skill Usage: learning-graph/skill-usage.md
-
 
   - Prompts:
     - List of Prompts: prompts/index.md
@@ -196,7 +194,6 @@ nav:
     - Two Hour Workshop: workshops/intelligent-textbook-workshop-outline.md
     - Workshop Cheat Sheet: workshops/intelligent-textbook-cheat-sheet.md
   
-  - Details Analysis: details-analysis.md
   - Glossary: glossary.md
   - FAQ: faq.md
   - References: references.md
@@ -207,8 +204,6 @@ nav:
 
 theme:
   name: material
-  extra_css:
-    - styles/custom.css
   logo: img/logo.png
   favicon: img/favicon.ico
   palette:
