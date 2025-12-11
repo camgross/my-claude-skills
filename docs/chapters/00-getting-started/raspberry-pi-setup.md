@@ -93,6 +93,9 @@ lxterminal --working-directory=/home/pi/projects &
 # Terminal that runs a command
 lxterminal -e "htop" &
 ```
+## GitHub Settings
 
-git config --global user.email "dan.mccreary@gmail.com"
-git config --global user.name "Dan McCreary"
+```sh
+git config --global user.email "suejohnson@example.com"
+git config --global user.name "Sue Johnson"
+```
