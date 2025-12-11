@@ -26,25 +26,33 @@ You can include this MicroSim on your website using the following `iframe`:
 
 This MicroSim visualizes the **progressive disclosure** design principle used in Claude Skills. Skills use a three-level loading system to manage context efficiently and avoid overwhelming Claude's context window.
 
+As of Claude Code 2.0.20 skill were added.
+
 ### The Three Layers
 
 **Hover over each layer** to see detailed information about when and how it's loaded:
 
-1. **SKILL.md Frontmatter** (Top - Always Loaded ~100 words)
+### SKILL.md Frontmatter
+
+Top Layer of MicroSim - Always Loaded into the Context ~100 tokens - 30 Skill hard coded maximum (not configurable by the user)
 
 - Contains skill name and description
 - Always in context when Claude starts
 - Allows Claude to decide when to invoke the skill
 - Minimal token usage
 
-2. **SKILL.md File** (Middle - When Triggered <5k words)
+### SKILL.md File
+
+Middle Layer of MicroSim - When Triggered <5k tokens
 
 - Complete skill instructions and workflows
 - Loaded when the skill is triggered/invoked
 - Contains procedural knowledge and examples
 - Moderate token usage
 
-3. **Assets, References, Templates & Scripts** (Base - As Needed, Unlimited)
+### Assets, References, Templates & Scripts
+
+ Base layer of MicroSim - As Needed, Unlimited
 
 - Scripts can be executed without loading into context
 - References loaded when Claude determines they're needed
@@ -63,14 +71,35 @@ This layered approach provides several key advantages:
 ### Visual Design
 
 The triangle shape represents the progressive expansion of context:
+
 - **Narrow top**: Minimal frontmatter (always present)
 - **Medium middle**: Full skill file (when active)
 - **Wide base**: Extensive resources (loaded selectively)
 
 The color coding indicates loading behavior:
+
 - **Yellow**: Always in context (startup)
 - **Blue**: Loaded when skill triggers (on-demand)
 - **Green**: Loaded as needed (selective)
+
+## 30-Skill Hard Coded Limit
+
+As of December of 2025, Claude Code 2.0.60 has a hard-coded maximum of 30 skills that can be loaded into a session.
+
+- Hard limit: Maximum 30 skills total (combining personal ~/.claude/skills/, project .claude/skills/, and plugin skills)
+- Silent failure: Skills beyond this limit are silently ignored with no error message
+- Non-deterministic: Which skills get dropped is unpredictable
+
+However, skills use progressive disclosure to minimize context usage:
+
+1. Frontmatter only (~100 words / ~130 tokens per skill) - always in context so Claude knows what skills are available
+2. Full SKILL.md (<5k words / ~6.5k tokens) - loaded only when the skill is invoked
+3. Assets/references - loaded on-demand as needed
+
+So even with 30 skills, only the frontmatter metadata is initially consuming context tokens. The full skill content loads when Claude actually uses that skill.
+
+Claude has also shown the ability to refactor a large number of skills into a smaller set using
+a process of `skill consolidation`.
 
 ## Lesson Plan
 
@@ -103,7 +132,7 @@ By the end of this lesson, students will be able to:
 
 2. **Exploration Activity (7 minutes)**
    - Students hover over each layer to read the details
-   - Discuss the size differences (~100 words vs <5k words vs unlimited)
+   - Discuss the size differences (~100 words / ~130 tokens vs <5k words / ~6.5k tokens vs unlimited)
    - Compare loading strategies (always vs triggered vs as-needed)
 
 3. **Analysis Exercise (5 minutes)**
@@ -137,8 +166,9 @@ This MicroSim illustrates key principles from the skill-creator documentation:
 **Definition**: A three-level loading system that manages what information is in Claude's context at different stages.
 
 **Levels**:
-1. Metadata (name + description) - Always in context (~100 words)
-2. SKILL.md body - When skill triggers (<5k words)
+
+1. Metadata (name + description) - Always in context (~100 words / ~130 tokens)
+2. SKILL.md body - When skill triggers (<5k words / ~6.5k tokens)
 3. Bundled resources - As needed by Claude (unlimited*)
 
 *Unlimited because scripts can be executed without reading into context window.
@@ -196,8 +226,10 @@ This MicroSim illustrates key principles from the skill-creator documentation:
 
 ## References
 
-1. [Claude Skills Documentation](https://code.claude.com/docs/) - Official documentation for Claude Code skills
-2. [Skill Creator Skill](https://github.com/dmccreary/intro-to-graph) - The skill that creates other skills, demonstrates progressive disclosure
-3. [Progressive Disclosure (Nielsen Norman Group)](https://www.nngroup.com/articles/progressive-disclosure/) - 2006 - UX design pattern for managing complexity
-4. [Context Window Management in LLMs](https://www.anthropic.com/index/100k-context-windows) - 2023 - Anthropic - Technical background on context windows
-5. [Modular Design Patterns](https://en.wikipedia.org/wiki/Modular_programming) - Wikipedia - Software architecture patterns for managing complexity
+1. [Claude Code Skills Documentation](https://code.claude.com/docs/en/skills) - Official documentation for Claude Code skills
+2. [GitHub Issue #13343: Skills truncated at 30 makes remaining skills undiscoverable](https://github.com/anthropics/claude-code/issues/13343) - Bug report documenting the 30-skill hard limit
+3. [GitHub Issue #13344: Plugin enable/disable ignored - all skills loaded regardless of settings](https://github.com/anthropics/claude-code/issues/13344) - Related bug that can cause unexpected skill accumulation
+4. [Skill Creator Skill](https://github.com/dmccreary/claude-skills) - The skill that creates other skills, demonstrates progressive disclosure
+5. [Progressive Disclosure (Nielsen Norman Group)](https://www.nngroup.com/articles/progressive-disclosure/) - 2006 - UX design pattern for managing complexity
+6. [Context Window Management in LLMs](https://www.anthropic.com/index/100k-context-windows) - 2023 - Anthropic - Technical background on context windows
+7. [Modular Design Patterns](https://en.wikipedia.org/wiki/Modular_programming) - Wikipedia - Software architecture patterns for managing complexity
