@@ -32,9 +32,14 @@ As of Claude Code 2.0.20 skill were added.
 
 **Hover over each layer** to see detailed information about when and how it's loaded:
 
-### SKILL.md Frontmatter
+### Skill Frontmatter
 
-Top Layer of MicroSim - Always Loaded into the Context ~100 tokens - 30 Skill hard coded maximum (not configurable by the user)
+Top Layer of MicroSim - Always Loaded into the Context Window when Claude Code Starts
+Length is about ~100 tokens (130 words)
+
+!!! warning
+   There is a 30-skill hard coded maximum in the 2.0.60 release of Claude Code.
+   This hard-coded maximum is NOT configurable by the user.
 
 - Contains skill name and description
 - Always in context when Claude starts
@@ -54,10 +59,12 @@ Middle Layer of MicroSim - When Triggered <5k tokens
 
  Base layer of MicroSim - As Needed, Unlimited
 
-- Scripts can be executed without loading into context
-- References loaded when Claude determines they're needed
-- Templates and assets used in output
-- Provides unlimited extensibility
+- **Scripts** are executed without loading into context - scripts are used by Claude but not loaded into the context window
+- **References** loaded when Claude determines they're needed.  This is a good place to put your rules.
+- **Templates** are sample code that is used as the first version
+- **Assets** are used in output such as reports
+
+Together, these types provides large extensibility within the context window.
 
 ### Progressive Disclosure Benefits
 
@@ -72,9 +79,9 @@ This layered approach provides several key advantages:
 
 The triangle shape represents the progressive expansion of context:
 
-- **Narrow top**: Minimal frontmatter (always present)
-- **Medium middle**: Full skill file (when active)
-- **Wide base**: Extensive resources (loaded selectively)
+- **Narrow top**: Minimal frontmatter (always present in the context window)
+- **Medium middle**: Full SKILL.md file - fully loaded into the context window when Claude determines a skill is needed.  Provides instructions on when to use scripts, references, templates and assets
+- **Wide base**: Extensive resources of scripts, references, templates and assets (loaded selectively)
 
 The color coding indicates loading behavior:
 
@@ -86,11 +93,13 @@ The color coding indicates loading behavior:
 
 As of December of 2025, Claude Code 2.0.60 has a hard-coded maximum of 30 skills that can be loaded into a session.
 
-- Hard limit: Maximum 30 skills total (combining personal ~/.claude/skills/, project .claude/skills/, and plugin skills)
-- Silent failure: Skills beyond this limit are silently ignored with no error message
-- Non-deterministic: Which skills get dropped is unpredictable
+- **Hard limit:** Maximum 30 skills total (combining personal ~/.claude/skills/, project .claude/skills/, and plugin skills)
+- **Silent failure:** Skills beyond this limit are silently ignored with no error message
+- **Non-deterministic:** Which skills get dropped is unpredictable!
 
-However, skills use progressive disclosure to minimize context usage:
+**Solution/Workaround** - you must explicitly tell Claude exactly what skill to use and the path to the skill file!
+
+Skills use progressive disclosure to minimize context usage:
 
 1. Frontmatter only (~100 words / ~130 tokens per skill) - always in context so Claude knows what skills are available
 2. Full SKILL.md (<5k words / ~6.5k tokens) - loaded only when the skill is invoked
@@ -99,7 +108,7 @@ However, skills use progressive disclosure to minimize context usage:
 So even with 30 skills, only the frontmatter metadata is initially consuming context tokens. The full skill content loads when Claude actually uses that skill.
 
 Claude has also shown the ability to refactor a large number of skills into a smaller set using
-a process of `skill consolidation`.
+a process of `skill consolidation`.  For an example see the [Claude Code Skill Session Log](https://github.com/dmccreary/claude-skills/blob/main/logs/skill-consolidation.md).  In this example, Claude successfully consolidated 40+ skills down into 16 skills.
 
 ## Lesson Plan
 
