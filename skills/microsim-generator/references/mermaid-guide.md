@@ -145,8 +145,13 @@ Copy `assets/template/main.html` and replace these placeholders:
 - `{{SUBTITLE}}`: Brief subtitle (e.g., "Interactive Workflow Diagram")
 - `{{MERMAID_CODE}}`: The complete Mermaid flowchart code (from Step 2)
 - `{{DESCRIPTION}}`: 2-3 sentence explanation of the diagram
+- `{{TOOLTIP_DATA}}`: JavaScript object mapping node IDs to hover descriptions
 
 **Important:** Ensure proper indentation of the Mermaid code within the `<div class="mermaid">` tag.
+
+**Interactive Tooltips (Required Default Feature):**
+
+Every Mermaid diagram MUST include interactive hover tooltips for all nodes. This provides educational context when users hover over each step in the workflow. The tooltip system uses a robust polling approach that works reliably in iframes.
 
 #### 4.2 Create style.css
 
@@ -258,6 +263,9 @@ Perform quality checks:
 4. **Font size verification**: Confirm 16px fonts in Mermaid code and CSS
 5. **Color contrast**: Ensure text is readable on colored backgrounds
 6. **Responsive design**: Test that diagram works on different screen sizes
+7. **Tooltip verification**: Confirm every node has a corresponding tooltip entry
+8. **Tooltip font**: Verify tooltip uses `font-family: Arial, Helvetica, sans-serif`
+9. **Iframe compatibility**: Test tooltips work when embedded in an iframe
 
 **Test the diagram:**
 
@@ -289,6 +297,7 @@ Features:
 • Top-down flowchart layout
 • Colorful node backgrounds for visual clarity
 • 16-point fonts for optimal readability
+• Interactive hover tooltips on all nodes
 • [X] nodes and [Y] edges
 • Zoom controls and SVG export
 
@@ -303,6 +312,259 @@ Next steps:
 - Reference from relevant chapter content
 - Consider creating related diagrams for connected concepts
 ```
+
+## Interactive Tooltips (Required Feature)
+
+Every Mermaid diagram MUST include interactive hover tooltips. These tooltips provide educational context when users hover over nodes in the workflow, enhancing the learning experience.
+
+### Tooltip HTML Structure
+
+Add this tooltip div after the mermaid container:
+
+```html
+<div id="tooltip"></div>
+```
+
+### Tooltip CSS Styling
+
+Include this CSS for the tooltip (note the required font-family):
+
+```css
+#tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    max-width: 280px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+#tooltip.visible {
+    opacity: 1;
+}
+.node {
+    cursor: pointer;
+}
+```
+
+### Tooltip Data Structure
+
+Define tooltip content as a JavaScript object mapping node IDs to descriptive text:
+
+```javascript
+const tooltips = {
+    'Start': 'Begin the process here - this is the entry point',
+    'Step1': 'First action to take in the workflow',
+    'Decision': 'Evaluate the condition and choose a path',
+    'Success': 'Process completed successfully!',
+    'Error': 'Handle the error condition and retry if needed'
+};
+```
+
+**Important:** Node IDs must match the IDs used in your Mermaid flowchart code (the part before the brackets/parentheses).
+
+### Robust Tooltip Initialization
+
+Use this polling-based initialization that works reliably in iframes. **Do NOT use a fixed setTimeout** as Mermaid rendering time varies:
+
+```javascript
+const tooltip = document.getElementById('tooltip');
+
+function setupTooltips() {
+    const nodes = document.querySelectorAll('.node');
+    nodes.forEach(node => {
+        const nodeId = node.id.replace('flowchart-', '').split('-')[0];
+        if (tooltips[nodeId]) {
+            node.addEventListener('mouseenter', (e) => {
+                tooltip.textContent = tooltips[nodeId];
+                tooltip.classList.add('visible');
+            });
+            node.addEventListener('mousemove', (e) => {
+                const x = e.pageX + 15;
+                const y = e.pageY + 15;
+                const tooltipRect = tooltip.getBoundingClientRect();
+                const maxX = window.innerWidth - tooltipRect.width - 20;
+                const maxY = window.innerHeight - tooltipRect.height - 20;
+                tooltip.style.left = Math.min(x, maxX) + 'px';
+                tooltip.style.top = Math.min(y, maxY) + 'px';
+            });
+            node.addEventListener('mouseleave', () => {
+                tooltip.classList.remove('visible');
+            });
+        }
+    });
+}
+
+// Robust polling approach - waits for Mermaid to finish rendering
+function waitForMermaid() {
+    const mermaidDiv = document.querySelector('.mermaid');
+    const svg = mermaidDiv.querySelector('svg');
+    if (svg && document.querySelectorAll('.node').length > 0) {
+        setupTooltips();
+    } else {
+        // Check again after a short delay
+        setTimeout(waitForMermaid, 100);
+    }
+}
+
+// Start checking after initial load
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => setTimeout(waitForMermaid, 100));
+} else {
+    setTimeout(waitForMermaid, 100);
+}
+```
+
+### Complete main.html Template with Tooltips
+
+Here is a complete template demonstrating the tooltip implementation:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}}</title>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .mermaid {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: aliceblue;
+        }
+        .mermaid svg {
+            max-width: 100%;
+            max-height: 100vh;
+        }
+        #tooltip {
+            position: absolute;
+            background-color: #333;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            max-width: 280px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        #tooltip.visible {
+            opacity: 1;
+        }
+        .node {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="mermaid">
+{{MERMAID_CODE}}
+    </div>
+    <div id="tooltip"></div>
+    <script>
+        const tooltips = {
+{{TOOLTIP_DATA}}
+        };
+
+        const tooltip = document.getElementById('tooltip');
+
+        function setupTooltips() {
+            const nodes = document.querySelectorAll('.node');
+            nodes.forEach(node => {
+                const nodeId = node.id.replace('flowchart-', '').split('-')[0];
+                if (tooltips[nodeId]) {
+                    node.addEventListener('mouseenter', (e) => {
+                        tooltip.textContent = tooltips[nodeId];
+                        tooltip.classList.add('visible');
+                    });
+                    node.addEventListener('mousemove', (e) => {
+                        const x = e.pageX + 15;
+                        const y = e.pageY + 15;
+                        const tooltipRect = tooltip.getBoundingClientRect();
+                        const maxX = window.innerWidth - tooltipRect.width - 20;
+                        const maxY = window.innerHeight - tooltipRect.height - 20;
+                        tooltip.style.left = Math.min(x, maxX) + 'px';
+                        tooltip.style.top = Math.min(y, maxY) + 'px';
+                    });
+                    node.addEventListener('mouseleave', () => {
+                        tooltip.classList.remove('visible');
+                    });
+                }
+            });
+        }
+
+        // Robust polling approach - waits for Mermaid to finish rendering
+        function waitForMermaid() {
+            const mermaidDiv = document.querySelector('.mermaid');
+            const svg = mermaidDiv.querySelector('svg');
+            if (svg && document.querySelectorAll('.node').length > 0) {
+                setupTooltips();
+            } else {
+                setTimeout(waitForMermaid, 100);
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => setTimeout(waitForMermaid, 100));
+        } else {
+            setTimeout(waitForMermaid, 100);
+        }
+    </script>
+</body>
+</html>
+```
+
+### Tooltip Content Guidelines
+
+When writing tooltip descriptions:
+
+1. **Be concise**: 1-2 short sentences maximum
+2. **Be educational**: Explain the purpose, not just the label
+3. **Use action verbs**: "Evaluate the condition" not "This is where you evaluate"
+4. **Add context**: Explain why this step matters in the overall process
+5. **Match reading level**: Align with target audience (K-12, undergraduate, etc.)
+
+**Example tooltip content:**
+
+| Node Label | Tooltip Description |
+|------------|---------------------|
+| "Identify Learning Objective" | "What specific concept should students understand? Be precise!" |
+| "Test in p5.js Editor" | "Run the code immediately - does it work as expected?" |
+| "Meets Learning Objective?" | "Does this MicroSim effectively teach the intended concept?" |
 
 ## Best Practices
 
@@ -387,6 +649,22 @@ Start → Try Action → Success?
 - Use markdown strings for auto-wrapping: `A["Text **bold**"]`
 - Increase diagram container width in CSS
 
+**Issue: Tooltips not appearing**
+- Verify `waitForMermaid()` polling is used instead of fixed `setTimeout`
+- Check that node IDs in tooltips object match Mermaid node IDs exactly
+- Ensure `#tooltip` div exists after the mermaid container
+- Confirm tooltip CSS includes `opacity: 0` initially and `.visible` class sets `opacity: 1`
+
+**Issue: Tooltips not working in iframes**
+- Replace fixed `setTimeout(setupTooltips, 500)` with polling-based `waitForMermaid()`
+- Ensure polling checks both for SVG presence AND `.node` elements existing
+- Test in both standalone mode and embedded iframe mode
+
+**Issue: Tooltip positioning incorrect**
+- Use `e.pageX`/`e.pageY` for positioning relative to the document
+- Include boundary checks using `window.innerWidth` and `window.innerHeight`
+- Set `pointer-events: none` on tooltip to prevent mouse interference
+
 ## Resources
 
 ### Bundled References
@@ -432,6 +710,20 @@ flowchart TD
     classDef endNode fill:#6c5ce7,stroke:#333,stroke-width:2px,color:#fff,font-size:16px
 
     linkStyle default stroke:#999,stroke-width:2px,font-size:16px
+```
+
+**Generated Tooltip Data:**
+
+```javascript
+const tooltips = {
+    'Start': 'Begin making your perfect cup of coffee',
+    'Step1': 'Heat water to 200°F (93°C) - just below boiling',
+    'Step2': 'Grind beans fresh for maximum flavor',
+    'Step3': 'Use 2 tablespoons per 6 oz of water',
+    'Step4': 'Pour slowly in circular motion for even extraction',
+    'Step5': 'Patience! This allows full flavor development',
+    'End': 'Your fresh coffee is ready to enjoy!'
+};
 ```
 
 ### Example 2: Decision-Based Workflow
