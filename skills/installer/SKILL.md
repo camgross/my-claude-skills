@@ -30,6 +30,7 @@ Match the user's request to the appropriate installation guide:
 | new project, mkdocs, textbook, bootstrap, setup, template, new book | `references/mkdocs-template.md` | Create new MkDocs Material project |
 | graph viewer, learning graph, visualization, interactive graph, concept viewer | `references/learning-graph-viewer.md` | Add learning graph viewer to existing project |
 | track skills, skill usage, activity tracking, hooks, usage analytics | `references/skill-tracker.md` | Set up skill tracking with hooks |
+| cover image, home page, social media, og:image, montage, book cover, index page | `references/home-page-template.md` | Create home page with cover image and social metadata |
 
 ### Decision Tree
 
@@ -42,6 +43,9 @@ Adding a learning graph viewer to existing project?
 
 Setting up skill usage tracking?
   → YES: skill-tracker.md
+
+Creating a cover image or setting up home page with social metadata?
+  → YES: home-page-template.md
 ```
 
 ## Step 2: Load the Matched Guide
@@ -101,6 +105,25 @@ Each guide contains:
 - Claude Code installed
 - ~/.claude directory exists
 
+### home-page-template.md
+
+**Purpose:** Create professional home page with cover image and social media optimization
+
+**Creates:**
+- docs/index.md with proper frontmatter metadata
+- AI image generation prompts for cover with montage background
+- Open Graph and Twitter Card configuration
+
+**Features:**
+- Cover image design guidance (1.91:1 aspect ratio)
+- Montage element suggestions by topic
+- Social media preview optimization
+- Example prompts for various book themes
+
+**Prerequisites:**
+- Existing MkDocs project
+- Access to AI image generator (DALL-E, Midjourney, etc.)
+
 ## Examples
 
 ### Example 1: New Textbook Project
@@ -118,13 +141,24 @@ Each guide contains:
 **Routing:** Keywords "track", "skills", "usage" → `references/skill-tracker.md`
 **Action:** Read skill-tracker.md and follow its workflow
 
+### Example 4: Create Cover Image
+**User:** "Help me create a cover image for my textbook"
+**Routing:** Keywords "cover image", "textbook" → `references/home-page-template.md`
+**Action:** Read home-page-template.md and follow its workflow
+
+### Example 5: Set Up Home Page with Social Sharing
+**User:** "I need to add og:image metadata to my home page"
+**Routing:** Keywords "og:image", "home page" → `references/home-page-template.md`
+**Action:** Read home-page-template.md and follow its workflow
+
 ## Common Workflows
 
 ### Full Project Setup
 For a complete new project, users typically run these installations in order:
 1. `mkdocs-template.md` - Create the project structure
-2. `learning-graph-viewer.md` - Add graph visualization (after learning graph exists)
-3. `skill-tracker.md` - Enable usage analytics (optional)
+2. `home-page-template.md` - Create cover image and configure home page
+3. `learning-graph-viewer.md` - Add graph visualization (after learning graph exists)
+4. `skill-tracker.md` - Enable usage analytics (optional)
 
 ### Verification Commands
 
