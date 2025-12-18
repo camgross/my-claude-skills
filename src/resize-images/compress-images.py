@@ -3,6 +3,7 @@
 Image Compression Script for Web Optimization
 Compresses large images to approximately 300KB while preserving original format.
 JPEGs stay as JPEGs (better for photos), PNGs stay as PNGs (better for graphics).
+Images will not be resized below MIN_WIDTH pixels to ensure they fill the column width.
 """
 
 import os
@@ -10,6 +11,9 @@ import sys
 from PIL import Image, ImageOps
 import shutil
 from pathlib import Path
+
+# Minimum width in pixels - images should fill the column width
+MIN_WIDTH = 670
 
 def get_file_size_kb(filepath):
     """Get file size in KB"""
@@ -72,6 +76,9 @@ def compress_image(input_path, target_size_kb=300, min_compression=0, max_compre
             best_size = float('inf')
             best_img = img.copy()
 
+            # Calculate the minimum resize factor to maintain MIN_WIDTH
+            min_resize_factor = MIN_WIDTH / original_width if original_width > MIN_WIDTH else 1.0
+
             # Try different resize factors - be more aggressive for very large files
             if original_size > 1000:  # Over 1MB, start with smaller sizes
                 resize_factors = [0.6, 0.5, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15]
@@ -79,6 +86,13 @@ def compress_image(input_path, target_size_kb=300, min_compression=0, max_compre
                 resize_factors = [0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.25, 0.2]
             else:  # Smaller files, try compression first
                 resize_factors = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.25, 0.2]
+
+            # Filter out resize factors that would make the image narrower than MIN_WIDTH
+            resize_factors = [f for f in resize_factors if f >= min_resize_factor]
+            if not resize_factors:
+                resize_factors = [min_resize_factor]  # Use minimum allowed factor
+
+            print(f"  Minimum width: {MIN_WIDTH}px (min resize factor: {min_resize_factor:.2f})")
 
             # For JPEG, also try different quality levels
             jpeg_qualities = [85, 75, 65, 55, 45] if is_jpeg else [None]
@@ -132,10 +146,11 @@ def compress_image(input_path, target_size_kb=300, min_compression=0, max_compre
                 if os.path.exists(temp_path):
                     os.remove(temp_path)
 
-            # If we couldn't get under target size, use the smallest we achieved
+            # If we couldn't get under target size, use the smallest we achieved while respecting MIN_WIDTH
             if best_size == float('inf'):
-                print(f"  Warning: Could not reach target size, using smallest achieved")
-                best_img = img.resize((int(original_width * 0.2), int(original_height * 0.2)), Image.Resampling.LANCZOS)
+                print(f"  Warning: Could not reach target size, using smallest allowed size (min width: {MIN_WIDTH}px)")
+                fallback_factor = max(min_resize_factor, 0.2)
+                best_img = img.resize((int(original_width * fallback_factor), int(original_height * fallback_factor)), Image.Resampling.LANCZOS)
 
             # Save with best image found - keep original format
             if is_jpeg:

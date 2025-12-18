@@ -61,12 +61,22 @@ if ! python3 -c "import PIL" &> /dev/null; then
     exit 1
 fi
 
+# Capture the original working directory
+ORIGINAL_DIR="$(pwd)"
+
+# Determine the target directory
+if [ -n "$1" ]; then
+    TARGET_DIR="$1"
+    shift  # Remove the directory argument so remaining args can be passed
+else
+    TARGET_DIR="$ORIGINAL_DIR"
+fi
+
 # Run the Python script
 echo -e "${BLUE}Running image compression script...${NC}"
-echo -e "BK_HOME: ${YELLOW}$BK_HOME${NC}"
+echo -e "Working directory: ${GREEN}$TARGET_DIR${NC}"
 echo ""
 
-cd "$BK_HOME" || exit 1
-python3 "$PYTHON_SCRIPT" "$@"
+python3 "$PYTHON_SCRIPT" "$TARGET_DIR" "$@"
 
 exit $?
