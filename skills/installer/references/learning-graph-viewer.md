@@ -2,7 +2,6 @@
 name: install-learning-graph-viewer
 description: This skill installs an interactive learning graph viewer application into an intelligent textbook project. Use this skill when working with a textbook that has a learning-graph.json file and needs a visual, interactive graph exploration tool with search, filtering, and statistics capabilities.
 ---
-
 # Install Learning Graph Viewer
 
 ## Overview
