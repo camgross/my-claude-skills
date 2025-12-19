@@ -523,7 +523,8 @@ Generated: YYYY-MM-DD
 
 1. Improve distractors for 12 questions (quality < 80%)
 2. Add more Apply-level questions for Ch 5, 8, 12
-3. Verify and update 3 broken links
+3. Verify and update any broken links
+4. Remove labels that do not point to valid document section headers
 
 ### Low Priority
 
@@ -589,6 +590,8 @@ Perform comprehensive validation:
 - All source links point to existing content
 - Use section anchors where appropriate
 - Links render correctly
+- Do not place links in quiz.md files that do not work
+- Do not use link labels to sections that do not exist
 
 **10. Bias Check:**
 - No cultural bias
@@ -741,7 +744,7 @@ Use for:
 5. Generates 10 questions using question admonition format
 6. Creates quality distractors
 7. Ensures answer balance (A: 2, B: 3, C: 3, D: 2)
-8. Writes explanations with links
+8. Writes explanations without links unless you can verify that the file and label target exist before you create links
 9. Creates metadata JSON
 10. Updates quiz bank
 11. Reports: "Created 10-question quiz for Chapter 3. Quality score: 78/100. Bloom's distribution: 2 Remember, 3 Understand, 3 Apply, 2 Analyze. Concept coverage: 83%."
