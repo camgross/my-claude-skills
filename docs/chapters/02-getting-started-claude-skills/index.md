@@ -260,6 +260,33 @@ allowed-tools: [Read, Write, Edit, Grep, Glob]
 
 When developing skills, follow the principle of least privilege: grant only the tools necessary for the skill's function. This reduces risk of unintended modifications and makes skill behavior more predictable.
 
+Our recommendation is to ONLY allow Claude to make changes in code that is managed by git.
+This means that if Claude accidentally deletes some files you can just roll back the changes.
+
+Here is our recommended permissions file stored in your ~/.claude/setting.local.json file
+
+```json
+{
+  "permissions": {
+    "allow": [
+      "Skill(*)",
+      "Bash(:*::*)",
+      "FileSystem(read:./**/*.*,write:./**/*.*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
+```
+
+This allows you to use all skills and all shell commands and also give Claude Code permissions to read and write
+from the current directory down.  However you should always remember to startup Claude in
+the project home of your cloned git repository.
+
+!!! warning
+    Avoid starting Claude in your $HOME directory with these rules.  This will give Claude the ability to
+    to change all of your files and if they are not in git, there is no ability to undo these changes!
+
 #### Diagram: Skill Permission Matrix
 
 <details markdown="1">
