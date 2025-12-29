@@ -7,8 +7,9 @@
 #
 # Directory Resolution Order:
 #   1. Command-line argument (if provided)
-#   2. Current working directory's .claude/activity-logs (if exists)
-#   3. $BK_HOME/.claude/activity-logs (fallback)
+#   2. Global ~/.claude/activity-logs (default - hooks write here)
+#   3. Current working directory's .claude/activity-logs (legacy fallback)
+#   4. $BK_HOME/.claude/activity-logs (legacy fallback)
 
 # Colors for output
 GREEN='\033[0;32m'
@@ -60,34 +61,34 @@ if [ -n "$1" ]; then
     # Option 1: Command-line argument provided
     LOG_DIR="$1"
     LOG_SOURCE="command-line argument"
+elif [ -d "$HOME/.claude/activity-logs" ]; then
+    # Option 2: Global Claude activity logs (default - hooks write here)
+    LOG_DIR="$HOME/.claude/activity-logs"
+    LOG_SOURCE="global ~/.claude (default)"
 else
-    # Try to find project root from current directory
+    # Try to find project root from current directory (legacy fallback)
     PROJECT_ROOT=$(find_project_root "$(pwd)")
 
     if [ -n "$PROJECT_ROOT" ] && [ -d "$PROJECT_ROOT/.claude/activity-logs" ]; then
-        # Option 2: Found activity logs in project root
+        # Option 3: Found activity logs in project root (legacy)
         LOG_DIR="$PROJECT_ROOT/.claude/activity-logs"
-        LOG_SOURCE="project directory ($PROJECT_ROOT)"
+        LOG_SOURCE="project directory ($PROJECT_ROOT) - legacy"
     elif [ -d "$BK_HOME/.claude/activity-logs" ]; then
-        # Option 3: Fall back to BK_HOME
+        # Option 4: Fall back to BK_HOME (legacy)
         LOG_DIR="$BK_HOME/.claude/activity-logs"
-        LOG_SOURCE="BK_HOME fallback"
-    elif [ -d "$HOME/.claude/activity-logs" ]; then
-        # Option 4: Global Claude activity logs
-        LOG_DIR="$HOME/.claude/activity-logs"
-        LOG_SOURCE="global ~/.claude"
+        LOG_SOURCE="BK_HOME fallback - legacy"
     else
         # No logs found anywhere
         echo -e "${RED}Error: No activity logs found.${NC}"
         echo ""
         echo "Searched in:"
+        echo "  1. Global: $HOME/.claude/activity-logs"
         if [ -n "$PROJECT_ROOT" ]; then
-            echo "  1. Project root: $PROJECT_ROOT/.claude/activity-logs"
+            echo "  2. Project root: $PROJECT_ROOT/.claude/activity-logs"
         else
-            echo "  1. Current directory: $(pwd)/.claude/activity-logs (no .claude dir found)"
+            echo "  2. Current directory: $(pwd)/.claude/activity-logs (no .claude dir found)"
         fi
-        echo "  2. BK_HOME: $BK_HOME/.claude/activity-logs"
-        echo "  3. Global: $HOME/.claude/activity-logs"
+        echo "  3. BK_HOME: $BK_HOME/.claude/activity-logs"
         echo ""
         echo "To enable skill tracking, run the install-skill-tracker skill in your project."
         exit 1
