@@ -74,7 +74,7 @@ for skill_dir in "$SKILLS_DIR"/*; do
         ln -s "$skill_dir" "$target_link"
         echo -e "${GREEN}✓${NC} $skill_name -> $skill_dir"
         installed_skills+=("$skill_name")
-        ((installed_count++))
+        ((++installed_count))
     fi
 done
 shopt -u nullglob
