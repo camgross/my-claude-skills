@@ -79,6 +79,7 @@ body {
 
 /* Search Styles */
 .search-container {
+    position: relative;
     margin-bottom: 20px;
 }
 
@@ -107,7 +108,7 @@ body {
 .search-results {
     display: none;
     position: absolute;
-    width: calc(100% - 30px);
+    width: 100%;
     background: white;
     border: 1px solid #ddd;
     border-radius: 6px;
