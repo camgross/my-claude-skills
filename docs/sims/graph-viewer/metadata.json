@@ -1,8 +1,8 @@
 {
-  "title": "Learning Graph Viewer",
-  "description": "Interactive vis-network visualization for learning graph viewer",
-  "creator": "Dan McCreary",
-  "date": "2025-11-22",
+  "title": "GED Science Assessment Learning Graph Viewer",
+  "description": "Interactive visualization of 200 concepts from GED Science Assessment Targets with dependency relationships",
+  "creator": "Claude Code",
+  "date": "2026-01-25",
   "subject": [
     "educational technology",
     "data visualization",

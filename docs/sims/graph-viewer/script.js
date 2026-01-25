@@ -1,306 +1,359 @@
-// Global variables
-var nodes, edges, network;
+// Learning Graph Viewer Script
+// Loads and displays an interactive learning graph using vis-network
 
-// ========== UTILITY FUNCTIONS ==========
+let network = null;
+let allNodes = [];
+let allEdges = [];
+let groups = {};
+let visibleGroups = new Set();
 
-function toggleSidebar() {
-  const sidebar = document.getElementById("sidebar");
-  const sidebarContainer = document.getElementById("sidebar-container");
-  const toggleButton = document.getElementById("toggle-button");
+// Load the learning graph data
+async function loadGraph() {
+    try {
+        const response = await fetch('../../learning-graph/learning-graph.json');
+        const data = await response.json();
 
-  if (sidebar.style.display === "none") {
-    sidebar.style.display = "block";
-    sidebarContainer.style.minWidth = "250px";
-    toggleButton.innerHTML = "&#9776;";
-  } else {
-    sidebar.style.display = "none";
-    sidebarContainer.style.minWidth = "auto";
-    toggleButton.innerHTML = "&#8594;";
-  }
-}
+        allNodes = data.nodes || [];
+        allEdges = data.edges || [];
+        groups = data.groups || {};
 
-// Function to update statistics
-function updateStatistics() {
-  var allNodes = nodes.get();
-  var allEdges = edges.get();
+        // Initialize all groups as visible
+        Object.keys(groups).forEach(g => visibleGroups.add(g));
 
-  // Filter visible nodes
-  var visibleNodes = allNodes.filter(node => !node.hidden);
+        initializeNetwork();
+        buildLegend();
+        updateStats();
+        setupSearch();
+        setupControls();
 
-  // Filter visible edges (both connected nodes must be visible)
-  var visibleEdges = allEdges.filter(edge => {
-    var fromNode = nodes.get(edge.from);
-    var toNode = nodes.get(edge.to);
-    return (!fromNode.hidden && !toNode.hidden);
-  });
-
-  var nodeCount = visibleNodes.length;
-  var edgeCount = visibleEdges.length;
-
-  // Find orphan nodes (nodes with no visible edges)
-  var connectedNodeIds = new Set();
-  visibleEdges.forEach(edge => {
-    connectedNodeIds.add(edge.from);
-    connectedNodeIds.add(edge.to);
-  });
-  var orphanNodes = visibleNodes.filter(node => !connectedNodeIds.has(node.id));
-  var orphanCount = orphanNodes.length;
-
-  // Update the HTML elements with the statistics
-  document.getElementById('nodeCount').textContent = nodeCount;
-  document.getElementById('edgeCount').textContent = edgeCount;
-  document.getElementById('orphanCount').textContent = orphanCount;
-}
-
-// Function to toggle groups
-function toggleGroup(groupName) {
-  const visible = document.getElementById(`group${groupName}`).checked;
-  nodes.forEach(node => {
-    if (node.group === groupName) {
-      nodes.update({id: node.id, hidden: !visible});
+    } catch (error) {
+        console.error('Error loading learning graph:', error);
+        document.getElementById('network').innerHTML =
+            '<p style="color: red; padding: 20px;">Error loading learning graph. Make sure learning-graph.json exists.</p>';
     }
-  });
-  updateStatistics();
 }
 
-// Function to check all groups
-function checkAllGroups() {
-  const checkboxes = document.querySelectorAll('input[id^="group"]');
-  checkboxes.forEach(checkbox => {
-    if (!checkbox.checked) {
-      checkbox.checked = true;
-      toggleGroup(checkbox.id.replace('group', ''));
-    }
-  });
-}
+// Initialize the vis-network visualization
+function initializeNetwork() {
+    const container = document.getElementById('network');
 
-// Function to uncheck all groups
-function uncheckAllGroups() {
-  const checkboxes = document.querySelectorAll('input[id^="group"]');
-  checkboxes.forEach(checkbox => {
-    if (checkbox.checked) {
-      checkbox.checked = false;
-      toggleGroup(checkbox.id.replace('group', ''));
-    }
-  });
-}
+    // Create nodes DataSet - colors are handled by the groups option
+    const nodes = new vis.DataSet(allNodes);
 
-// Helper function to get readable color name
-function getColorName(color) {
-  const colorNames = {
-    'red': 'Red',
-    'orange': 'Orange',
-    'gold': 'Gold',
-    'yellow': 'Yellow',
-    'green': 'Green',
-    'cyan': 'Cyan',
-    'blue': 'Blue',
-    'navy': 'Navy',
-    'indigo': 'Indigo',
-    'violet': 'Violet',
-    'purple': 'Purple',
-    'magenta': 'Magenta',
-    'gray': 'Gray',
-    'grey': 'Grey',
-    'brown': 'Brown',
-    'teal': 'Teal',
-    'black': 'Black',
-    'white': 'White'
-  };
-  return colorNames[color.toLowerCase()] || color.charAt(0).toUpperCase() + color.slice(1);
-}
+    // Create edges DataSet
+    const edges = new vis.DataSet(allEdges.map(edge => ({
+        ...edge,
+        arrows: 'to',
+        color: { color: '#888', opacity: 0.6 }
+    })));
 
-// Helper function to get text color from group style or determine based on background
-function getTextColorForBackground(backgroundColor, groupStyle) {
-  // If group style has a font color defined, use it
-  if (groupStyle && groupStyle.font && groupStyle.font.color) {
-    return groupStyle.font.color;
-  }
+    const data = { nodes, edges };
 
-  // Fallback: determine based on background color
-  const darkColors = ['red', 'green', 'blue', 'navy', 'indigo', 'violet', 'purple', 'magenta', 'gray', 'grey', 'brown', 'teal', 'black'];
-  return darkColors.includes(backgroundColor.toLowerCase()) ? 'white' : 'black';
-}
-
-// Function to generate legend from groups data
-function generateLegend(groups) {
-  const legendContainer = document.getElementById('legend');
-  legendContainer.innerHTML = ''; // Clear existing content
-
-  // Iterate through groups and create legend items
-  for (const [groupName, groupStyle] of Object.entries(groups)) {
-    const item = document.createElement('div');
-    item.className = 'legend-item';
-
-    // Create checkbox
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.id = `group${groupName}`;
-    checkbox.checked = true;
-    checkbox.addEventListener('change', function() { toggleGroup(groupName); });
-
-    // Create color swatch box
-    const colorBox = document.createElement('span');
-    colorBox.className = 'color-box';
-    colorBox.style.backgroundColor = groupStyle.color || 'lightgray';
-
-    // Create label
-    const label = document.createElement('label');
-    label.htmlFor = `group${groupName}`;
-    label.textContent = groupStyle.classifierName || groupName;
-
-    item.appendChild(checkbox);
-    item.appendChild(colorBox);
-    item.appendChild(label);
-    legendContainer.appendChild(item);
-  }
-}
-
-// Function to set metadata (title and description)
-function setMetadata(metadata) {
-  if (metadata && metadata.title) {
-    const titleElement = document.getElementById('graph-title');
-    if (titleElement) {
-      titleElement.textContent = metadata.title;
-    }
-
-    // Update document title as well
-    if (metadata.title) {
-      document.title = metadata.title + ' - Learning Graph Viewer';
-    }
-  }
-}
-
-// ========== INITIALIZATION ==========
-
-function initializeNetwork(graphData) {
-  // Set metadata (title, description)
-  if (graphData.metadata) {
-    setMetadata(graphData.metadata);
-  }
-
-  // Generate legend from groups data
-  if (graphData.groups) {
-    generateLegend(graphData.groups);
-  }
-
-  // Create DataSets from loaded data
-  nodes = new vis.DataSet(graphData.nodes);
-  edges = new vis.DataSet(graphData.edges);
-
-  // Create a network
-  var container = document.getElementById('mynetwork');
-
-  // Provide the data in the vis format
-  var data = {
-    nodes: nodes,
-    edges: edges
-  };
-
-  var options = {
-    groups: graphData.groups || {},  // Apply group-based styling
-    edges: {
-      arrows: {
-        to: { enabled: true, type: 'arrow', color: 'black', scaleFactor: 1 }
-      },
-      color: {
-        color: 'black',
-        inherit: false
-      },
-      width: 2,
-      smooth: { type: 'continuous' }
-    },
-    physics: {
-      solver: 'forceAtlas2Based',
-      forceAtlas2Based: {
-        springLength: 100
-      }
-    }
-  };
-
-  network = new vis.Network(container, data, options);
-
-  // Initialize search functionality
-  initializeSearch();
-
-  // Update statistics after network is initialized
-  updateStatistics();
-}
-
-function initializeSearch() {
-  var searchInput = document.getElementById('search-input');
-  var searchResults = document.getElementById('search-results');
-  var searchContainer = document.getElementById('search-container');
-
-  searchInput.addEventListener('input', function() {
-    var query = this.value.toLowerCase();
-    if (query === '') {
-      searchResults.style.display = 'none';
-      searchResults.innerHTML = '';
-      return;
-    }
-
-    // Only search visible nodes
-    var matches = nodes.get({
-      filter: function (item) {
-        return !item.hidden && item.label.toLowerCase().includes(query);
-      }
+    // Build vis-network groups configuration from JSON groups
+    // IMPORTANT: This ensures node colors match the legend colors
+    const visGroups = {};
+    Object.entries(groups).forEach(([groupId, groupInfo]) => {
+        visGroups[groupId] = {
+            color: {
+                background: groupInfo.color || 'lightgray',
+                border: groupInfo.color || 'lightgray',
+                highlight: {
+                    background: groupInfo.color || 'lightgray',
+                    border: '#333'
+                },
+                hover: {
+                    background: groupInfo.color || 'lightgray',
+                    border: '#666'
+                }
+            },
+            font: {
+                color: groupInfo.font?.color || 'black'
+            }
+        };
     });
 
-    if (matches.length > 0) {
-      searchResults.innerHTML = '';
-      matches.forEach(function(item) {
-        var div = document.createElement('div');
-        div.textContent = item.label + ' (' + item.group + ')';
-        div.dataset.id = item.id;
-        div.addEventListener('click', function() {
-          var nodeId = parseInt(this.dataset.id);
-          network.focus(nodeId, {
-            animation: {
-              duration: 500,
-              easingFunction: 'easeInOutQuad'
+    const options = {
+        // Pass groups configuration to vis-network for correct node coloring
+        groups: visGroups,
+        // Use physics-based layout (NOT hierarchical - it doesn't work well with DAGs)
+        layout: {
+            randomSeed: 42,
+            improvedLayout: true
+        },
+        physics: {
+            enabled: true,
+            solver: 'forceAtlas2Based',
+            forceAtlas2Based: {
+                gravitationalConstant: -50,
+                centralGravity: 0.01,
+                springLength: 100,
+                springConstant: 0.08,
+                damping: 0.4,
+                avoidOverlap: 0.5
             },
-            scale: 1.5
-          });
-          network.selectNodes([nodeId]);
-          searchResults.style.display = 'none';
-          searchResults.innerHTML = '';
-          searchInput.value = '';
-        });
-        searchResults.appendChild(div);
-      });
-      searchResults.style.display = 'block';
-    } else {
-      searchResults.innerHTML = '<div style="color: gray; padding: 8px;">No matches found</div>';
-      searchResults.style.display = 'block';
-    }
-  });
+            stabilization: {
+                enabled: true,
+                iterations: 1000,
+                updateInterval: 25
+            }
+        },
+        nodes: {
+            shape: 'box',
+            margin: 10,
+            font: {
+                size: 14,
+                face: 'Arial'
+            },
+            borderWidth: 2,
+            shadow: true
+        },
+        edges: {
+            smooth: {
+                type: 'cubicBezier',
+                forceDirection: 'horizontal',
+                roundness: 0.4
+            },
+            width: 1.5
+        },
+        interaction: {
+            hover: true,
+            tooltipDelay: 200,
+            zoomView: true,
+            dragView: true
+        }
+    };
 
-  // Close the dropdown when clicking outside
-  document.addEventListener('click', function(event) {
-    if (!searchContainer.contains(event.target)) {
-      searchResults.style.display = 'none';
-      searchResults.innerHTML = '';
-    }
-  });
+    network = new vis.Network(container, data, options);
+
+    // Handle node selection
+    network.on('selectNode', function(params) {
+        if (params.nodes.length > 0) {
+            const nodeId = params.nodes[0];
+            const node = allNodes.find(n => n.id === nodeId);
+            if (node) {
+                highlightNode(nodeId);
+            }
+        }
+    });
 }
 
-// ========== LOAD DATA AND START APPLICATION ==========
+// Build the category legend
+// IMPORTANT: Uses classifierName from groups for human-readable labels
+function buildLegend() {
+    const legendContainer = document.getElementById('legend');
+    legendContainer.innerHTML = '';
 
-// Load the graph data from JSON file by going up to the learning-graph directory and reading the learning-graph.json file
-// Adjust the path as necessary based on your directory structure
-fetch('../../learning-graph/learning-graph.json')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Failed to load ../../learning-graph/learning-graph.json');
+    Object.entries(groups).forEach(([groupId, groupInfo]) => {
+        const count = allNodes.filter(n => n.group === groupId).length;
+
+        const item = document.createElement('div');
+        item.className = 'legend-item';
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = `group-${groupId}`;
+        checkbox.checked = true;
+        checkbox.addEventListener('change', () => toggleGroup(groupId, checkbox.checked));
+
+        const colorBox = document.createElement('span');
+        colorBox.className = 'color-box';
+        colorBox.style.backgroundColor = groupInfo.color || 'lightgray';
+
+        const label = document.createElement('label');
+        label.htmlFor = `group-${groupId}`;
+        // Use classifierName for human-readable label, fallback to groupId
+        label.textContent = `${groupInfo.classifierName || groupId} (${count})`;
+
+        item.appendChild(checkbox);
+        item.appendChild(colorBox);
+        item.appendChild(label);
+        legendContainer.appendChild(item);
+    });
+}
+
+// Toggle visibility of a category group
+function toggleGroup(groupId, visible) {
+    if (visible) {
+        visibleGroups.add(groupId);
+    } else {
+        visibleGroups.delete(groupId);
     }
-    return response.json();
-  })
-  .then(graphData => {
-    initializeNetwork(graphData);
-  })
-  .catch(error => {
-    console.error('Error loading graph data:', error);
-    document.getElementById('mynetwork').innerHTML =
-      '<div style="padding: 20px; color: red;">Error loading graph data. Please check the console for details.</div>';
-  });
+    updateVisibility();
+}
+
+// Update node and edge visibility based on selected groups
+function updateVisibility() {
+    const visibleNodeIds = new Set(
+        allNodes.filter(n => visibleGroups.has(n.group)).map(n => n.id)
+    );
+
+    const nodes = network.body.data.nodes;
+    const edges = network.body.data.edges;
+
+    // Update node visibility
+    allNodes.forEach(node => {
+        const isVisible = visibleGroups.has(node.group);
+        nodes.update({
+            id: node.id,
+            hidden: !isVisible
+        });
+    });
+
+    // Update edge visibility (hide if either endpoint is hidden)
+    allEdges.forEach(edge => {
+        const isVisible = visibleNodeIds.has(edge.from) && visibleNodeIds.has(edge.to);
+        edges.update({
+            id: edge.id || `${edge.from}-${edge.to}`,
+            hidden: !isVisible
+        });
+    });
+
+    updateStats();
+}
+
+// Update statistics display
+function updateStats() {
+    const visibleNodeIds = new Set(
+        allNodes.filter(n => visibleGroups.has(n.group)).map(n => n.id)
+    );
+
+    const visibleEdgeCount = allEdges.filter(
+        e => visibleNodeIds.has(e.from) && visibleNodeIds.has(e.to)
+    ).length;
+
+    // Count foundational nodes (nodes with no outgoing dependencies)
+    const nodesWithDeps = new Set(allEdges.map(e => e.from));
+    const foundationalCount = allNodes.filter(
+        n => !nodesWithDeps.has(n.id) && visibleGroups.has(n.group)
+    ).length;
+
+    document.getElementById('visible-nodes').textContent = visibleNodeIds.size;
+    document.getElementById('visible-edges').textContent = visibleEdgeCount;
+    document.getElementById('foundational-nodes').textContent = foundationalCount;
+}
+
+// Setup search functionality
+function setupSearch() {
+    const searchInput = document.getElementById('search');
+    const resultsContainer = document.getElementById('search-results');
+
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+        resultsContainer.innerHTML = '';
+
+        if (query.length < 2) {
+            resultsContainer.style.display = 'none';
+            return;
+        }
+
+        const matches = allNodes.filter(n =>
+            n.label.toLowerCase().includes(query)
+        ).slice(0, 10);
+
+        if (matches.length === 0) {
+            resultsContainer.style.display = 'none';
+            return;
+        }
+
+        matches.forEach(node => {
+            const item = document.createElement('div');
+            item.className = 'search-result-item';
+
+            const groupInfo = groups[node.group] || {};
+            item.innerHTML = `
+                <span class="result-label">${node.label}</span>
+                <span class="result-category" style="background-color: ${groupInfo.color || 'lightgray'}">
+                    ${groupInfo.classifierName || node.group}
+                </span>
+            `;
+
+            item.addEventListener('click', () => {
+                selectNode(node.id);
+                searchInput.value = node.label;
+                resultsContainer.style.display = 'none';
+            });
+
+            resultsContainer.appendChild(item);
+        });
+
+        resultsContainer.style.display = 'block';
+    });
+
+    // Hide results when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!searchInput.contains(e.target) && !resultsContainer.contains(e.target)) {
+            resultsContainer.style.display = 'none';
+        }
+    });
+}
+
+// Select and focus on a node
+function selectNode(nodeId) {
+    network.selectNodes([nodeId]);
+    network.focus(nodeId, {
+        scale: 1.2,
+        animation: {
+            duration: 500,
+            easingFunction: 'easeInOutQuad'
+        }
+    });
+    highlightNode(nodeId);
+}
+
+// Highlight a node and its connections
+function highlightNode(nodeId) {
+    const connectedNodes = network.getConnectedNodes(nodeId);
+    const allConnected = [nodeId, ...connectedNodes];
+
+    // Reset all nodes to normal opacity
+    const nodes = network.body.data.nodes;
+    allNodes.forEach(node => {
+        const isConnected = allConnected.includes(node.id);
+        nodes.update({
+            id: node.id,
+            opacity: isConnected ? 1 : 0.3
+        });
+    });
+
+    // Reset opacity after a delay
+    setTimeout(() => {
+        allNodes.forEach(node => {
+            nodes.update({
+                id: node.id,
+                opacity: 1
+            });
+        });
+    }, 3000);
+}
+
+// Setup control buttons
+function setupControls() {
+    // Toggle sidebar
+    document.getElementById('toggle-sidebar').addEventListener('click', function() {
+        const sidebar = document.getElementById('sidebar');
+        const content = document.getElementById('sidebar-content');
+        sidebar.classList.toggle('collapsed');
+        content.style.display = sidebar.classList.contains('collapsed') ? 'none' : 'block';
+    });
+
+    // Check all groups
+    document.getElementById('check-all').addEventListener('click', function() {
+        Object.keys(groups).forEach(groupId => {
+            visibleGroups.add(groupId);
+            document.getElementById(`group-${groupId}`).checked = true;
+        });
+        updateVisibility();
+    });
+
+    // Uncheck all groups
+    document.getElementById('uncheck-all').addEventListener('click', function() {
+        Object.keys(groups).forEach(groupId => {
+            visibleGroups.delete(groupId);
+            document.getElementById(`group-${groupId}`).checked = false;
+        });
+        updateVisibility();
+    });
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', loadGraph);
