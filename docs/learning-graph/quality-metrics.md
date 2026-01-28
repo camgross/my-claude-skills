@@ -3,13 +3,13 @@
 ## Overview
 
 - **Total Concepts**: 200
-- **Foundational Concepts** (no dependencies): 1
-- **Concepts with Dependencies**: 199
-- **Average Dependencies per Concept**: 1.68
+- **Foundational Concepts** (no dependencies): 8
+- **Concepts with Dependencies**: 192
+- **Average Dependencies per Concept**: 1.18
 
 ## Graph Structure Validation
 
-- **Valid DAG Structure**: ✅ Yes
+- **Valid DAG Structure**: ❌ No
 - **Self-Dependencies**: None detected ✅
 - **Cycles Detected**: 0
 
@@ -17,61 +17,61 @@
 
 These concepts have no prerequisites:
 
-- **1**: Scientific Reasoning
+- **1**: Artificial Intelligence
+- **26**: Intelligent Textbook
+- **37**: Markdown Formatting Basics
+- **91**: Taxonomy
+- **153**: Git
+- **162**: Visual Studio Code
+- **168**: Python
+- **191**: Command-Line Interface Basics
 
 ## Dependency Chain Analysis
 
-- **Maximum Dependency Chain Length**: 18
+- **Maximum Dependency Chain Length**: 11
 
 ### Longest Learning Path:
 
-1. **Scientific Reasoning** (ID: 1)
-2. **Scientific Method** (ID: 8)
-3. **Evidence-Based Reasoning** (ID: 9)
-4. **Data Interpretation** (ID: 10)
-5. **Visual Data Representation** (ID: 14)
-6. **Graphs and Charts** (ID: 33)
-7. **Numerical Data Analysis** (ID: 64)
-8. **Data-Driven Reasoning** (ID: 65)
-9. **Logical Conclusions** (ID: 66)
-10. **Evaluating Scientific Claims** (ID: 81)
-11. **Evidence Supporting Conclusions** (ID: 82)
-12. **Conflicting Evidence** (ID: 88)
-13. **Data Consistency** (ID: 90)
-14. **Reproducibility** (ID: 91)
-15. **Peer Review Concepts** (ID: 92)
-16. **Scientific Consensus** (ID: 93)
-17. **Theory Modification** (ID: 94)
-18. **Paradigm Shifts** (ID: 95)
+1. **Intelligent Textbook** (ID: 26)
+2. **Learning Graph** (ID: 39)
+3. **Concept Nodes in Learning Graphs** (ID: 40)
+4. **Concept Dependencies** (ID: 44)
+5. **Dependency Mapping Process** (ID: 70)
+6. **CSV File Format for Graphs** (ID: 71)
+7. **vis-network JSON Format** (ID: 99)
+8. **JSON Schema for Learning Graphs** (ID: 100)
+9. **Metadata Section in JSON** (ID: 101)
+10. **Dublin Core Metadata** (ID: 105)
+11. **Title Metadata Field** (ID: 106)
 
 ## Orphaned Nodes Analysis
 
-- **Total Orphaned Nodes**: 69
+- **Total Orphaned Nodes**: 104
 
 Concepts that are not prerequisites for any other concept:
 
-- **3**: Career and College Readiness Standards
-- **7**: Test Item Alignment
-- **16**: Qualitative Reasoning
-- **24**: Restatements of Research
-- **25**: Scientific Comparisons
-- **26**: Scientific Processes
-- **30**: Scientific Symbols
-- **32**: Context Clues in Science
-- **35**: Data Visualization
-- **37**: Hypothesis Refinement
-- **44**: Error Reduction Strategies
-- **45**: Experimental Controls
-- **49**: Scientific Investigation Steps
-- **52**: Precision and Accuracy
-- **53**: Data Collection Methods
-- **56**: Comparing Experimental Designs
-- **57**: Observational Study Design
-- **60**: Confounding Variables
-- **62**: Citing Textual Evidence
-- **63**: Supporting Findings with Data
+- **3**: Large Language Models Overview
+- **9**: Skill Name and Description
+- **10**: Skill License Information
+- **12**: Skill Workflow Instructions
+- **14**: Listing Available Skills
+- **16**: Skill Execution Context
+- **18**: Command Definition Files
+- **19**: Installing Claude Commands
+- **20**: Difference Between Skills & Commands
+- **23**: Python Scripts in Skills
+- **24**: Template Files in Skills
+- **25**: Reference Documentation in Skills
+- **32**: Level 5: AI Personalization
+- **36**: Navigation Structure in MkDocs
+- **38**: Admonitions in MkDocs
+- **43**: Prerequisite Relationships
+- **45**: Learning Pathways
+- **47**: Target Audience Definition
+- **48**: Course Prerequisites
+- **49**: Main Topics Covered
 
-*...and 49 more*
+*...and 84 more*
 
 ## Connected Components
 
@@ -85,31 +85,31 @@ Top 10 concepts that are prerequisites for the most other concepts:
 
 | Rank | Concept ID | Concept Label | Indegree |
 |------|-----------|---------------|----------|
-| 1 | 18 | Experimental Design | 13 |
-| 2 | 1 | Scientific Reasoning | 11 |
-| 3 | 21 | Reading Scientific Text | 11 |
-| 4 | 61 | Evidence-Based Conclusions | 7 |
-| 5 | 141 | Descriptive Statistics | 7 |
-| 6 | 161 | Human Body Systems | 7 |
-| 7 | 8 | Scientific Method | 6 |
-| 8 | 10 | Data Interpretation | 6 |
-| 9 | 73 | Sampling Techniques | 6 |
-| 10 | 81 | Evaluating Scientific Claims | 6 |
+| 1 | 26 | Intelligent Textbook | 13 |
+| 2 | 71 | CSV File Format for Graphs | 10 |
+| 3 | 82 | Quality Metrics for Graphs | 8 |
+| 4 | 53 | Bloom's 2001 Revision | 7 |
+| 5 | 105 | Dublin Core Metadata | 7 |
+| 6 | 6 | Claude Skill | 6 |
+| 7 | 13 | Installing a Claude Skill | 6 |
+| 8 | 39 | Learning Graph | 6 |
+| 9 | 46 | Course Description | 6 |
+| 10 | 116 | ISO 11179 Standards | 6 |
 
 ## Outdegree Distribution
 
 | Dependencies | Number of Concepts |
 |--------------|--------------------|
-| 0 | 1 |
-| 1 | 75 |
-| 2 | 114 |
-| 3 | 9 |
-| 4 | 1 |
+| 0 | 8 |
+| 1 | 166 |
+| 2 | 22 |
+| 3 | 3 |
+| 8 | 1 |
 
 ## Recommendations
 
-- ⚠️ **Many orphaned nodes** (69): Consider if these should be prerequisites for advanced concepts
-- ℹ️ **Long dependency chains** (18): Ensure students can follow extended learning paths
+- ⚠️ **Many orphaned nodes** (104): Consider if these should be prerequisites for advanced concepts
+- ℹ️ **Consider adding cross-dependencies**: More connections could create richer learning pathways
 
 ---
 
