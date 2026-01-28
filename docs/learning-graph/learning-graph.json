@@ -3,1078 +3,1106 @@
     "title": "Learning Graph",
     "description": "Learning graph with 200 concepts generated from CSV",
     "creator": "CSV to JSON Converter",
-    "date": "2026-01-25",
+    "date": "2025-11-15",
     "version": "1.0",
     "format": "Learning Graph JSON v1.0",
     "schema": "https://raw.githubusercontent.com/dmccreary/learning-graphs/refs/heads/main/src/schema/learning-graph-schema.json",
     "license": "CC BY-NC-SA 4.0 DEED"
   },
   "groups": {
-    "FOUND": {
-      "classifierName": "Foundation Concepts",
-      "color": "red",
-      "font": {
-        "color": "white"
-      }
-    },
-    "COMP": {
-      "classifierName": "Comprehension",
-      "color": "blue",
-      "font": {
-        "color": "white"
-      }
-    },
-    "DESIGN": {
-      "classifierName": "Investigation Design",
-      "color": "purple",
-      "font": {
-        "color": "white"
-      }
-    },
-    "REASON": {
-      "classifierName": "Reasoning from Data",
-      "color": "green",
-      "font": {
-        "color": "white"
-      }
-    },
-    "EVAL": {
-      "classifierName": "Evaluating Conclusions",
-      "color": "orange",
+    "AIFND": {
+      "classifierName": "AI Foundations",
+      "color": "salmon",
       "font": {
         "color": "black"
       }
     },
-    "THEORY": {
-      "classifierName": "Scientific Theories",
-      "color": "darkblue",
+    "SKILL": {
+      "classifierName": "Claude Skills System",
+      "color": "mediumturquoise",
+      "font": {
+        "color": "black"
+      }
+    },
+    "IBOOK": {
+      "classifierName": "Intelligent Textbooks",
+      "color": "steelblue",
       "font": {
         "color": "white"
       }
     },
-    "EXPRESS": {
-      "classifierName": "Expression of Information",
-      "color": "teal",
+    "MKDOC": {
+      "classifierName": "MkDocs Platform",
+      "color": "darkseagreen",
+      "font": {
+        "color": "black"
+      }
+    },
+    "GRAPH": {
+      "classifierName": "Learning Graphs",
+      "color": "khaki",
+      "font": {
+        "color": "black"
+      }
+    },
+    "EDTHY": {
+      "classifierName": "Educational Theory",
+      "color": "sandybrown",
+      "font": {
+        "color": "black"
+      }
+    },
+    "CONTE": {
+      "classifierName": "Content Creation",
+      "color": "chocolate",
       "font": {
         "color": "white"
       }
     },
-    "STATS": {
-      "classifierName": "Probability & Statistics",
-      "color": "brown",
+    "RSRCE": {
+      "classifierName": "Educational Resources",
+      "color": "mediumpurple",
       "font": {
         "color": "white"
       }
     },
-    "LIFE": {
-      "classifierName": "Life Science",
-      "color": "darkgreen",
+    "INTER": {
+      "classifierName": "Interactive Elements",
+      "color": "coral",
       "font": {
-        "color": "white"
+        "color": "black"
+      }
+    },
+    "VERCT": {
+      "classifierName": "Version Control",
+      "color": "cornflowerblue",
+      "font": {
+        "color": "black"
+      }
+    },
+    "TOOLS": {
+      "classifierName": "Development Tools",
+      "color": "plum",
+      "font": {
+        "color": "black"
+      }
+    },
+    "DATAS": {
+      "classifierName": "Data & Scripting",
+      "color": "hotpink",
+      "font": {
+        "color": "black"
       }
     }
   },
   "nodes": [
     {
       "id": 1,
-      "label": "Scientific Reasoning",
-      "group": "FOUND",
+      "label": "Artificial Intelligence",
+      "group": "AIFND",
       "shape": "box"
     },
     {
       "id": 2,
-      "label": "Assessment Targets",
-      "group": "FOUND"
+      "label": "Claude AI",
+      "group": "AIFND"
     },
     {
       "id": 3,
-      "label": "Career and College Readiness Standards",
-      "group": "FOUND"
+      "label": "Large Language Models Overview",
+      "group": "AIFND"
     },
     {
       "id": 4,
-      "label": "Science Practices",
-      "group": "FOUND"
+      "label": "Anthropic Claude Pro Account",
+      "group": "AIFND"
     },
     {
       "id": 5,
-      "label": "Content Topics",
-      "group": "FOUND"
+      "label": "Claude Code Interface",
+      "group": "AIFND"
     },
     {
       "id": 6,
-      "label": "Depth of Knowledge (DOK)",
-      "group": "FOUND"
+      "label": "Claude Skill",
+      "group": "SKILL"
     },
     {
       "id": 7,
-      "label": "Test Item Alignment",
-      "group": "FOUND"
+      "label": "Skill Definition File Structure",
+      "group": "SKILL"
     },
     {
       "id": 8,
-      "label": "Scientific Method",
-      "group": "FOUND"
+      "label": "YAML Frontmatter in Skills",
+      "group": "SKILL"
     },
     {
       "id": 9,
-      "label": "Evidence-Based Reasoning",
-      "group": "FOUND"
+      "label": "Skill Name and Description",
+      "group": "SKILL"
     },
     {
       "id": 10,
-      "label": "Data Interpretation",
-      "group": "FOUND"
+      "label": "Skill License Information",
+      "group": "SKILL"
     },
     {
       "id": 11,
-      "label": "Scientific Literacy",
-      "group": "FOUND"
+      "label": "Allowed Tools in Skills",
+      "group": "SKILL"
     },
     {
       "id": 12,
-      "label": "Textual Scientific Presentations",
-      "group": "COMP"
+      "label": "Skill Workflow Instructions",
+      "group": "SKILL"
     },
     {
       "id": 13,
-      "label": "Non-Textual Scientific Presentations",
-      "group": "COMP"
+      "label": "Installing a Claude Skill",
+      "group": "SKILL"
     },
     {
       "id": 14,
-      "label": "Visual Data Representation",
-      "group": "COMP"
+      "label": "Listing Available Skills",
+      "group": "SKILL"
     },
     {
       "id": 15,
-      "label": "Quantitative Reasoning",
-      "group": "FOUND"
+      "label": "Invoking Skills with Slash Commands",
+      "group": "SKILL"
     },
     {
       "id": 16,
-      "label": "Qualitative Reasoning",
-      "group": "FOUND"
+      "label": "Skill Execution Context",
+      "group": "SKILL"
     },
     {
       "id": 17,
-      "label": "Scientific Inquiry",
-      "group": "FOUND"
+      "label": "Claude Command",
+      "group": "SKILL"
     },
     {
       "id": 18,
-      "label": "Experimental Design",
-      "group": "DESIGN"
+      "label": "Command Definition Files",
+      "group": "SKILL"
     },
     {
       "id": 19,
-      "label": "Observational Studies",
-      "group": "DESIGN"
+      "label": "Installing Claude Commands",
+      "group": "SKILL"
     },
     {
       "id": 20,
-      "label": "Scientific Communication",
-      "group": "FOUND"
+      "label": "Difference Between Skills & Commands",
+      "group": "SKILL"
     },
     {
       "id": 21,
-      "label": "Reading Scientific Text",
-      "group": "COMP"
+      "label": "Skill Directory Structure",
+      "group": "SKILL"
     },
     {
       "id": 22,
-      "label": "Central Ideas in Science",
-      "group": "COMP"
+      "label": "Supporting Assets in Skills",
+      "group": "SKILL"
     },
     {
       "id": 23,
-      "label": "Summaries of Scientific Findings",
-      "group": "COMP"
+      "label": "Python Scripts in Skills",
+      "group": "SKILL"
     },
     {
       "id": 24,
-      "label": "Restatements of Research",
-      "group": "COMP"
+      "label": "Template Files in Skills",
+      "group": "SKILL"
     },
     {
       "id": 25,
-      "label": "Scientific Comparisons",
-      "group": "COMP"
+      "label": "Reference Documentation in Skills",
+      "group": "SKILL"
     },
     {
       "id": 26,
-      "label": "Scientific Processes",
-      "group": "COMP"
+      "label": "Intelligent Textbook",
+      "group": "IBOOK",
+      "shape": "box"
     },
     {
       "id": 27,
-      "label": "Scientific Theories Overview",
-      "group": "COMP"
+      "label": "Five Levels of Textbook Intelligence",
+      "group": "IBOOK"
     },
     {
       "id": 28,
-      "label": "Scientific Trends",
-      "group": "COMP"
+      "label": "Level 1: Static Content",
+      "group": "IBOOK"
     },
     {
       "id": 29,
-      "label": "Academic Vocabulary in Science",
-      "group": "COMP"
+      "label": "Level 2: Hyperlinked Navigation",
+      "group": "IBOOK"
     },
     {
       "id": 30,
-      "label": "Scientific Symbols",
-      "group": "COMP"
+      "label": "Level 3: Interactive Elements",
+      "group": "IBOOK"
     },
     {
       "id": 31,
-      "label": "Scientific Terms and Phrases",
-      "group": "COMP"
+      "label": "Level 4: Adaptive Content",
+      "group": "IBOOK"
     },
     {
       "id": 32,
-      "label": "Context Clues in Science",
-      "group": "COMP"
+      "label": "Level 5: AI Personalization",
+      "group": "IBOOK"
     },
     {
       "id": 33,
-      "label": "Graphs and Charts",
-      "group": "COMP"
+      "label": "MkDocs",
+      "group": "MKDOC"
     },
     {
       "id": 34,
-      "label": "Tables and Diagrams",
-      "group": "COMP"
+      "label": "MkDocs Material Theme",
+      "group": "MKDOC"
     },
     {
       "id": 35,
-      "label": "Data Visualization",
-      "group": "COMP"
+      "label": "MkDocs Configuration File",
+      "group": "MKDOC"
     },
     {
       "id": 36,
-      "label": "Hypothesis Formation",
-      "group": "DESIGN"
+      "label": "Navigation Structure in MkDocs",
+      "group": "MKDOC"
     },
     {
       "id": 37,
-      "label": "Hypothesis Refinement",
-      "group": "DESIGN"
+      "label": "Markdown Formatting Basics",
+      "group": "MKDOC",
+      "shape": "box"
     },
     {
       "id": 38,
-      "label": "Independent Variables",
-      "group": "DESIGN"
+      "label": "Admonitions in MkDocs",
+      "group": "MKDOC"
     },
     {
       "id": 39,
-      "label": "Dependent Variables",
-      "group": "DESIGN"
+      "label": "Learning Graph",
+      "group": "GRAPH"
     },
     {
       "id": 40,
-      "label": "Controlled Variables",
-      "group": "DESIGN"
+      "label": "Concept Nodes in Learning Graphs",
+      "group": "GRAPH"
     },
     {
       "id": 41,
-      "label": "Sources of Experimental Error",
-      "group": "DESIGN"
+      "label": "Dependency Edges in Learning Graphs",
+      "group": "GRAPH"
     },
     {
       "id": 42,
-      "label": "Systematic Error",
-      "group": "DESIGN"
+      "label": "Directed Acyclic Graph (DAG)",
+      "group": "GRAPH"
     },
     {
       "id": 43,
-      "label": "Random Error",
-      "group": "DESIGN"
+      "label": "Prerequisite Relationships",
+      "group": "GRAPH"
     },
     {
       "id": 44,
-      "label": "Error Reduction Strategies",
-      "group": "DESIGN"
+      "label": "Concept Dependencies",
+      "group": "GRAPH"
     },
     {
       "id": 45,
-      "label": "Experimental Controls",
-      "group": "DESIGN"
+      "label": "Learning Pathways",
+      "group": "GRAPH"
     },
     {
       "id": 46,
-      "label": "Sample Size",
-      "group": "DESIGN"
+      "label": "Course Description",
+      "group": "EDTHY"
     },
     {
       "id": 47,
-      "label": "Replication in Experiments",
-      "group": "DESIGN"
+      "label": "Target Audience Definition",
+      "group": "EDTHY"
     },
     {
       "id": 48,
-      "label": "Experimental Procedures",
-      "group": "DESIGN"
+      "label": "Course Prerequisites",
+      "group": "EDTHY"
     },
     {
       "id": 49,
-      "label": "Scientific Investigation Steps",
-      "group": "DESIGN"
+      "label": "Main Topics Covered",
+      "group": "EDTHY"
     },
     {
       "id": 50,
-      "label": "Measurement Tools",
-      "group": "DESIGN"
+      "label": "Topics Excluded from Course",
+      "group": "EDTHY"
     },
     {
       "id": 51,
-      "label": "Units of Measurement",
-      "group": "DESIGN"
+      "label": "Learning Outcomes",
+      "group": "EDTHY"
     },
     {
       "id": 52,
-      "label": "Precision and Accuracy",
-      "group": "DESIGN"
+      "label": "Bloom's Taxonomy",
+      "group": "EDTHY"
     },
     {
       "id": 53,
-      "label": "Data Collection Methods",
-      "group": "DESIGN"
+      "label": "Bloom's 2001 Revision",
+      "group": "EDTHY"
     },
     {
       "id": 54,
-      "label": "Experimental Design Strengths",
-      "group": "DESIGN"
+      "label": "Remember (Cognitive Level 1)",
+      "group": "EDTHY"
     },
     {
       "id": 55,
-      "label": "Experimental Design Weaknesses",
-      "group": "DESIGN"
+      "label": "Understand (Cognitive Level 2)",
+      "group": "EDTHY"
     },
     {
       "id": 56,
-      "label": "Comparing Experimental Designs",
-      "group": "DESIGN"
+      "label": "Apply (Cognitive Level 3)",
+      "group": "EDTHY"
     },
     {
       "id": 57,
-      "label": "Observational Study Design",
-      "group": "DESIGN"
+      "label": "Analyze (Cognitive Level 4)",
+      "group": "EDTHY"
     },
     {
       "id": 58,
-      "label": "Cause and Effect Relationships",
-      "group": "DESIGN"
+      "label": "Evaluate (Cognitive Level 5)",
+      "group": "EDTHY"
     },
     {
       "id": 59,
-      "label": "Correlation vs Causation",
-      "group": "DESIGN"
+      "label": "Create (Cognitive Level 6)",
+      "group": "EDTHY"
     },
     {
       "id": 60,
-      "label": "Confounding Variables",
-      "group": "DESIGN"
+      "label": "Action Verbs for Learning Outcomes",
+      "group": "EDTHY"
     },
     {
       "id": 61,
-      "label": "Evidence-Based Conclusions",
-      "group": "REASON"
+      "label": "Course Description Quality Score",
+      "group": "EDTHY"
     },
     {
       "id": 62,
-      "label": "Citing Textual Evidence",
-      "group": "REASON"
+      "label": "Assessing Course Descriptions",
+      "group": "EDTHY"
     },
     {
       "id": 63,
-      "label": "Supporting Findings with Data",
-      "group": "REASON"
+      "label": "Concept Enumeration Process",
+      "group": "GRAPH"
     },
     {
       "id": 64,
-      "label": "Numerical Data Analysis",
-      "group": "REASON"
+      "label": "Generating 200 Concepts",
+      "group": "GRAPH"
     },
     {
       "id": 65,
-      "label": "Data-Driven Reasoning",
-      "group": "REASON"
+      "label": "Concept Label Requirements",
+      "group": "GRAPH"
     },
     {
       "id": 66,
-      "label": "Logical Conclusions",
-      "group": "REASON"
+      "label": "Title Case Convention",
+      "group": "GRAPH"
     },
     {
       "id": 67,
-      "label": "Scientific Predictions",
-      "group": "REASON"
+      "label": "Maximum Character Length",
+      "group": "GRAPH"
     },
     {
       "id": 68,
-      "label": "Trend Analysis",
-      "group": "REASON"
+      "label": "Concept Granularity",
+      "group": "GRAPH"
     },
     {
       "id": 69,
-      "label": "Trend Extrapolation",
-      "group": "REASON"
+      "label": "Atomic Concepts",
+      "group": "GRAPH"
     },
     {
       "id": 70,
-      "label": "Variable Relationships",
-      "group": "REASON"
+      "label": "Dependency Mapping Process",
+      "group": "GRAPH"
     },
     {
       "id": 71,
-      "label": "Direct Relationships",
-      "group": "REASON"
+      "label": "CSV File Format for Graphs",
+      "group": "DATAS"
     },
     {
       "id": 72,
-      "label": "Inverse Relationships",
-      "group": "REASON"
+      "label": "Pipe-Delimited Dependencies",
+      "group": "DATAS"
     },
     {
       "id": 73,
-      "label": "Sampling Techniques",
-      "group": "STATS"
+      "label": "ConceptID Field",
+      "group": "DATAS"
     },
     {
       "id": 74,
-      "label": "Random Sampling",
-      "group": "STATS"
+      "label": "ConceptLabel Field",
+      "group": "DATAS"
     },
     {
       "id": 75,
-      "label": "Systematic Sampling",
-      "group": "STATS"
+      "label": "Dependencies Field",
+      "group": "DATAS"
     },
     {
       "id": 76,
-      "label": "Representative Samples",
-      "group": "STATS"
+      "label": "Foundational Concepts",
+      "group": "GRAPH"
     },
     {
       "id": 77,
-      "label": "Sample Bias",
-      "group": "STATS"
+      "label": "Prerequisite Concepts",
+      "group": "GRAPH"
     },
     {
       "id": 78,
-      "label": "Population vs Sample",
-      "group": "STATS"
+      "label": "Advanced Concepts",
+      "group": "GRAPH"
     },
     {
       "id": 79,
-      "label": "Statistical Inference",
-      "group": "STATS"
+      "label": "Circular Dependency Detection",
+      "group": "GRAPH"
     },
     {
       "id": 80,
-      "label": "Sampling Strategies",
-      "group": "STATS"
+      "label": "DAG Validation",
+      "group": "GRAPH"
     },
     {
       "id": 81,
-      "label": "Evaluating Scientific Claims",
-      "group": "EVAL"
+      "label": "Self-Dependency Checking",
+      "group": "GRAPH"
     },
     {
       "id": 82,
-      "label": "Evidence Supporting Conclusions",
-      "group": "EVAL"
+      "label": "Quality Metrics for Graphs",
+      "group": "GRAPH"
     },
     {
       "id": 83,
-      "label": "Evidence Challenging Conclusions",
-      "group": "EVAL"
+      "label": "Orphaned Nodes",
+      "group": "GRAPH"
     },
     {
       "id": 84,
-      "label": "Theory Evaluation",
-      "group": "EVAL"
+      "label": "Disconnected Subgraphs",
+      "group": "GRAPH"
     },
     {
       "id": 85,
-      "label": "Hypothesis Testing",
-      "group": "EVAL"
+      "label": "Linear Chain Detection",
+      "group": "GRAPH"
     },
     {
       "id": 86,
-      "label": "Scientific Models",
-      "group": "THEORY"
+      "label": "Indegree Analysis",
+      "group": "GRAPH"
     },
     {
       "id": 87,
-      "label": "Model Validation",
-      "group": "EVAL"
+      "label": "Outdegree Analysis",
+      "group": "GRAPH"
     },
     {
       "id": 88,
-      "label": "Conflicting Evidence",
-      "group": "EVAL"
+      "label": "Average Dependencies Per Concept",
+      "group": "GRAPH"
     },
     {
       "id": 89,
-      "label": "Contradictory Results",
-      "group": "EVAL"
+      "label": "Maximum Dependency Chain Length",
+      "group": "GRAPH"
     },
     {
       "id": 90,
-      "label": "Data Consistency",
-      "group": "EVAL"
+      "label": "Learning Graph Quality Score",
+      "group": "GRAPH"
     },
     {
       "id": 91,
-      "label": "Reproducibility",
-      "group": "EVAL"
+      "label": "Taxonomy",
+      "group": "DATAS",
+      "shape": "box"
     },
     {
       "id": 92,
-      "label": "Peer Review Concepts",
-      "group": "EVAL"
+      "label": "Concept Categorization",
+      "group": "DATAS"
     },
     {
       "id": 93,
-      "label": "Scientific Consensus",
-      "group": "EVAL"
+      "label": "Taxonomy Categories",
+      "group": "DATAS"
     },
     {
       "id": 94,
-      "label": "Theory Modification",
-      "group": "EVAL"
+      "label": "TaxonomyID Abbreviations",
+      "group": "DATAS"
     },
     {
       "id": 95,
-      "label": "Paradigm Shifts",
-      "group": "EVAL"
+      "label": "Category Distribution",
+      "group": "DATAS"
     },
     {
       "id": 96,
-      "label": "Reconciling Multiple Findings",
-      "group": "EVAL"
+      "label": "Avoiding Over-Representation",
+      "group": "DATAS"
     },
     {
       "id": 97,
-      "label": "Comparing Scientific Theories",
-      "group": "EVAL"
+      "label": "TaxonomyID Field in CSV",
+      "group": "DATAS"
     },
     {
       "id": 98,
-      "label": "Theory Integration",
-      "group": "EVAL"
+      "label": "Adding Taxonomy to Graph",
+      "group": "DATAS"
     },
     {
       "id": 99,
-      "label": "Scientific Synthesis",
-      "group": "EVAL"
+      "label": "vis-network JSON Format",
+      "group": "DATAS"
     },
     {
       "id": 100,
-      "label": "Complementary Results",
-      "group": "EVAL"
+      "label": "JSON Schema for Learning Graphs",
+      "group": "DATAS"
     },
     {
       "id": 101,
-      "label": "Competing Hypotheses",
-      "group": "EVAL"
+      "label": "Metadata Section in JSON",
+      "group": "DATAS"
     },
     {
       "id": 102,
-      "label": "Best Explanation",
-      "group": "EVAL"
+      "label": "Groups Section in JSON",
+      "group": "DATAS"
     },
     {
       "id": 103,
-      "label": "Occam's Razor",
-      "group": "EVAL"
+      "label": "Nodes Section in JSON",
+      "group": "DATAS"
     },
     {
       "id": 104,
-      "label": "Scientific Controversy",
-      "group": "EVAL"
+      "label": "Edges Section in JSON",
+      "group": "DATAS"
     },
     {
       "id": 105,
-      "label": "Theory Refinement",
-      "group": "EVAL"
+      "label": "Dublin Core Metadata",
+      "group": "DATAS"
     },
     {
       "id": 106,
-      "label": "Visual Communication of Science",
-      "group": "EXPRESS"
+      "label": "Title Metadata Field",
+      "group": "DATAS"
     },
     {
       "id": 107,
-      "label": "Creating Graphs",
-      "group": "EXPRESS"
+      "label": "Description Metadata Field",
+      "group": "DATAS"
     },
     {
       "id": 108,
-      "label": "Creating Tables",
-      "group": "EXPRESS"
+      "label": "Creator Metadata Field",
+      "group": "DATAS"
     },
     {
       "id": 109,
-      "label": "Creating Diagrams",
-      "group": "EXPRESS"
+      "label": "Date Metadata Field",
+      "group": "DATAS"
     },
     {
       "id": 110,
-      "label": "Chart Types",
-      "group": "EXPRESS"
+      "label": "Version Metadata Field",
+      "group": "DATAS"
     },
     {
       "id": 111,
-      "label": "Numerical Expression",
-      "group": "EXPRESS"
+      "label": "Format Metadata Field",
+      "group": "DATAS"
     },
     {
       "id": 112,
-      "label": "Mathematical Notation",
-      "group": "EXPRESS"
+      "label": "License Metadata Field",
+      "group": "DATAS"
     },
     {
       "id": 113,
-      "label": "Scientific Notation",
-      "group": "EXPRESS"
+      "label": "Color Coding in Visualizations",
+      "group": "DATAS"
     },
     {
       "id": 114,
-      "label": "Units and Conversions",
-      "group": "EXPRESS"
+      "label": "Font Colors for Readability",
+      "group": "DATAS"
     },
     {
       "id": 115,
-      "label": "Verbal Scientific Communication",
-      "group": "EXPRESS"
+      "label": "Glossary",
+      "group": "RSRCE"
     },
     {
       "id": 116,
-      "label": "Scientific Writing",
-      "group": "EXPRESS"
+      "label": "ISO 11179 Standards",
+      "group": "RSRCE"
     },
     {
       "id": 117,
-      "label": "Technical Writing",
-      "group": "EXPRESS"
+      "label": "Precise Definitions",
+      "group": "RSRCE"
     },
     {
       "id": 118,
-      "label": "Data Presentation",
-      "group": "EXPRESS"
+      "label": "Concise Definitions",
+      "group": "RSRCE"
     },
     {
       "id": 119,
-      "label": "Results Reporting",
-      "group": "EXPRESS"
+      "label": "Distinct Definitions",
+      "group": "RSRCE"
     },
     {
       "id": 120,
-      "label": "Information Translation",
-      "group": "EXPRESS"
+      "label": "Non-Circular Definitions",
+      "group": "RSRCE"
     },
     {
       "id": 121,
-      "label": "Scientific Theory Definition",
-      "group": "THEORY"
+      "label": "Definitions Without Business Rules",
+      "group": "RSRCE"
     },
     {
       "id": 122,
-      "label": "Laws vs Theories",
-      "group": "THEORY"
+      "label": "Glossary Generation Process",
+      "group": "RSRCE"
     },
     {
       "id": 123,
-      "label": "Theory Application",
-      "group": "THEORY"
+      "label": "FAQ",
+      "group": "RSRCE"
     },
     {
       "id": 124,
-      "label": "Established Scientific Models",
-      "group": "THEORY"
+      "label": "FAQ Generation Process",
+      "group": "RSRCE"
     },
     {
       "id": 125,
-      "label": "Conceptual Models",
-      "group": "THEORY"
+      "label": "Common Student Questions",
+      "group": "RSRCE"
     },
     {
       "id": 126,
-      "label": "Mathematical Models",
-      "group": "THEORY"
+      "label": "FAQ from Course Content",
+      "group": "RSRCE"
     },
     {
       "id": 127,
-      "label": "Physical Models",
-      "group": "THEORY"
+      "label": "MicroSim",
+      "group": "INTER"
     },
     {
       "id": 128,
-      "label": "Model Limitations",
-      "group": "THEORY"
+      "label": "p5.js JavaScript Library",
+      "group": "INTER"
     },
     {
       "id": 129,
-      "label": "Theory-Based Predictions",
-      "group": "THEORY"
+      "label": "Interactive Simulations",
+      "group": "INTER"
     },
     {
       "id": 130,
-      "label": "Formula Application",
-      "group": "THEORY"
+      "label": "MicroSim Directory Structure",
+      "group": "INTER"
     },
     {
       "id": 131,
-      "label": "Equation Manipulation",
-      "group": "THEORY"
+      "label": "main.html in MicroSims",
+      "group": "INTER"
     },
     {
       "id": 132,
-      "label": "Problem Solving with Formulas",
-      "group": "THEORY"
+      "label": "index.md for MicroSim Docs",
+      "group": "INTER"
     },
     {
       "id": 133,
-      "label": "Stoichiometry",
-      "group": "THEORY"
+      "label": "Iframe Embedding",
+      "group": "INTER"
     },
     {
       "id": 134,
-      "label": "Conservation Laws",
-      "group": "THEORY"
+      "label": "Seeded Randomness",
+      "group": "INTER"
     },
     {
       "id": 135,
-      "label": "Thermodynamic Principles",
-      "group": "THEORY"
+      "label": "Interactive Controls (Sliders)",
+      "group": "INTER"
     },
     {
       "id": 136,
-      "label": "Newton's Laws",
-      "group": "THEORY"
+      "label": "Interactive Controls (Buttons)",
+      "group": "INTER"
     },
     {
       "id": 137,
-      "label": "Genetic Principles",
-      "group": "THEORY"
+      "label": "MicroSim Metadata",
+      "group": "INTER"
     },
     {
       "id": 138,
-      "label": "Evolutionary Theory",
-      "group": "THEORY"
+      "label": "Educational Simulation Design",
+      "group": "INTER"
     },
     {
       "id": 139,
-      "label": "Atomic Theory",
-      "group": "THEORY"
+      "label": "Quiz",
+      "group": "RSRCE"
     },
     {
       "id": 140,
-      "label": "Cell Theory",
-      "group": "THEORY"
+      "label": "Multiple-Choice Questions",
+      "group": "RSRCE"
     },
     {
       "id": 141,
-      "label": "Descriptive Statistics",
-      "group": "STATS"
+      "label": "Quiz Alignment with Concepts",
+      "group": "RSRCE"
     },
     {
       "id": 142,
-      "label": "Mean (Average)",
-      "group": "STATS"
+      "label": "Bloom's Taxonomy in Quizzes",
+      "group": "RSRCE"
     },
     {
       "id": 143,
-      "label": "Median",
-      "group": "STATS"
+      "label": "Quiz Distribution Across Levels",
+      "group": "RSRCE"
     },
     {
       "id": 144,
-      "label": "Mode",
-      "group": "STATS"
+      "label": "Assessing Student Understanding",
+      "group": "RSRCE"
     },
     {
       "id": 145,
-      "label": "Range",
-      "group": "STATS"
+      "label": "Chapter Structure",
+      "group": "CONTE"
     },
     {
       "id": 146,
-      "label": "Standard Deviation",
-      "group": "STATS"
+      "label": "Section Organization",
+      "group": "CONTE"
     },
     {
       "id": 147,
-      "label": "Variance",
-      "group": "STATS"
+      "label": "Content Generation Process",
+      "group": "CONTE"
     },
     {
       "id": 148,
-      "label": "Data Distribution",
-      "group": "STATS"
+      "label": "Chapter Index Files",
+      "group": "CONTE"
     },
     {
       "id": 149,
-      "label": "Normal Distribution",
-      "group": "STATS"
+      "label": "Chapter Concept Lists",
+      "group": "CONTE"
     },
     {
       "id": 150,
-      "label": "Skewed Distribution",
-      "group": "STATS"
+      "label": "Reading Level Appropriateness",
+      "group": "CONTE"
     },
     {
       "id": 151,
-      "label": "Counting Principles",
-      "group": "STATS"
+      "label": "Worked Examples in Content",
+      "group": "CONTE"
     },
     {
       "id": 152,
-      "label": "Permutations",
-      "group": "STATS"
+      "label": "Practice Exercises",
+      "group": "CONTE"
     },
     {
       "id": 153,
-      "label": "Combinations",
-      "group": "STATS"
+      "label": "Git",
+      "group": "VERCT",
+      "shape": "box"
     },
     {
       "id": 154,
-      "label": "Probability Basics",
-      "group": "STATS"
+      "label": "Version Control Basics",
+      "group": "VERCT"
     },
     {
       "id": 155,
-      "label": "Simple Probability",
-      "group": "STATS"
+      "label": "Git Repository Structure",
+      "group": "VERCT"
     },
     {
       "id": 156,
-      "label": "Compound Probability",
-      "group": "STATS"
+      "label": "Git Status Command",
+      "group": "VERCT"
     },
     {
       "id": 157,
-      "label": "Independent Events",
-      "group": "STATS"
+      "label": "Git Add Command",
+      "group": "VERCT"
     },
     {
       "id": 158,
-      "label": "Dependent Events",
-      "group": "STATS"
+      "label": "Git Commit Command",
+      "group": "VERCT"
     },
     {
       "id": 159,
-      "label": "Punnett Squares",
-      "group": "LIFE"
+      "label": "Git Push Command",
+      "group": "VERCT"
     },
     {
       "id": 160,
-      "label": "Genetic Probability",
-      "group": "LIFE"
+      "label": "GitHub Integration",
+      "group": "VERCT"
     },
     {
       "id": 161,
-      "label": "Human Body Systems",
-      "group": "LIFE"
+      "label": "GitHub Pages Deployment",
+      "group": "VERCT"
     },
     {
       "id": 162,
-      "label": "Muscular System",
-      "group": "LIFE"
+      "label": "Visual Studio Code",
+      "group": "TOOLS",
+      "shape": "box"
     },
     {
       "id": 163,
-      "label": "Endocrine System",
-      "group": "LIFE"
+      "label": "VS Code for Content Development",
+      "group": "TOOLS"
     },
     {
       "id": 164,
-      "label": "Nervous System",
-      "group": "LIFE"
+      "label": "Terminal in VS Code",
+      "group": "TOOLS"
     },
     {
       "id": 165,
-      "label": "System Integration",
-      "group": "LIFE"
+      "label": "Bash",
+      "group": "TOOLS"
     },
     {
       "id": 166,
-      "label": "Homeostasis",
-      "group": "LIFE"
+      "label": "Shell Scripts",
+      "group": "TOOLS"
     },
     {
       "id": 167,
-      "label": "Feedback Mechanisms",
-      "group": "LIFE"
+      "label": "Script Execution Permissions",
+      "group": "TOOLS"
     },
     {
       "id": 168,
-      "label": "External Environment Effects",
-      "group": "LIFE"
+      "label": "Python",
+      "group": "DATAS",
+      "shape": "box"
     },
     {
       "id": 169,
-      "label": "Nutrition and Nutrients",
-      "group": "LIFE"
+      "label": "Python Scripts for Processing",
+      "group": "DATAS"
     },
     {
       "id": 170,
-      "label": "Disease Transmission",
-      "group": "LIFE"
+      "label": "pip Package Management",
+      "group": "DATAS"
     },
     {
       "id": 171,
-      "label": "Pathogens",
-      "group": "LIFE"
+      "label": "Installing Python Packages",
+      "group": "DATAS"
     },
     {
       "id": 172,
-      "label": "Disease Prevention",
-      "group": "LIFE"
+      "label": "analyze-graph.py Script",
+      "group": "DATAS"
     },
     {
       "id": 173,
-      "label": "Photosynthesis",
-      "group": "LIFE"
+      "label": "csv-to-json.py Script",
+      "group": "DATAS"
     },
     {
       "id": 174,
-      "label": "Cellular Respiration",
-      "group": "LIFE"
+      "label": "add-taxonomy.py Script",
+      "group": "DATAS"
     },
     {
       "id": 175,
-      "label": "Fermentation",
-      "group": "LIFE"
+      "label": "taxonomy-distribution.py Script",
+      "group": "DATAS"
     },
     {
       "id": 176,
-      "label": "Energy Flow in Ecosystems",
-      "group": "LIFE"
+      "label": "Prompt Engineering",
+      "group": "AIFND"
     },
     {
       "id": 177,
-      "label": "Food Webs and Chains",
-      "group": "LIFE"
+      "label": "Prompt Design Principles",
+      "group": "AIFND"
     },
     {
       "id": 178,
-      "label": "Producer-Consumer Relationships",
-      "group": "LIFE"
+      "label": "Educational Content Prompts",
+      "group": "AIFND"
     },
     {
       "id": 179,
-      "label": "Carrying Capacity",
-      "group": "LIFE"
+      "label": "Iterative Prompt Refinement",
+      "group": "AIFND"
     },
     {
       "id": 180,
-      "label": "Ecosystem Disruption",
-      "group": "LIFE"
+      "label": "Claude Token Limits",
+      "group": "AIFND"
     },
     {
       "id": 181,
-      "label": "Cell Theory",
-      "group": "LIFE"
+      "label": "Token Management Strategies",
+      "group": "AIFND"
     },
     {
       "id": 182,
-      "label": "Cell Structure and Function",
-      "group": "LIFE"
+      "label": "4-Hour Usage Windows",
+      "group": "AIFND"
     },
     {
       "id": 183,
-      "label": "Cellular Organization",
-      "group": "LIFE"
+      "label": "Claude Pro Limitations",
+      "group": "AIFND"
     },
     {
       "id": 184,
-      "label": "Mitosis",
-      "group": "LIFE"
+      "label": "Optimizing Claude Usage",
+      "group": "AIFND"
     },
     {
       "id": 185,
-      "label": "Meiosis",
-      "group": "LIFE"
+      "label": "Skill Testing and Debugging",
+      "group": "SKILL"
     },
     {
       "id": 186,
-      "label": "DNA and Inheritance",
-      "group": "LIFE"
+      "label": "Error Analysis in Skills",
+      "group": "SKILL"
     },
     {
       "id": 187,
-      "label": "Chromosomes",
-      "group": "LIFE"
+      "label": "Improving Skill Quality",
+      "group": "SKILL"
     },
     {
       "id": 188,
-      "label": "Genotypes and Phenotypes",
-      "group": "LIFE"
+      "label": "Security in Skill Execution",
+      "group": "SKILL"
     },
     {
       "id": 189,
-      "label": "Alleles",
-      "group": "LIFE"
+      "label": "Permission Management",
+      "group": "SKILL"
     },
     {
       "id": 190,
-      "label": "Mutations",
-      "group": "LIFE"
+      "label": "File Access Permissions",
+      "group": "SKILL"
     },
     {
       "id": 191,
-      "label": "Natural Selection",
-      "group": "LIFE"
+      "label": "Command-Line Interface Basics",
+      "group": "TOOLS",
+      "shape": "box"
     },
     {
       "id": 192,
-      "label": "Artificial Selection",
-      "group": "LIFE"
+      "label": "Terminal Commands",
+      "group": "TOOLS"
     },
     {
       "id": 193,
-      "label": "Adaptation",
-      "group": "LIFE"
+      "label": "Directory Navigation",
+      "group": "TOOLS"
     },
     {
       "id": 194,
-      "label": "Speciation",
-      "group": "LIFE"
+      "label": "File Creation and Editing",
+      "group": "TOOLS"
     },
     {
       "id": 195,
-      "label": "Common Ancestry",
-      "group": "LIFE"
+      "label": "Symlink Creation",
+      "group": "TOOLS"
     },
     {
       "id": 196,
-      "label": "Cladograms",
-      "group": "LIFE"
+      "label": "Installing Skills Globally",
+      "group": "SKILL"
     },
     {
       "id": 197,
-      "label": "Evolution Evidence",
-      "group": "LIFE"
+      "label": "Project-Specific Skills",
+      "group": "SKILL"
     },
     {
       "id": 198,
-      "label": "Variation in Traits",
-      "group": "LIFE"
+      "label": "Skill Distribution Methods",
+      "group": "SKILL"
     },
     {
       "id": 199,
-      "label": "Differential Survival",
-      "group": "LIFE"
+      "label": "Skill Packaging Best Practices",
+      "group": "SKILL"
     },
     {
       "id": 200,
-      "label": "Selection Pressure",
-      "group": "LIFE"
+      "label": "Capstone: Complete Textbook Project",
+      "group": "IBOOK"
     }
   ],
   "edges": [
@@ -1088,34 +1116,14 @@
     },
     {
       "from": 4,
-      "to": 1
-    },
-    {
-      "from": 4,
       "to": 2
     },
     {
       "from": 5,
-      "to": 1
-    },
-    {
-      "from": 5,
-      "to": 2
-    },
-    {
-      "from": 6,
-      "to": 1
-    },
-    {
-      "from": 6,
       "to": 4
     },
     {
-      "from": 7,
-      "to": 4
-    },
-    {
-      "from": 7,
+      "from": 6,
       "to": 5
     },
     {
@@ -1124,11 +1132,7 @@
     },
     {
       "from": 8,
-      "to": 1
-    },
-    {
-      "from": 9,
-      "to": 1
+      "to": 7
     },
     {
       "from": 9,
@@ -1136,15 +1140,7 @@
     },
     {
       "from": 10,
-      "to": 1
-    },
-    {
-      "from": 10,
-      "to": 9
-    },
-    {
-      "from": 11,
-      "to": 1
+      "to": 8
     },
     {
       "from": 11,
@@ -1152,15 +1148,11 @@
     },
     {
       "from": 12,
-      "to": 11
+      "to": 7
     },
     {
       "from": 13,
-      "to": 11
-    },
-    {
-      "from": 14,
-      "to": 10
+      "to": 6
     },
     {
       "from": 14,
@@ -1168,39 +1160,19 @@
     },
     {
       "from": 15,
-      "to": 1
-    },
-    {
-      "from": 15,
-      "to": 10
+      "to": 13
     },
     {
       "from": 16,
-      "to": 1
-    },
-    {
-      "from": 16,
-      "to": 10
+      "to": 15
     },
     {
       "from": 17,
-      "to": 8
-    },
-    {
-      "from": 17,
-      "to": 9
-    },
-    {
-      "from": 18,
-      "to": 8
+      "to": 6
     },
     {
       "from": 18,
       "to": 17
-    },
-    {
-      "from": 19,
-      "to": 8
     },
     {
       "from": 19,
@@ -1208,18 +1180,18 @@
     },
     {
       "from": 20,
-      "to": 11
+      "to": 6
+    },
+    {
+      "from": 20,
+      "to": 17
     },
     {
       "from": 21,
-      "to": 12
+      "to": 7
     },
     {
       "from": 22,
-      "to": 21
-    },
-    {
-      "from": 23,
       "to": 21
     },
     {
@@ -1228,31 +1200,15 @@
     },
     {
       "from": 24,
-      "to": 21
-    },
-    {
-      "from": 24,
-      "to": 23
+      "to": 22
     },
     {
       "from": 25,
-      "to": 21
-    },
-    {
-      "from": 26,
-      "to": 8
-    },
-    {
-      "from": 26,
-      "to": 21
+      "to": 22
     },
     {
       "from": 27,
-      "to": 21
-    },
-    {
-      "from": 28,
-      "to": 21
+      "to": 26
     },
     {
       "from": 28,
@@ -1260,7 +1216,7 @@
     },
     {
       "from": 29,
-      "to": 21
+      "to": 28
     },
     {
       "from": 30,
@@ -1268,11 +1224,7 @@
     },
     {
       "from": 31,
-      "to": 29
-    },
-    {
-      "from": 32,
-      "to": 21
+      "to": 30
     },
     {
       "from": 32,
@@ -1280,55 +1232,31 @@
     },
     {
       "from": 33,
-      "to": 14
+      "to": 26
     },
     {
       "from": 34,
-      "to": 14
-    },
-    {
-      "from": 35,
-      "to": 14
+      "to": 33
     },
     {
       "from": 35,
       "to": 33
     },
     {
-      "from": 35,
+      "from": 36,
+      "to": 35
+    },
+    {
+      "from": 38,
       "to": 34
     },
     {
-      "from": 36,
-      "to": 17
-    },
-    {
-      "from": 37,
-      "to": 36
-    },
-    {
       "from": 38,
-      "to": 18
-    },
-    {
-      "from": 38,
-      "to": 36
+      "to": 37
     },
     {
       "from": 39,
-      "to": 18
-    },
-    {
-      "from": 39,
-      "to": 36
-    },
-    {
-      "from": 40,
-      "to": 18
-    },
-    {
-      "from": 40,
-      "to": 38
+      "to": 26
     },
     {
       "from": 40,
@@ -1336,47 +1264,35 @@
     },
     {
       "from": 41,
-      "to": 18
+      "to": 39
     },
     {
       "from": 42,
-      "to": 41
+      "to": 39
     },
     {
       "from": 43,
-      "to": 41
+      "to": 39
     },
     {
       "from": 44,
-      "to": 41
-    },
-    {
-      "from": 44,
-      "to": 42
-    },
-    {
-      "from": 44,
-      "to": 43
-    },
-    {
-      "from": 45,
-      "to": 18
-    },
-    {
-      "from": 45,
       "to": 40
     },
     {
-      "from": 46,
-      "to": 18
+      "from": 44,
+      "to": 41
+    },
+    {
+      "from": 45,
+      "to": 42
+    },
+    {
+      "from": 45,
+      "to": 44
     },
     {
       "from": 46,
-      "to": 19
-    },
-    {
-      "from": 47,
-      "to": 18
+      "to": 26
     },
     {
       "from": 47,
@@ -1384,31 +1300,19 @@
     },
     {
       "from": 48,
-      "to": 18
+      "to": 46
     },
     {
       "from": 49,
-      "to": 17
-    },
-    {
-      "from": 49,
-      "to": 48
+      "to": 46
     },
     {
       "from": 50,
-      "to": 18
-    },
-    {
-      "from": 50,
-      "to": 48
+      "to": 46
     },
     {
       "from": 51,
-      "to": 50
-    },
-    {
-      "from": 52,
-      "to": 50
+      "to": 46
     },
     {
       "from": 52,
@@ -1416,75 +1320,39 @@
     },
     {
       "from": 53,
-      "to": 18
-    },
-    {
-      "from": 53,
-      "to": 48
+      "to": 52
     },
     {
       "from": 54,
-      "to": 18
-    },
-    {
-      "from": 54,
-      "to": 48
+      "to": 53
     },
     {
       "from": 55,
-      "to": 18
-    },
-    {
-      "from": 55,
-      "to": 48
+      "to": 53
     },
     {
       "from": 56,
-      "to": 54
-    },
-    {
-      "from": 56,
-      "to": 55
+      "to": 53
     },
     {
       "from": 57,
-      "to": 19
+      "to": 53
     },
     {
       "from": 58,
-      "to": 18
-    },
-    {
-      "from": 58,
-      "to": 38
-    },
-    {
-      "from": 58,
-      "to": 39
+      "to": 53
     },
     {
       "from": 59,
-      "to": 58
+      "to": 53
     },
     {
       "from": 60,
-      "to": 40
-    },
-    {
-      "from": 60,
-      "to": 59
+      "to": 53
     },
     {
       "from": 61,
-      "to": 9
-    },
-    {
-      "from": 61,
-      "to": 10
-    },
-    {
-      "from": 62,
-      "to": 21
+      "to": 46
     },
     {
       "from": 62,
@@ -1492,31 +1360,15 @@
     },
     {
       "from": 63,
-      "to": 10
-    },
-    {
-      "from": 63,
-      "to": 61
+      "to": 39
     },
     {
       "from": 64,
-      "to": 15
-    },
-    {
-      "from": 64,
-      "to": 33
-    },
-    {
-      "from": 65,
-      "to": 10
+      "to": 63
     },
     {
       "from": 65,
       "to": 64
-    },
-    {
-      "from": 66,
-      "to": 61
     },
     {
       "from": 66,
@@ -1524,23 +1376,11 @@
     },
     {
       "from": 67,
-      "to": 61
-    },
-    {
-      "from": 67,
-      "to": 66
+      "to": 65
     },
     {
       "from": 68,
-      "to": 28
-    },
-    {
-      "from": 68,
-      "to": 33
-    },
-    {
-      "from": 69,
-      "to": 67
+      "to": 64
     },
     {
       "from": 69,
@@ -1548,11 +1388,7 @@
     },
     {
       "from": 70,
-      "to": 38
-    },
-    {
-      "from": 70,
-      "to": 39
+      "to": 44
     },
     {
       "from": 71,
@@ -1560,39 +1396,23 @@
     },
     {
       "from": 72,
-      "to": 70
+      "to": 71
     },
     {
       "from": 73,
-      "to": 19
-    },
-    {
-      "from": 73,
-      "to": 46
+      "to": 71
     },
     {
       "from": 74,
-      "to": 73
+      "to": 71
     },
     {
       "from": 75,
-      "to": 73
+      "to": 71
     },
     {
       "from": 76,
-      "to": 73
-    },
-    {
-      "from": 76,
-      "to": 74
-    },
-    {
-      "from": 76,
-      "to": 75
-    },
-    {
-      "from": 77,
-      "to": 73
+      "to": 70
     },
     {
       "from": 77,
@@ -1600,23 +1420,15 @@
     },
     {
       "from": 78,
-      "to": 73
-    },
-    {
-      "from": 78,
-      "to": 76
+      "to": 77
     },
     {
       "from": 79,
-      "to": 78
+      "to": 42
     },
     {
       "from": 80,
-      "to": 73
-    },
-    {
-      "from": 80,
-      "to": 76
+      "to": 42
     },
     {
       "from": 80,
@@ -1624,87 +1436,43 @@
     },
     {
       "from": 81,
-      "to": 61
-    },
-    {
-      "from": 81,
-      "to": 66
+      "to": 80
     },
     {
       "from": 82,
-      "to": 61
-    },
-    {
-      "from": 82,
-      "to": 81
+      "to": 80
     },
     {
       "from": 83,
-      "to": 61
-    },
-    {
-      "from": 83,
-      "to": 81
+      "to": 82
     },
     {
       "from": 84,
-      "to": 27
-    },
-    {
-      "from": 84,
-      "to": 81
+      "to": 82
     },
     {
       "from": 85,
-      "to": 36
-    },
-    {
-      "from": 85,
-      "to": 81
+      "to": 82
     },
     {
       "from": 86,
-      "to": 27
+      "to": 82
     },
     {
       "from": 87,
-      "to": 86
-    },
-    {
-      "from": 87,
-      "to": 81
+      "to": 82
     },
     {
       "from": 88,
       "to": 82
     },
     {
-      "from": 88,
-      "to": 83
-    },
-    {
       "from": 89,
-      "to": 88
+      "to": 82
     },
     {
       "from": 90,
-      "to": 64
-    },
-    {
-      "from": 90,
-      "to": 88
-    },
-    {
-      "from": 91,
-      "to": 47
-    },
-    {
-      "from": 91,
-      "to": 90
-    },
-    {
-      "from": 92,
-      "to": 81
+      "to": 82
     },
     {
       "from": 92,
@@ -1712,15 +1480,7 @@
     },
     {
       "from": 93,
-      "to": 84
-    },
-    {
-      "from": 93,
       "to": 92
-    },
-    {
-      "from": 94,
-      "to": 84
     },
     {
       "from": 94,
@@ -1728,31 +1488,19 @@
     },
     {
       "from": 95,
+      "to": 92
+    },
+    {
+      "from": 96,
+      "to": 95
+    },
+    {
+      "from": 97,
+      "to": 71
+    },
+    {
+      "from": 97,
       "to": 94
-    },
-    {
-      "from": 96,
-      "to": 88
-    },
-    {
-      "from": 96,
-      "to": 89
-    },
-    {
-      "from": 97,
-      "to": 27
-    },
-    {
-      "from": 97,
-      "to": 84
-    },
-    {
-      "from": 98,
-      "to": 84
-    },
-    {
-      "from": 98,
-      "to": 96
     },
     {
       "from": 98,
@@ -1760,111 +1508,63 @@
     },
     {
       "from": 99,
-      "to": 96
-    },
-    {
-      "from": 99,
-      "to": 98
+      "to": 71
     },
     {
       "from": 100,
-      "to": 96
-    },
-    {
-      "from": 101,
-      "to": 36
-    },
-    {
-      "from": 101,
-      "to": 97
-    },
-    {
-      "from": 102,
       "to": 99
     },
     {
+      "from": 101,
+      "to": 100
+    },
+    {
       "from": 102,
-      "to": 101
+      "to": 100
     },
     {
       "from": 103,
-      "to": 102
+      "to": 100
     },
     {
       "from": 104,
-      "to": 93
+      "to": 100
     },
     {
-      "from": 104,
+      "from": 105,
       "to": 101
     },
     {
-      "from": 105,
-      "to": 94
-    },
-    {
-      "from": 105,
-      "to": 98
-    },
-    {
       "from": 106,
-      "to": 14
-    },
-    {
-      "from": 106,
-      "to": 20
+      "to": 105
     },
     {
       "from": 107,
-      "to": 33
-    },
-    {
-      "from": 107,
-      "to": 106
+      "to": 105
     },
     {
       "from": 108,
-      "to": 34
-    },
-    {
-      "from": 108,
-      "to": 106
+      "to": 105
     },
     {
       "from": 109,
-      "to": 34
-    },
-    {
-      "from": 109,
-      "to": 106
+      "to": 105
     },
     {
       "from": 110,
-      "to": 33
-    },
-    {
-      "from": 110,
-      "to": 107
+      "to": 105
     },
     {
       "from": 111,
-      "to": 15
-    },
-    {
-      "from": 111,
-      "to": 20
+      "to": 105
     },
     {
       "from": 112,
-      "to": 111
+      "to": 105
     },
     {
       "from": 113,
-      "to": 112
-    },
-    {
-      "from": 114,
-      "to": 51
+      "to": 102
     },
     {
       "from": 114,
@@ -1872,11 +1572,7 @@
     },
     {
       "from": 115,
-      "to": 20
-    },
-    {
-      "from": 115,
-      "to": 21
+      "to": 26
     },
     {
       "from": 116,
@@ -1888,59 +1584,35 @@
     },
     {
       "from": 118,
-      "to": 106
-    },
-    {
-      "from": 118,
-      "to": 111
+      "to": 116
     },
     {
       "from": 119,
       "to": 116
     },
     {
-      "from": 119,
-      "to": 118
-    },
-    {
       "from": 120,
-      "to": 106
-    },
-    {
-      "from": 120,
-      "to": 111
-    },
-    {
-      "from": 120,
-      "to": 115
+      "to": 116
     },
     {
       "from": 121,
-      "to": 27
+      "to": 116
     },
     {
       "from": 122,
-      "to": 121
+      "to": 115
+    },
+    {
+      "from": 122,
+      "to": 116
     },
     {
       "from": 123,
-      "to": 121
-    },
-    {
-      "from": 123,
-      "to": 122
+      "to": 26
     },
     {
       "from": 124,
-      "to": 86
-    },
-    {
-      "from": 124,
-      "to": 121
-    },
-    {
-      "from": 125,
-      "to": 86
+      "to": 123
     },
     {
       "from": 125,
@@ -1948,47 +1620,27 @@
     },
     {
       "from": 126,
-      "to": 86
-    },
-    {
-      "from": 126,
       "to": 124
     },
     {
       "from": 127,
-      "to": 86
+      "to": 26
     },
     {
       "from": 127,
-      "to": 124
+      "to": 30
     },
     {
       "from": 128,
-      "to": 86
-    },
-    {
-      "from": 128,
-      "to": 124
+      "to": 127
     },
     {
       "from": 129,
-      "to": 67
-    },
-    {
-      "from": 129,
-      "to": 123
+      "to": 127
     },
     {
       "from": 130,
-      "to": 123
-    },
-    {
-      "from": 130,
-      "to": 126
-    },
-    {
-      "from": 131,
-      "to": 112
+      "to": 128
     },
     {
       "from": 131,
@@ -2000,6 +1652,10 @@
     },
     {
       "from": 132,
+      "to": 37
+    },
+    {
+      "from": 133,
       "to": 131
     },
     {
@@ -2008,75 +1664,59 @@
     },
     {
       "from": 134,
-      "to": 122
-    },
-    {
-      "from": 134,
-      "to": 123
+      "to": 128
     },
     {
       "from": 135,
-      "to": 122
-    },
-    {
-      "from": 135,
-      "to": 134
+      "to": 128
     },
     {
       "from": 136,
-      "to": 122
-    },
-    {
-      "from": 136,
-      "to": 134
+      "to": 128
     },
     {
       "from": 137,
-      "to": 122
+      "to": 130
     },
     {
       "from": 138,
-      "to": 121
-    },
-    {
-      "from": 138,
-      "to": 137
+      "to": 129
     },
     {
       "from": 139,
-      "to": 121
+      "to": 26
     },
     {
       "from": 140,
-      "to": 121
+      "to": 139
     },
     {
       "from": 141,
-      "to": 64
+      "to": 139
     },
     {
       "from": 141,
-      "to": 79
+      "to": 40
     },
     {
       "from": 142,
-      "to": 141
+      "to": 139
+    },
+    {
+      "from": 142,
+      "to": 52
     },
     {
       "from": 143,
-      "to": 141
+      "to": 142
     },
     {
       "from": 144,
-      "to": 141
+      "to": 139
     },
     {
       "from": 145,
-      "to": 141
-    },
-    {
-      "from": 146,
-      "to": 141
+      "to": 26
     },
     {
       "from": 146,
@@ -2084,43 +1724,39 @@
     },
     {
       "from": 147,
-      "to": 141
+      "to": 26
     },
     {
       "from": 147,
-      "to": 146
+      "to": 6
     },
     {
       "from": 148,
-      "to": 141
+      "to": 145
     },
     {
       "from": 149,
       "to": 148
     },
     {
+      "from": 149,
+      "to": 40
+    },
+    {
       "from": 150,
-      "to": 148
+      "to": 147
     },
     {
       "from": 151,
-      "to": 15
+      "to": 147
     },
     {
       "from": 152,
-      "to": 151
-    },
-    {
-      "from": 153,
-      "to": 151
-    },
-    {
-      "from": 153,
-      "to": 152
+      "to": 147
     },
     {
       "from": 154,
-      "to": 15
+      "to": 153
     },
     {
       "from": 155,
@@ -2128,79 +1764,51 @@
     },
     {
       "from": 156,
-      "to": 154
-    },
-    {
-      "from": 156,
       "to": 155
     },
     {
       "from": 157,
-      "to": 154
-    },
-    {
-      "from": 157,
-      "to": 156
-    },
-    {
-      "from": 158,
-      "to": 154
-    },
-    {
-      "from": 158,
-      "to": 156
-    },
-    {
-      "from": 159,
-      "to": 137
-    },
-    {
-      "from": 159,
       "to": 155
     },
     {
-      "from": 160,
-      "to": 137
+      "from": 158,
+      "to": 157
+    },
+    {
+      "from": 159,
+      "to": 158
     },
     {
       "from": 160,
-      "to": 159
+      "to": 153
     },
     {
       "from": 161,
-      "to": 5
+      "to": 160
     },
     {
-      "from": 162,
-      "to": 161
+      "from": 161,
+      "to": 34
     },
     {
       "from": 163,
-      "to": 161
-    },
-    {
-      "from": 164,
-      "to": 161
-    },
-    {
-      "from": 165,
-      "to": 161
-    },
-    {
-      "from": 165,
       "to": 162
     },
     {
-      "from": 165,
+      "from": 163,
+      "to": 26
+    },
+    {
+      "from": 164,
       "to": 163
     },
     {
-      "from": 165,
-      "to": 164
+      "from": 164,
+      "to": 191
     },
     {
-      "from": 166,
-      "to": 161
+      "from": 165,
+      "to": 191
     },
     {
       "from": 166,
@@ -2211,20 +1819,12 @@
       "to": 166
     },
     {
-      "from": 168,
-      "to": 166
-    },
-    {
-      "from": 168,
-      "to": 167
-    },
-    {
       "from": 169,
-      "to": 161
+      "to": 168
     },
     {
       "from": 170,
-      "to": 161
+      "to": 168
     },
     {
       "from": 171,
@@ -2232,35 +1832,51 @@
     },
     {
       "from": 172,
-      "to": 170
+      "to": 169
     },
     {
       "from": 172,
-      "to": 171
+      "to": 71
     },
     {
       "from": 173,
-      "to": 134
+      "to": 169
+    },
+    {
+      "from": 173,
+      "to": 71
+    },
+    {
+      "from": 173,
+      "to": 99
     },
     {
       "from": 174,
-      "to": 134
+      "to": 169
     },
     {
       "from": 174,
-      "to": 173
+      "to": 71
+    },
+    {
+      "from": 174,
+      "to": 97
     },
     {
       "from": 175,
-      "to": 174
+      "to": 169
+    },
+    {
+      "from": 175,
+      "to": 71
+    },
+    {
+      "from": 175,
+      "to": 95
     },
     {
       "from": 176,
-      "to": 134
-    },
-    {
-      "from": 176,
-      "to": 173
+      "to": 1
     },
     {
       "from": 177,
@@ -2271,56 +1887,40 @@
       "to": 177
     },
     {
+      "from": 178,
+      "to": 26
+    },
+    {
       "from": 179,
-      "to": 178
+      "to": 177
     },
     {
       "from": 180,
-      "to": 176
-    },
-    {
-      "from": 180,
-      "to": 179
+      "to": 2
     },
     {
       "from": 181,
-      "to": 140
+      "to": 180
     },
     {
       "from": 182,
-      "to": 140
-    },
-    {
-      "from": 182,
-      "to": 181
+      "to": 4
     },
     {
       "from": 183,
-      "to": 181
-    },
-    {
-      "from": 183,
-      "to": 182
+      "to": 4
     },
     {
       "from": 184,
-      "to": 182
+      "to": 181
     },
     {
       "from": 185,
-      "to": 182
-    },
-    {
-      "from": 185,
-      "to": 184
+      "to": 13
     },
     {
       "from": 186,
-      "to": 137
-    },
-    {
-      "from": 186,
-      "to": 182
+      "to": 185
     },
     {
       "from": 187,
@@ -2332,11 +1932,7 @@
     },
     {
       "from": 188,
-      "to": 137
-    },
-    {
-      "from": 188,
-      "to": 186
+      "to": 11
     },
     {
       "from": 189,
@@ -2344,15 +1940,7 @@
     },
     {
       "from": 190,
-      "to": 186
-    },
-    {
-      "from": 190,
       "to": 189
-    },
-    {
-      "from": 191,
-      "to": 138
     },
     {
       "from": 192,
@@ -2360,23 +1948,19 @@
     },
     {
       "from": 193,
-      "to": 191
+      "to": 192
     },
     {
       "from": 194,
-      "to": 191
-    },
-    {
-      "from": 194,
-      "to": 193
+      "to": 192
     },
     {
       "from": 195,
-      "to": 138
+      "to": 192
     },
     {
-      "from": 195,
-      "to": 194
+      "from": 196,
+      "to": 13
     },
     {
       "from": 196,
@@ -2384,23 +1968,15 @@
     },
     {
       "from": 197,
-      "to": 138
-    },
-    {
-      "from": 197,
-      "to": 195
+      "to": 13
     },
     {
       "from": 198,
-      "to": 138
-    },
-    {
-      "from": 198,
-      "to": 189
+      "to": 13
     },
     {
       "from": 199,
-      "to": 191
+      "to": 21
     },
     {
       "from": 199,
@@ -2408,11 +1984,35 @@
     },
     {
       "from": 200,
-      "to": 191
+      "to": 26
     },
     {
       "from": 200,
-      "to": 199
+      "to": 6
+    },
+    {
+      "from": 200,
+      "to": 39
+    },
+    {
+      "from": 200,
+      "to": 115
+    },
+    {
+      "from": 200,
+      "to": 123
+    },
+    {
+      "from": 200,
+      "to": 127
+    },
+    {
+      "from": 200,
+      "to": 139
+    },
+    {
+      "from": 200,
+      "to": 145
     }
   ]
 }

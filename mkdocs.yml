@@ -13,7 +13,6 @@ nav:
   - Getting Started: getting-started.md
 
   - Chapters:
-    - Overview: chapters/index.md
     - Chapter 1 - Introduction to AI and Intelligent Textbooks:
       - Content: chapters/01-intro-ai-intelligent-textbooks/index.md
       - Quiz: chapters/01-intro-ai-intelligent-textbooks/quiz.md
